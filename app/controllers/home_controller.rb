@@ -2,6 +2,17 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:profil]
   before_action :produk
   require 'rest_client'
+  require 'net/http'
+
+
+  def check
+    url = URI.parse('http://on-line.co.id')
+    req = Net::HTTP::Get.new(url.to_s)
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+    puts res.body
+  end
 
   def display
       respond_to do |format|
@@ -35,7 +46,7 @@ class HomeController < ApplicationController
   def finish
   end
   def bayar
-    @status = Status.new
+    @currentcart = Cart.where(:user_id => current_user.id, :state => 1)
     @subtotal = []
     current_user.cart.each do |c|
     @subtotal << c.subtotal
