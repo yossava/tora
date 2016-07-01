@@ -87,10 +87,7 @@
 				<label>Total Barang</label>
 				<p><%= c.jumlah %> ( <%= c.jumlah * Produk.find(c.produk_id).berat %> Gram)</p>
 			</div>
-			<div class="col-md-3">
-				<label>Metode Pembayaran</label>
-				<p>Bank Transfer</p>
-			</div>
+
 		</div>
 		<hr style="border-color:#ddd;"></hr>
 	<div class="row">
@@ -101,6 +98,26 @@
 	</div>
           <% end %>
 <div class="spacermedium"></div>
+<% if @currentcart.present? %>
+<div class="row">
+  <div style="margin-bottom:20px;" class="col-md-12">
+    <div class="form-row">
+      <label>Metode Pembayaran</label>
+    <select required class="pembayaran">
+      <option value="">PILIH METODE PEMBAYARAN</option>
+      <option value="cc">KARTU KREDIT</option>
+      <option value="/va/CENA">TRANSFER BCA</option>
+      <option value="/va/BNIN">TRANSFER BNI</option>
+      <option value="/va/BMRI">TRANSFER MANDIRI</option>
+      <option value="/va/HNBN">TRANSFER HANA BANK</option>
+      <option value="/va/IBBK">TRANSFER MAYBANK</option>
+      <option value="/va/BBBA">TRANSFER PERMATA BANK</option>
+    </select>
+    </div>
+  </div>
+
+</div>
+<% end %>
 <div class="row">
 	<div class="col-md-12">
 		<div class="blok-to-checkout">
@@ -116,7 +133,7 @@
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-12">
         <% if @currentcart.present? %>
-        <a href="/cc" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
+        <a style="display:none;" href="/cc" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% else %>
         <a style="background-color:grey;" href="#" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% end %>
@@ -131,3 +148,11 @@
 </div>
 <div class="spacerbig"></div>
 <%= render 'layouts/footer' %>
+<script>
+  $('.pembayaran').bind("change", function(){
+    var jenis = $('option:selected', this).attr('value');
+    $('a.ckbtn-krnjng').attr('href', jenis);
+    $(".ckbtn-krnjng").fadeIn();
+
+});
+</script>

@@ -12,11 +12,11 @@ class TransactionsController < ApplicationController
   end
 
   def updatetx
+      countcart = Cart.where(:user_id => current_user.id, :state => 1).count
       Cart.where(:user_id => current_user.id, :state => 1).update_all(:state => 3)
       redirect_to '/status-pemesanan'
-      mycart = Cart.where(:state => 3).first
       status = "Pembayaran telah dilakukan"
-      Notifikasi.sample_email(current_user, mycart, status).deliver_later
+      Notifikasi.checkout_email(current_user, status, countcart).deliver_later
   end
 
   def record
@@ -64,35 +64,43 @@ class TransactionsController < ApplicationController
     Nicepay.iMid=('VACCTCLOSE')
     Nicepay.merchantKey=('33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==')
     Nicepay.dbProcessUrl=("#{URI.parse(root_url)}/record")
-    Nicepay.callBackUrl=("#{URI.parse(root_url)}/update")
+    Nicepay.callBackUrl=("#{URI.parse(root_url)}/status-pemesanan")
     requestVa   = Nicepay::Api::RequestVa.new(Nicepay.requestParam)
     Nicepay.setRequestParam('iMid', Nicepay.iMid)
     Nicepay.setRequestParam('payMethod', '02')
-    Nicepay.setRequestParam('bankCd', 'CENA')
-    Nicepay.setRequestParam('referenceNo','Invoice-7834')
-    Nicepay.setRequestParam('description','Payment of ' + Nicepay.param('referenceNo')) # Description
+    Nicepay.setRequestParam('bankCd', params[:bank])
+    @invoice = []
+    current_user.cart.where(:state => 1).each do |c|
+      @invoice << c.invoice
+    end
+    @invoice = @invoice.to_sentence
+    @ref = current_user.cart.where(:state => 1).first.invoice
+    Nicepay.setRequestParam('referenceNo', @ref)
+    Nicepay.setRequestParam('description','Payment of ' + @invoice) # Description
     Nicepay.setRequestParam('goodsNm', Nicepay.param('description')) # goodsNm = Description
-    Nicepay.addCart('https://www.nicepay.co.id/nicepay/images/cart.png', 'Glasses', 'Jumlah: 3', 1000)
-    Nicepay.addCart('https://www.nicepay.co.id/nicepay/images/cart.png', 'Glasses', 'Jumlah: 1', 2000)
+    Cart.where(:state => 1, :user_id => current_user.id).each do |c|
+    Nicepay.addCart((URI.parse(root_url) + Produk.find(c.produk_id).foto_produk1.url).to_s, "#{Produk.find(c.produk_id).nama_produk} + Ongkir", "Jumlah: #{c.jumlah}", c.subtotal)
+    end
+    @firstcart = Cart.where(:state => 1, :user_id => current_user.id).first.alamat_id
+    @address = Alamat.find(@firstcart)
     Nicepay.setRequestParam('cartData', Nicepay.cartData)
     Nicepay.setRequestParam('amt', Nicepay.autoCountTotal)
     Nicepay.setRequestParam('currency', 'IDR')
-    Nicepay.setRequestParam('billingNm', 'John Doe')
-    Nicepay.setRequestParam('billingPhone', '02112341234')
-    Nicepay.setRequestParam('billingEmail', 'john.doe@example.com')
-    Nicepay.setRequestParam('billingAddr', 'Jl. Jend Sudirman')
-    Nicepay.setRequestParam('billingCity', 'Jakarta Pusat')
-    Nicepay.setRequestParam('billingState', 'DKI Jakarta')
-    Nicepay.setRequestParam('billingPostCd', '10210')
+    Nicepay.setRequestParam('billingNm', current_user.namalengkap)
+    Nicepay.setRequestParam('billingPhone', @address.nomor_telepon)
+    Nicepay.setRequestParam('billingEmail', current_user.email)
+    Nicepay.setRequestParam('billingAddr', @address.alamat)
+    Nicepay.setRequestParam('billingCity', @address.kota_sebagai)
+    Nicepay.setRequestParam('billingState', @address.provinsi_sebagai)
+    Nicepay.setRequestParam('billingPostCd', @address.kode_pos)
     Nicepay.setRequestParam('billingCountry', 'Indonesia')
-
-    Nicepay.setRequestParam('deliveryNm', 'John Doe')
-    Nicepay.setRequestParam('deliveryPhone', '02112341234')
-    Nicepay.setRequestParam('deliveryEmail', 'john.doe@example.com')
-    Nicepay.setRequestParam('deliveryAddr', 'Jl. Jend Sudirman')
-    Nicepay.setRequestParam('deliveryCity', 'Jakarta Pusat')
-    Nicepay.setRequestParam('deliveryState', 'DKI Jakarta')
-    Nicepay.setRequestParam('deliveryPostCd', '10210')
+    Nicepay.setRequestParam('deliveryNm', current_user.namalengkap)
+    Nicepay.setRequestParam('deliveryPhone', @address.nomor_telepon)
+    Nicepay.setRequestParam('deliveryEmail', current_user.email)
+    Nicepay.setRequestParam('deliveryAddr', @address.alamat)
+    Nicepay.setRequestParam('deliveryCity', @address.kota_sebagai)
+    Nicepay.setRequestParam('deliveryState', @address.provinsi_sebagai)
+    Nicepay.setRequestParam('deliveryPostCd', @address.kode_pos)
     Nicepay.setRequestParam('deliveryCountry', 'Indonesia')
     Nicepay.setRequestParam('userIP', Nicepay.userIp)
     Nicepay.setRequestParam('dbProcessUrl', Nicepay.dbProcessUrl)
@@ -109,6 +117,33 @@ class TransactionsController < ApplicationController
         @des = response["description"].to_s
         @ref = response["referenceNo"].to_s
         @txid = response["tXid"].to_s
+        @amount = response["amount"].to_i
+        amount = @amount
+        van = @van
+
+        @date =  Nicepay.vaExpiryDate(2)
+        @time =  Nicepay.vaExpiryTime
+        tanggal = @date
+        time = @time
+          if params[:bank] == "CENA"
+            @bank = "BCA"
+            elsif params[:bank] == "BNIN"
+            @bank = "BNI"
+            elsif params[:bank] == "BMRI"
+            @bank = "MANDIRI"
+            elsif params[:bank] == "HNBN"
+            @bank = "HANA BANK"
+            elsif params[:bank] == "IBBK"
+            @bank = "MAYBANK"
+            elsif params[:bank] == "BBBA"
+            @bank = "PERMATA"
+            else
+            @bank = "TIDAK TERDAFTAR"
+          end
+          bank = @bank
+          countcart = Cart.where(:user_id => current_user.id, :state => 1).count
+          Cart.where(:user_id => current_user.id, :state => 1).update_all(:txid => @txid)
+          Notifikasi.pembayaranva_email(countcart, van, amount, tanggal, time, bank, current_user).deliver_later
 
     else response["resultCd"].to_s
         @status =  "\nOops! Virtual Account failed to generate! We have recorded the event. \nPlease try again later.\n\n"

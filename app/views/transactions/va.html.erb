@@ -1,3 +1,87 @@
+<%= render 'layouts/header' %>
+		<div id="topkeyword">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
+						<%= render 'layouts/menumobile' %>
+						<span id="labeltopkeyword">Top Keyword</span>
+						<%= render 'layouts/topkey' %>
+						<%= render 'layouts/trolimobile' %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="nav-breadcumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="compresedmenu">
+							<div class="headingcompresed">
+								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
+							</div>
+							<%= render 'layouts/sidemenu' %>
+						</div>
+						<%= render 'layouts/bread' %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ./Header -->
+
+		<div class="spacermedium"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="headingotherpage">
+						<h3>Ringkasan Pembayaran</h3>
+					</div>
+				</div>
+			</div>
+			<div class="spacermedium"></div>
+			<div class="row">
+				<div class="col-md-12">
+          <div class="wrapdtkonf nothide ">
+            Nomor Virtual Account: <strong><%= @van %><br></strong>
+            Bank: <strong><%= @bank %><br></strong>
+            Jumlah Transfer: <strong><%= number_to_currency(@amount, locale: :id) %><br></strong>
+            Valid Sampai: <strong><%= @date.to_date.strftime("%d-%m-%Y") %> <%= @time[0..1] + ":" + @time[2..3] %> WIB<br></strong><br><br>
+
+            Cara Pembayaran ATM:<br>
+            1. Pilih Menu Transaksi Lainnya<br>
+            2. Pilih Transfer<br>
+            3. Pilih Ke rekening BCA Virtual Account<br>
+            4. Input Nomor Virtual Account, misal. 123456789012XXXX<br>
+            5. Pilih Benar<br>
+            6. Pilih Ya<br>
+            7. Ambil bukti bayar anda<br>
+            8. Selesai<br>
+
+<%= @status %><br>
+<%= @code %><br>
+<%= @msg %>
+        </div>
+            </div>
+        <div class="spacermedium"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="spacerbig"></div>
+<%= render 'layouts/footer' %>
+<script>
+  $('.pembayaran').bind("change", function(){
+    var jenis = $('option:selected', this).attr('value');
+    $('a.ckbtn-krnjng').attr('href', jenis);
+    $(".ckbtn-krnjng").fadeIn();
+
+});
+</script>
+
+
 <%= @van %><br>
 <%= @des %><br>
 <%= @ref %><br>
