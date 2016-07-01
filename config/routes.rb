@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   resources :homeitems
   resources :statics
   resources :feedbacks
@@ -18,8 +19,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  get '/waiting' => "transactions#waiting"
+  get '/update' => "transactions#updatetx"
+  get '/record' => "transactions#record"
+  post '/record' => "transactions#record"
   root 'home#index'
-  get "/cek" => "home#check"
+  get "/cek" => "transactions#cek"
+  get "/va" => "transactions#va"
+  get "/cc" => "transactions#cc"
   get "/hitungongkir" => "produks#hitungongkir"
   get "/display" => "home#display"
   get "/tentang" => "home#tentang"

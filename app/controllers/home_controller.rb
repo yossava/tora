@@ -5,15 +5,6 @@ class HomeController < ApplicationController
   require 'net/http'
 
 
-  def check
-    url = URI.parse('http://on-line.co.id')
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    puts res.body
-  end
-
   def display
       respond_to do |format|
       format.js
@@ -48,7 +39,7 @@ class HomeController < ApplicationController
   def bayar
     @currentcart = Cart.where(:user_id => current_user.id, :state => 1)
     @subtotal = []
-    current_user.cart.each do |c|
+    @currentcart.each do |c|
     @subtotal << c.subtotal
     end
   end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
 gem 'pg'
-gem 'nicepay', '~> 0.1.2'
+gem 'nicepay', '~> 0.1.3'
 gem 'rest-client'
 gem 'will_paginate'
 gem 'carrierwave'

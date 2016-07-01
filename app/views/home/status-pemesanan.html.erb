@@ -53,6 +53,7 @@
                 <% @troli3.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Trx ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
@@ -110,6 +111,7 @@
                 <% @troli7.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Trx ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
@@ -167,6 +169,7 @@
                 <% @troli8.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Trx ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
@@ -224,6 +227,7 @@
                 <% @troli2.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Trx ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
@@ -281,6 +285,7 @@
 								<% @troli4.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Trx ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>

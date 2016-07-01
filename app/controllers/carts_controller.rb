@@ -51,7 +51,7 @@ class CartsController < ApplicationController
     Notifikasi.sample_email(current_user, mycart, status).deliver_later
   end
   def checkout
-    Cart.where(:user_id => current_user.id).update_all(:state => 2)
+    Cart.where(:user_id => current_user.id, :state=> 1).update_all(:state => 3)
     redirect_to '/payment'
   end
 
@@ -119,6 +119,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:toko_id, :user_id, :produk_id, :invoice, :catatan, :jumlah, :subtotal, :total, :metode_pembayaran, :alamat_id, :kurir, :berat, :ongkir, :seller_id, :state, :resi)
+      params.require(:cart).permit(:toko_id, :user_id, :produk_id, :invoice, :catatan, :jumlah, :subtotal, :total, :metode_pembayaran, :alamat_id, :kurir, :berat, :ongkir, :seller_id, :state, :resi, :txid)
     end
 end

@@ -110,12 +110,13 @@
 			<div class="col-md-3 col-sm-3 cp-borderedright col-xs-6">
         <% if @currentcart.present? %>
 				<strong class="ttp">Total Pembayaran</strong>
+        <% @subforcc = @subtotal.sum %>
 				<h4><%= number_to_currency(@subtotal.sum, locale: :id) %></h4>
         <% end %>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-12">
         <% if @currentcart.present? %>
-        <a href="/checkout" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
+        <a href="/cc" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% else %>
         <a style="background-color:grey;" href="#" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% end %>
@@ -128,6 +129,5 @@
 </div>
 </div>
 </div>
-
 <div class="spacerbig"></div>
 <%= render 'layouts/footer' %>

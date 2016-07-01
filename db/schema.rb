@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.integer  "seller_id"
     t.integer  "state"
     t.string   "resi"
+    t.string   "txid"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -224,6 +225,13 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.string   "terima_pembayaran2"
     t.string   "terima_pembayaran3"
     t.string   "kota_sebagai"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.text     "get"
+    t.text     "post"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

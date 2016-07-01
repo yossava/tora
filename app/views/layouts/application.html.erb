@@ -1,3 +1,4 @@
+<% if params[:controller] != "transactions" %>
 <% if params[:controller] != "admins" %>
 <!DOCTYPE html>
 <html>
@@ -87,4 +88,7 @@
 
   </body>
 </html>
+<% end %>
+<% else %>
+<%= yield %>
 <% end %>
