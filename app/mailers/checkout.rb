@@ -8,5 +8,6 @@ class Checkout < ApplicationMailer
     if countcart 
     @recentcart = Cart.where(:user_id => current_user.id).order("id desc").limit(countcart)
     mail(to: User.find(@mycart.user_id).email, subject: "Status Pemesanan #{@mycart.invoice} - #{@status} ")
+    end
   end
 end
