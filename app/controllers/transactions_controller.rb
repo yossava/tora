@@ -10,6 +10,14 @@ class TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
   end
+  def bank
+    @van = params[:van]
+    @date = params[:date]
+    @time = params[:time]
+    @bank = params[:bank]
+    @amount = params[:amount]
+    Cart.where(:txid => params[:txid]).update_all(:state => 2)
+  end
 
   def updatetx
       countcart = Cart.where(:user_id => current_user.id, :state => 1).count
@@ -142,6 +150,7 @@ class TransactionsController < ApplicationController
           end
           bank = @bank
           countcart = Cart.where(:user_id => current_user.id, :state => 1).count
+          redirect_to "/bank/?van=#{@van}&bank=#{@bank}&amount=#{@amount}&date=#{@date}&time=#{@time}&txid=#{@txid}"
           Cart.where(:user_id => current_user.id, :state => 1).update_all(:txid => @txid)
           Notifikasi.pembayaranva_email(countcart, van, amount, tanggal, time, bank, current_user).deliver_later
 

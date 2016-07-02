@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -50,7 +50,13 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="headingmac">
-								<h4>Pembayaran yang belum dikonfirmasi:</h4>
+								<h4>Pembayaran yang belum dikonfirmasi:</h4
+                  <% if notice.to_s.include? "TELAH" %>
+                <br><div id="notice" style="color:white;background:green;padding:3px;text-align:center;"> <%= notice %></div>
+                  <% end %>
+                  <% if notice.to_s.include? "BELUM" %>
+                <br><div id="notice" style="color:white;background:red;padding:3px;text-align:center;"> <%= notice %></div>
+                  <% end %>
 							</div>
 						</div>
 					</div>
@@ -63,6 +69,7 @@
                 <% @troli2.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+                  <p class="ttl-tagihan">Transaction ID : <strong><%= t.txid %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
@@ -112,7 +119,7 @@
 										</div>
 									</div>
 									<div class="spacermedium"></div>
-									<a href="/konfirmasi-transfer/<%= t.id %>" class="btn-konfirmasipb">Konfirmasi Pembayaran</a>
+									<a href="/konfirmasi-transfer/<%= t.id %>?txid=<%= t.txid %>" class="btn-konfirmasipb">Sudah Bayar</a>
 									<a href="#" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
 									<a href="#" class="hidedtkonf hide"><i class="fa fa-minus"></i>&nbsp; Sembunyikan Detail</a>
 								</div>
@@ -138,4 +145,8 @@
 		}
 	});
 </script>
-
+<script>
+  $(document).on('ready page:load', function () {
+      $("#notice").delay(3000).fadeOut("slow");
+  });
+</script>

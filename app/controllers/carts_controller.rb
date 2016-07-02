@@ -9,11 +9,46 @@ class CartsController < ApplicationController
   end
 
   def konfirmasi
-    Cart.find(params[:id]).update(:state => 3)
-    redirect_to :back
-    mycart = Cart.find(params[:id])
-    status = "Telah Dikonfirmasi Buyer"
-    Notifikasi.sample_email(current_user, mycart, status).deliver_later
+    Nicepay.iMid=('IONPAYTEST')
+    Nicepay.merchantKey=('33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==')
+    Nicepay.dbProcessUrl=("#{URI.parse(root_url)}/record")
+    Nicepay.callBackUrl=("#{URI.parse(root_url)}/update")
+    checkStatus = Nicepay::Api::CheckStatus.new(Nicepay.requestParam)
+    Nicepay.setRequestParam('iMid', Nicepay.iMid)
+    Nicepay.setRequestParam('referenceNo', Cart.where(:txid => params[:txid]).first.invoice)
+    @currentcart = Cart.where(:txid => params[:txid])
+    @subtotal = []
+    @currentcart.each do |c|
+    @subtotal << c.subtotal
+    end
+    @subtotal = @subtotal.sum.to_s
+    Nicepay.setRequestParam('amt', @subtotal)
+    Nicepay.setRequestParam('tXid', params[:txid])
+    Nicepay.setRequestParam('merchantToken', Nicepay.merchantTokenC)
+    response = checkStatus.response
+    if response["resultCd"].to_s == "0000"
+        @status = response["status"].to_s
+        @amount = response["amt"].to_s
+        @ref = response["referenceNo"].to_s
+        @trx = response["tXid"].to_s
+
+        else
+        @status = "\nOops! Check Status failed to generate! We have recorded the event. \nPlease try again later.\n\n"
+        @result = response["resultCd"]
+        @msg =  response["resultMsg"]
+        end
+      if @status == "0"
+        Cart.where(:txid => params[:txid]).update_all(:state => 3)
+        redirect_to :back, notice: "Pembayaran #{params[:txid]} TELAH diterima!"
+        mycart = Cart.find(params[:id])
+        status = "Telah Dikonfirmasi Buyer"
+        Notifikasi.sample_email(current_user, mycart, status).deliver_later
+        else
+        redirect_to :back, notice: "Pembayaran #{params[:txid]} BELUM diterima!"
+      end
+        Nicepay.flushParam
+
+
   end
   def diterima
     Cart.find(params[:id]).update(:state => 6)
