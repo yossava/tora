@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
+    t.integer  "saldo",                  default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

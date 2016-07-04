@@ -10,7 +10,7 @@
 									<p class="subtitle">Profil Saya</p>
 								</div>
 								<div class="childrow">
-									<h4 class="title typered">Rp 20.000.000</h4>
+									<h4 class="title typered"><%= number_to_currency(current_user.saldo, locale: :id) %></h4>
 									<p class="subtitle">Saldo Saya</p>
 								</div>
 								<div class="absolute-editbtn">

@@ -51,7 +51,11 @@ class CartsController < ApplicationController
 
   end
   def diterima
-    Cart.find(params[:id]).update(:state => 6)
+    @donecart = Cart.find(params[:id])
+    @donecart.update_attributes(:state => 6)
+      @usersaldo =  User.find(@donecart.seller_id).saldo
+      @saldo = @donecart.subtotal
+      User.find(@donecart.seller_id).update(:namalengkap => "Avana")
     redirect_to :back
     mycart = Cart.find(params[:id])
     status = "Telah Diterima Buyer, Transaksi selesai"

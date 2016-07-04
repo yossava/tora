@@ -27,8 +27,14 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
-    Cart.find(params[:cart_id]).update(:state => 6)
-    mycart = Cart.find(params[:cart_id])
+    @donecart = Cart.find(params[:cart_id])
+    @donecart.update(:state => 6)
+    if @donecart.state == 6
+      @usersaldo =  User.find(@donecart.seller_id).saldo
+      @saldo = @donecart.subtotal
+      User.find(@donecart.seller_id).update(:saldo => @saldo + @usersaldo)
+    end
+    mycart = @donecart
     status = "Telah Diterima Buyer, Transaksi selesai"
     Notifikasi.sample_email(current_user, mycart, status).deliver_later
 
