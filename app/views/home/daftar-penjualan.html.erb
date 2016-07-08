@@ -100,8 +100,12 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger">3 hari lagi</span></p>
+                      <% if s.expired == false %>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger"><%= (s.created_at + 4.days - Time.now).to_i/86400 %> hari lagi</span></p>
                       <p class="status"><span class="label label-primary" style="font-weight:600;">Pesanan Baru</span></p>
+                      <% else %>
+                      <p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger">EXPIRED</span></p>
+                      <p class="status"><span class="label label-danger" style="font-weight:600;">Pesanan Batal</span></p> <% end %>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="wrapdtkonf">
@@ -153,10 +157,12 @@
 												</div>
 											</div>
 											<div class="spacermedium"></div>
+                      <% if s.expired == false %>
 											<div>
 												<a href="/terima-pesanan/<%= s.id %>" id="terimaPbtn" class="ok<%= s.id %>"><i class="fa fa-check"></i> Terima Pesanan</a>
 												<a href="/tolak-pesanan/<%= s.id %>" id="tolakPbtn" class="no<%= s.id %>"><i class="fa fa-times"></i> Tolak Pesanan</a>
 											</div>
+                      <% end %>
 										</div>
 									</div>
 								</li>
@@ -171,7 +177,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span></p>
                       <p class="tgln"><span>Resi Pengiriman: <%= s.resi %></span></p>
                       <p class="status"><span class="label label-success" style="font-weight:600;">Dalam Pengiriman</span></p>
 											<div class="row">
@@ -242,7 +248,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span></p>
                       <p class="tgln"><span>Resi Pengiriman: <%= s.resi %></span></p>
                       <p class="status"><span class="label label-info" style="font-weight:600;">Pesanan Telah Sampai</span></p>
 											<div class="row">
@@ -313,7 +319,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span></p>
                       <p class="status"><span class="label label-warning" style="font-weight:600;">Siap Dikirim</span></p>
 											<div class="row">
 												<div class="col-md-12">
@@ -383,7 +389,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span></p>
                       <p class="status"><span class="label label-default" style="font-weight:600;">Transaksi Selesai</span></p>
 											<div class="row">
 												<div class="col-md-12">

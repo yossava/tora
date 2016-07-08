@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -97,10 +97,14 @@
 								<% @troli3.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
+                  <% if t.expired == false %>
                   <p>Status Pemesanan : <strong class="statusorder diproses">Sedang Diproses</strong> &nbsp; <em class="notepesanan">*Pesanan Anda sedang diproses oleh penjual</em></p>
+                  <% else %>
+                  <p>Status Pemesanan : <strong style="background-color:darkred;" class="statusorder diproses">Kadaluarsa</strong> &nbsp; <em class="notepesanan">*Pesanan dibatalkan otomatis oleh sistem</em></p>
+                  <% end %>
 									<div class="spacermedium"></div>
 									<div class="wrapdtkonf">
 										<div class="heading-wdkf">
@@ -150,14 +154,19 @@
 									<a href="#" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
 									<a href="#" class="hidedtkonf hide"><i class="fa fa-minus"></i>&nbsp; Sembunyikan Detail</a>
 								</div>
+
                 <% end %>
                 <% @troli2.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
+                  <% if t.expired == false %>
                   <p>Status Pemesanan : <strong class="statusorder waiting">Menunggu Konfirmasi Pembayaran</strong> &nbsp; <em class="notepesanan">*Penjual menunggu konfirmasi pembayaran dari Anda</em></p>
+                  <% else %>
+                  <p>Status Pemesanan : <strong style="background-color:darkred;" class="statusorder diproses">Kadaluarsa</strong> &nbsp; <em class="notepesanan">*Pesanan dibatalkan otomatis oleh sistem</em></p>
+                  <% end %>
 									<div class="spacermedium"></div>
 									<div class="wrapdtkonf">
 										<div class="heading-wdkf">
@@ -211,7 +220,7 @@
 								<% @troli4.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
                   <p>Status Pemesanan : <strong class="statusorder done">Pesanan Telah Dikirim</strong> &nbsp; <em class="notepesanan">*Pesanan Anda dalam proses pengiriman oleh kurir</em></p>
@@ -269,7 +278,7 @@
                 <% @troli5.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
                   <p>Status Pemesanan : <strong class="statusorder past">Transaksi Selesai</strong> &nbsp; <em class="notepesanan">*Pesanan Anda telah tiba di tempat tujuan</em></p>
@@ -327,10 +336,67 @@
                 <% @troli6.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
                   <p>Status Pemesanan : <strong class="statusorder past">Transaksi Selesai</strong> &nbsp; <em class="notepesanan">*Pesanan Anda telah tiba di tempat tujuan</em></p>
+									<div class="spacermedium"></div>
+									<div class="wrapdtkonf">
+										<div class="heading-wdkf">
+											<h4>Pembelian dari Toko : <strong>Toko1</strong></h4>
+											<span class="inv"><%= Toko.find(t.toko_id).nama_toko %></span>
+										</div>
+										<div class="row">
+											<div class="col-md-6 lpwp">
+												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
+												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
+												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+											</div>
+											<div class="col-md-3">
+												<label>Subtotal</label>
+												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+											</div>
+											<div class="col-md-3">
+												<label>Ongkir</label>
+												<p><%= t.ongkir %></p>
+											</div>
+										</div>
+										<hr style="border-color:#ddd;"></hr>
+										<div class="row">
+											<div class="col-md-6">
+												<label>Tujuan Pengiriman</label>
+												<p>Penerima : <%= Alamat.find(t.alamat_id).sebagai %></p>
+												<p>Telp : <%= Alamat.find(t.alamat_id).nomor_telepon %></p>
+												<p>
+													<%= Alamat.find(t.alamat_id).alamat %>, <%= Alamat.find(t.alamat_id).kecamatan %>, <%= Alamat.find(t.alamat_id).provinsi %> <%= Alamat.find(t.alamat_id).kode_pos %>
+												</p>
+											</div>
+											<div class="col-md-6">
+												<label>Kurir</label>
+												<p><%= t.kurir %></p>
+												<label>Keterangan</label>
+												<p><%= t.catatan %></p>
+											</div>
+										</div>
+										<hr style="border-color:#ddd;"></hr>
+										<div class="row">
+											<div class="col-md-12" style="text-align:right;font-size:18px;">
+												<label class="typeorange">Total : <%= t.subtotal %></label>
+											</div>
+										</div>
+									</div>
+									<div class="spacermedium"></div>
+									<a href="#" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
+									<a href="#" class="hidedtkonf hide"><i class="fa fa-minus"></i>&nbsp; Sembunyikan Detail</a>
+								</div>
+                <% end %>
+                <% @troli8.each do |t| %>
+								<div class="list-konpem-outer">
+									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
+									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
+									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
+                  <p>Status Pemesanan : <strong class="statusorder past">Transaksi Ditolak</strong> &nbsp; <em class="notepesanan">*Karena beberapa alasan, Seller menolak transaksi ini</em></p>
 									<div class="spacermedium"></div>
 									<div class="wrapdtkonf">
 										<div class="heading-wdkf">

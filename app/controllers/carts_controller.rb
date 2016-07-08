@@ -50,17 +50,7 @@ class CartsController < ApplicationController
 
 
   end
-  def diterima
-    @donecart = Cart.find(params[:id])
-    @donecart.update_attributes(:state => 6)
-      @usersaldo =  User.find(@donecart.seller_id).saldo
-      @saldo = @donecart.subtotal
-      User.find(@donecart.seller_id).update(:namalengkap => "Avana")
-    redirect_to :back
-    mycart = Cart.find(params[:id])
-    status = "Telah Diterima Buyer, Transaksi selesai"
-    Notifikasi.sample_email(current_user, mycart, status).deliver_later
-  end
+
   def terima_pesanan
     Cart.find(params[:id]).update(:state => 7)
     redirect_to :back
@@ -158,6 +148,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:toko_id, :user_id, :produk_id, :invoice, :catatan, :jumlah, :subtotal, :total, :metode_pembayaran, :alamat_id, :kurir, :berat, :ongkir, :seller_id, :state, :resi, :txid)
+      params.require(:cart).permit(:toko_id, :user_id, :produk_id, :invoice, :catatan, :jumlah, :subtotal, :total, :metode_pembayaran, :alamat_id, :kurir, :berat, :ongkir, :seller_id, :state, :resi, :txid, :expired)
     end
 end

@@ -22,8 +22,15 @@ class FeedbacksController < ApplicationController
   def edit
   end
 
-  # POST /feedbacks
-  # POST /feedbacks.json
+  def updaterating
+    ratings = 0
+      @feed =  Feedback.where(:produk_id => params[:produk_id])
+      @feed.each do |f|
+        ratings += f.rating
+      end
+      Produk.find(params[:produk_id]).update(:rating => ratings / @feed.count)
+      redirect_to "/konfirmasi-penerimaan"
+  end
   def create
     @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
@@ -40,7 +47,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to :back, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to "/updaterating/#{params[:produk_id]}", notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new }

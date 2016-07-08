@@ -75,7 +75,11 @@
 					<div class="deskripsiproduk-detail">
 						<div class="headingproduk-detail">
 							<h3><%= @produk.nama_produk %></h3>
-							<p>Availability  : <span class="typered">In Stock (123)</span></p>
+              <% if @produk.stock >= 1 %>
+							<p>Availability  : <span class="typered">In Stock (<%= @produk.stock %>)</span></p>
+              <% else %>
+              <p>Availability  : <span class="typered">Out of Stock (0)</span></p>
+              <% end %>
 						</div>
 						<div class="ttponmobile">
 							<div id="gallery_01" class="previewprodukcarousel">

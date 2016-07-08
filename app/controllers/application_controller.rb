@@ -36,15 +36,19 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && current_user.cart
       @troli = current_user.cart.where(:state => 1)
       @troli2 = current_user.cart.where(:state => 2)
+      @troli2live = current_user.cart.where(:state => 2, :expired => false)
       @troli3 = current_user.cart.where(:state => 3)
+      @troli3live = current_user.cart.where(:state => 3, :expired => false)
       @troli4 = current_user.cart.where(:state => 4)
       @troli5 = current_user.cart.where(:state => 5)
       @troli6 = current_user.cart.where(:state => 6)
       @troli7 = current_user.cart.where(:state => 7)
+      @troli7live = current_user.cart.where(:state => 7, :expired => false)
       @troli8 = current_user.cart.where(:state => 8)
     end
     if user_signed_in? && Cart.where(:seller_id => current_user.id).present?
       @stroli3 = Cart.where(:seller_id => current_user.id, :state => 3)
+      @stroli3live = Cart.where(:seller_id => current_user.id, :state => 3, :expired => false) #sellertab count
       @stroli7 = Cart.where(:seller_id => current_user.id, :state => 7)
       @stroli6 = Cart.where(:seller_id => current_user.id, :state => 6)
       @stroli4 = Cart.where(:seller_id => current_user.id, :state => 4)

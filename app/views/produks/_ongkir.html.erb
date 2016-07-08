@@ -4,7 +4,8 @@
 <% @all.each do |a| %>
 <% a['costs'].each do |b| %>
 <% b['cost'].each do |c| %>
-  <option jenis="<%= a['code'] %>-<%= b['service'] %>" value="<%= c['value'] %>"><%= a['code'] %>-<%= b['service'] %>-<%= c['value'] %></option>
+  <% @jenis = a['code'].upcase + "-" + b['service'].upcase %>
+  <option <% if @agen.include? @jenis %><% else %> disabled <% end %> jenis="<%= @jenis %>" value="<%= c['value'] %>"><%= a['code'] %>-<%= b['service'] %>-<%= c['value'] %></option>
 <% end %>
 <% end %>
 <% end %>

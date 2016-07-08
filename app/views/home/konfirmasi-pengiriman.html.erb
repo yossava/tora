@@ -90,7 +90,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title"><strong><%= number_to_currency(s.subtotal, locale: :id) %></strong> &nbsp; <a href="#" class="">  <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger">3 hari lagi</span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span></p>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="wrapdtkonf">

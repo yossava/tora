@@ -146,7 +146,9 @@ h4.titleproduk {
 }
 
 .produklist {
-  width: 188px !important;
+  float: none;
+  display: inline-block;
+  width: 186px !important;
   margin-left: 2px;
   margin-right: 1px;
 }
@@ -187,4 +189,14 @@ h4.titleproduk {
 .starRating:not(old) > label:hover ~ label:before,
 .starRating:not(:hover) > :checked ~ label:before{
   opacity : 1;
+}
+
+.listproduk4 {
+  float: none;
+  display: inline-block;
+  width: 49%;
+}
+
+select option:disabled {
+    color: #bfbfbf;
 }

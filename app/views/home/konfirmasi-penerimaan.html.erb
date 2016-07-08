@@ -56,7 +56,7 @@
                 <% @troli5.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at %></p>
+									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p style="text-transform:capitalize;" >Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
 									<p>Status Pemesanan : <strong class="statusorder past">Transaksi Selesai</strong> &nbsp; <em class="notepesanan">*Pesanan Anda telah tiba di tempat tujuan</em></p>
@@ -133,6 +133,7 @@
 
                 <input type="hidden" name="feedback[toko_id]" value="<%= Toko.find(t.toko_id).id %>" />
                 <input type="hidden" name="feedback[produk_id]" value="<%= t.produk_id %>" />
+                <input type="hidden" name="produk_id" value="<%= t.produk_id %>" />
                 <input type="hidden" name="cart_id" value="<%= t.id %>" />
                 <button type="submit" class="gosignin blokmbl" ><i class="fa fa-check"></i> Barang Telah Diterima & Kirim Feedback</button>
                 <% end %>

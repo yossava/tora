@@ -2,6 +2,7 @@
                 <div class="hide">
                 <%= form_tag(hitungongkir_path, :method => "get", id: "search-form", class: "form", remote: true) do %>
                 <%= text_field_tag :asal, params[:asal], value: Toko.find(@produk.toko_id).kota %>
+                <%= text_field_tag :tokoid, params[:tokoid], value: Toko.find(@produk.toko_id).id %>
                 <%= text_field_tag :tujuan, params[:tujuan] %>
                 <button type="submit" class="cek" name=""> CEK</button>
                 <% end %>
@@ -136,7 +137,7 @@
 															<h4 class="rpongkir">Rp 0 ,-</h4>
 														</div>
 													</div>
-  <p style="font-size:12px;color:#EA174A;font-weight:bold;" >Perhatian ! Seller menggunakan: <% if Toko.find(@produk.toko_id).agen1 != "NO" %><%= Toko.find(@produk.toko_id).agen1 %>, <% end %><% if Toko.find(@produk.toko_id).agen2 != "NO" %><%= Toko.find(@produk.toko_id).agen2 %>, <% end %><% if Toko.find(@produk.toko_id).agen3 != "NO" %><%= Toko.find(@produk.toko_id).agen3 %>, <% end %><% if Toko.find(@produk.toko_id).agen4 != "NO" %><%= Toko.find(@produk.toko_id).agen4 %>, <% end %><% if Toko.find(@produk.toko_id).agen5 != "NO" %><%= Toko.find(@produk.toko_id).agen5 %>, <% end %><% if Toko.find(@produk.toko_id).agen6 != "NO" %><%= Toko.find(@produk.toko_id).agen6 %>, <% end %><% if Toko.find(@produk.toko_id).agen7 != "NO" %><%= Toko.find(@produk.toko_id).agen7 %><% end %><br/>Pastikan Anda memilih kurir yang didukung Seller</p>
+  <p style="font-size:12px;color:#EA174A;font-weight:bold;" >Note: hanya ekspedisi pilihan Seller yang dapat dipilih</p>
 
 													<div class="spacerform"></div>
 													<div class="row buynowform subtotalrow">

@@ -5,6 +5,51 @@ class AdminsController < ApplicationController
     redirect_to "/masuk" unless current_user && current_user.admin?
   end
 
+  def topproduct
+    @products = Produk.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
+    if params[:top] == "top"
+      @product = Produk.find(params[:id])
+      if @product.top == true
+      @product.update(:top => false)
+        else
+        @product.update(:top => true)
+      end
+      redirect_to :back, notice: "Top product diupdate"
+    end
+    if params[:top] == "special"
+      @product = Produk.find(params[:id])
+      if @product.special == true
+      @product.update(:special => false)
+        else
+        @product.update(:special => true)
+      end
+      redirect_to :back, notice: "Top product diupdate"
+    end
+    if params[:top] == "recommended"
+      @product = Produk.find(params[:id])
+      if @product.recommended == true
+      @product.update(:recommended => false)
+        else
+        @product.update(:recommended => true)
+      end
+      redirect_to :back, notice: "Top product diupdate"
+    end
+  end
+
+  def finance
+    @users = User.order(id: :asc).where("saldo > ?", 0)
+    if params[:id]
+      User.find(params[:id]).update(:saldo => 0)
+      redirect_to "/admin/finance", notice: "Balance direset"
+    end
+  end
+  def dashboard
+    @balance = []
+    User.all.each do |u|
+      @balance << u.saldo
+    end
+    @balance = @balance.sum
+  end
   def becomeadmin
     if current_user.admin
       User.find(params[:id]).update(:admin => true)
@@ -18,21 +63,21 @@ class AdminsController < ApplicationController
     end
   end
   def homepage
-    @homeitems = Homeitem.paginate(:page => params[:page], :per_page => 15)
+    @homeitems = Homeitem.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     @homeitem = Homeitem.new
     if params[:id]
     @homeitem = Homeitem.find(params[:id])
     end
   end
   def statics
-    @statics = Static.paginate(:page => params[:page], :per_page => 15)
+    @statics = Static.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     @static = Static.new
     if params[:id]
     @static = Static.find(params[:id])
     end
   end
   def categories
-    @categories = Category.paginate(:page => params[:page], :per_page => 15)
+    @categories = Category.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     @category = Category.new
     if params[:id]
     @category = Category.find(params[:id])
@@ -40,14 +85,14 @@ class AdminsController < ApplicationController
   end
 
   def subcategories
-    @subcategories = Subcategory.paginate(:page => params[:page], :per_page => 15)
+    @subcategories = Subcategory.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     @subcategory = Subcategory.new
     if params[:id]
     @subcategory = Subcategory.find(params[:id])
     end
   end
   def users
-    @users = User.paginate(:page => params[:page], :per_page => 15)
+    @users = User.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     if params[:id]
     @user = User.find(params[:id])
       if params[:namalengkap] &&  params[:email]
@@ -58,13 +103,13 @@ class AdminsController < ApplicationController
     end
   end
   def stores
-    @stores = Toko.paginate(:page => params[:page], :per_page => 15)
+    @stores = Toko.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     if params[:id]
     @toko = Toko.find(params[:id])
     end
   end
   def products
-    @products = Produk.paginate(:page => params[:page], :per_page => 15)
+    @products = Produk.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     if params[:id]
     @produk = Produk.find(params[:id])
     end

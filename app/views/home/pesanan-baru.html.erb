@@ -78,8 +78,8 @@
 					<div class="row">
 						<div class="col-md-12 wraplist-neworder">
 							<ul>
-                <% if @stroli3.present? %>
-                <% @stroli3.each do |s| %>
+                <% if @stroli3live.present? %>
+                <% @stroli3live.each do |s| %>
 								<li>
 									<div class="row">
 										<div class="col-md-3">
@@ -87,7 +87,7 @@
 										</div>
 										<div class="col-md-9 rightneworder-ctn">
 											<p class="title">Pembelian oleh <a href="#"><%= User.find(s.user_id).namalengkap %> - <%= s.invoice %></a></p>
-											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at %></span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger">3 hari lagi</span></p>
+											<p class="tgln"><span>Tanggal Transaksi: <%= s.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</span> &nbsp;-&nbsp; Batal Otomatis <span class="label label-danger"><%= (s.created_at + 4.days - Time.now).to_i/86400 %> hari lagi</span></p>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="wrapdtkonf">

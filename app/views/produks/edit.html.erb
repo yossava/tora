@@ -64,7 +64,11 @@
 									<div class="form-row">
 										<label for="brt">Berat (gram)</label>
                     <%= f.text_field :berat, id: "brt", placeholder: "berat produk" %>
-										<p class="text-muted">Isi harga tanpa menggunakan koma dan titik. Contoh: 125000</p>
+										<p class="text-muted">Isi berat tanpa menggunakan koma dan titik. Contoh: 500</p>
+									</div>
+                  <div class="form-row">
+										<label for="brt">Stok barang</label>
+                    <%= f.text_field :stock, id: "brt", placeholder: "jumlah stock tersedia", required: "required" %>
 									</div>
 									<div class="form-row">
 										<label for="ftpr">Foto Produk </label>

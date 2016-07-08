@@ -6,6 +6,15 @@ class ProduksController < ApplicationController
   # GET /produks
   # GET /produks.json
   def hitungongkir
+    @tokoid = params[:tokoid]
+    @agen = []
+    @agen << Toko.find(@tokoid).agen1
+    @agen << Toko.find(@tokoid).agen2
+    @agen << Toko.find(@tokoid).agen3
+    @agen << Toko.find(@tokoid).agen4
+    @agen << Toko.find(@tokoid).agen5
+    @agen << Toko.find(@tokoid).agen6
+    @agen << Toko.find(@tokoid).agen7
     if params[:asal]
       ongkir = RestClient.post 'http://pro.rajaongkir.com/api/cost', :originType => 'city', :destinationType => 'city', :origin => params[:asal], :destination => params[:tujuan], :weight => 1000, :courier => 'jne:tiki:pos', :key => '45c5c245f49664fcd38a86f3c24f7763'
        @ongkir = JSON.parse ongkir
@@ -156,6 +165,6 @@ class ProduksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def produk_params
-      params.require(:produk).permit(:nama_produk, :harga, :harga_diskon, :berat, :foto_produk1, :foto_produk2, :foto_produk3, :foto_produk4, :foto_produk5, :foto_produk6, :deskripsi, :harga_grosir1, :harga_grosir2, :harga_grosir3, :harga_grosir4, :harga_grosir5, :jumlah_grosir1min, :jumlah_grosir1max, :jumlah_grosir2min,:jumlah_grosir2max, :jumlah_grosir3min, :jumlah_grosir3max, :jumlah_grosir4min, :jumlah_grosir4max, :jumlah_grosir5min, :jumlah_grosir5max, :user_id, :category_id, :subcategory_id, :toko_id, :deskripsi_lengkap, :harga_beli, :diskon)
+      params.require(:produk).permit(:nama_produk, :harga, :harga_diskon, :berat, :foto_produk1, :foto_produk2, :foto_produk3, :foto_produk4, :foto_produk5, :foto_produk6, :deskripsi, :harga_grosir1, :harga_grosir2, :harga_grosir3, :harga_grosir4, :harga_grosir5, :jumlah_grosir1min, :jumlah_grosir1max, :jumlah_grosir2min,:jumlah_grosir2max, :jumlah_grosir3min, :jumlah_grosir3max, :jumlah_grosir4min, :jumlah_grosir4max, :jumlah_grosir5min, :jumlah_grosir5max, :user_id, :category_id, :subcategory_id, :toko_id, :deskripsi_lengkap, :harga_beli, :diskon, :stock, :special, :recommended, :top, :rating)
     end
 end

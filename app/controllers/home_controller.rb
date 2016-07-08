@@ -4,6 +4,29 @@ class HomeController < ApplicationController
   require 'rest_client'
   require 'net/http'
 
+  def cronjobs
+    Cart.where(:state => 3).each do |c|
+      if (c.created_at + 4.days - Time.now).to_i/86400 < 1
+        Cart.find(c.id).update(:expired => true)
+        status = "Pesanan telah dibatalkan otomatis"
+        mycart = c
+        Notifikasi.sample_email(current_user, mycart, status).deliver_later
+      end
+    end
+    Cart.where(:state => 2).each do |c|
+      if (c.created_at + 3.days - Time.now).to_i/86400 < 1
+        Cart.find(c.id).update(:expired => true)
+        status = "Pesanan telah dibatalkan otomatis"
+        mycart = c
+        Notifikasi.sample_email(current_user, mycart, status).deliver_later
+      end
+    end
+  end
+
+  def expired
+    Cart.find(params[:id]).update(:expired => true)
+    redirect_to :back
+  end
 
   def display
       respond_to do |format|
@@ -27,7 +50,7 @@ class HomeController < ApplicationController
     @pro = Produk.order("RANDOM()").limit(20)
     @pro2 = Produk.all.sample(10)
     @pro3 = Produk.all.sample(4)
-    @pro4 = Produk.all.sample(8)
+    @pro4 = Produk.where(:att => 1)
   end
   def profil
   end

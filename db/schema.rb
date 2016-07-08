@@ -51,13 +51,14 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.integer  "alamat_id"
     t.string   "kurir"
     t.integer  "berat"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "ongkir"
     t.integer  "seller_id"
     t.integer  "state"
     t.string   "resi"
     t.string   "txid"
+    t.boolean  "expired",           default: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -134,8 +135,8 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.decimal  "harga_grosir4"
     t.decimal  "harga_grosir5"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "category_id"
     t.string   "subcategory_id"
     t.integer  "jumlah_grosir1min"
@@ -154,6 +155,11 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.text     "deskripsi_lengkap"
     t.integer  "harga_beli"
     t.integer  "diskon"
+    t.integer  "stock"
+    t.boolean  "special",           default: false
+    t.boolean  "recommended",       default: false
+    t.boolean  "top",               default: false
+    t.decimal  "rating"
   end
 
   create_table "rekenings", force: :cascade do |t|
