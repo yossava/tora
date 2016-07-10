@@ -1,10 +1,11 @@
 class AdminsController < ApplicationController
   skip_before_action :tokosaya
-  before_filter :authenticate_user!
-  before_filter do
-    redirect_to "/masuk" unless current_user && current_user.admin?
-  end
+  before_filter :authenticate_user!, :except => [:login]
+  before_filter :isadmin, :except => [:login]
 
+  def login
+    render :layout => nil
+  end
   def topproduct
     @products = Produk.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     if params[:top] == "top"
@@ -163,4 +164,10 @@ class AdminsController < ApplicationController
         redirect_to :back, notice: "Produk dihapus."
     end
   end
+
+  private
+  def isadmin
+    redirect_to "/masuk" unless current_user && current_user.admin?
+  end
+
 end

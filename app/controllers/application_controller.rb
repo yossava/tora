@@ -20,10 +20,18 @@ class ApplicationController < ActionController::Base
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
-    "/masuk"
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] == "admins"
+        "/admin/gate"
+      else
+        "/masuk"
+    end
   end
   def after_sign_in_path_for(resource_or_scope)
-    "/profil"
+     if current_user.admin?
+        "/admin"
+      else
+        "/profil"
+     end
   end
   def tokosaya
       if user_signed_in?

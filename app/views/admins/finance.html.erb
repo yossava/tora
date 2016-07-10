@@ -51,7 +51,7 @@
                   <td><% if u.toko %><%= u.toko.nama_toko %><% else %>n/a<% end %></td>
                   <td><%= u.produks.count %></td>
                   <td><%= number_to_currency(u.saldo,locale: :id) %></td>
-                  <td><a href="/admin/finance/<%= u.id %>" data-confirm="Balance akan direset !">RESET</a> </td>
+                  <td><a class="btn btn-success btn-sm" href="/admin/finance/<%= u.id %>" data-confirm="Balance akan direset !">RESET</a> </td>
 
                 </tr>
                 <% end %>

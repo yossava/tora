@@ -48,8 +48,8 @@
                   <td><%= u.category.kategori %>
                   <td><%= u.produks.count %>
                   </td>
-                  <td><a href="/admin/subcategories/<%= u.id %>#edit">EDIT</a></td>
-                  <td><% if params[:id] %><a href="/admin/subcategories">Back</a><% else %><%= link_to "Hapus", admin_destroy_subcategory_path(u), method: :delete, :data => {:confirm => 'Are you sure?'}  %><% end %>
+                  <td><a class="btn btn-info btn-sm" href="/admin/subcategories/<%= u.id %>#edit">EDIT</a></td>
+                  <td><% if params[:id] %><a href="/admin/subcategories">Back</a><% else %><%= link_to "Hapus", admin_destroy_subcategory_path(u), method: :delete, :data => {:confirm => 'Are you sure?'}, :class => "btn btn-danger btn-sm"  %><% end %>
 
 </td>
                 </tr>

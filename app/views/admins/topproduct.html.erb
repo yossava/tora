@@ -52,19 +52,19 @@
                   <td><%= u.harga_beli %></td>
                   <td><%= u.feedbacks.count %></td>
                   <% if u.top == false %>
-                  <td bgcolor="#ffcccc" ><a href="/admin/topproduct/top/<%= u.id %>">NO</a></td>
+                  <td><a class="btn btn-danger btn-sm" href="/admin/topproduct/top/<%= u.id %>">NO</a></td>
                   <% else %>
-                  <td bgcolor="#ccffcc" ><a href="/admin/topproduct/top/<%= u.id %>">YES</a></td>
+                  <td><a class="btn btn-success btn-sm" href="/admin/topproduct/top/<%= u.id %>">YES</a></td>
                   <% end %>
                   <% if u.special == false %>
-                  <td bgcolor="#ffcccc" ><a href="/admin/topproduct/special/<%= u.id %>">NO</a></td>
+                  <td><a class="btn btn-danger btn-sm" href="/admin/topproduct/special/<%= u.id %>">NO</a></td>
                   <% else %>
-                  <td bgcolor="#ccffcc" ><a href="/admin/topproduct/special/<%= u.id %>">YES</a></td>
+                  <td><a class="btn btn-success btn-sm" href="/admin/topproduct/special/<%= u.id %>">YES</a></td>
                   <% end %>
                   <% if u.recommended == false %>
-                  <td bgcolor="#ffcccc" ><a href="/admin/topproduct/recommended/<%= u.id %>">NO</a></td>
+                 <td><a class="btn btn-danger btn-sm" href="/admin/topproduct/recommended/<%= u.id %>">NO</a></td>
                   <% else %>
-                  <td bgcolor="#ccffcc" ><a href="/admin/topproduct/recommended/<%= u.id %>">YES</a></td>
+                  <td><a class="btn btn-success btn-sm" href="/admin/topproduct/recommended/<%= u.id %>">YES</a></td>
                   <% end %>
 
 </td>

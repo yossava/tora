@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   get "/cronjobs" => "home#cronjobs"
 
   #AMDIN#ADMIN#ADMIN
+  get 'admin/gate' => "admins#login"
   get 'admin/topproduct/:top/:id' => "admins#topproduct"
   get 'admin/topproduct' => "admins#topproduct"
   get 'admin/finance' => "admins#finance"
