@@ -202,7 +202,7 @@
                     <% @produk.feedbacks.each do |f| %>
 										<li>
 											<div class="profilthumbUlasan">
-												<div class="thumb">
+												<div style= "width:10%;" class="thumb">
 													<img src="<%= User.find(f.user_id).profil_image.url %>" class="responsiveimg"/>
 												</div>
 												<div class="desinline">
