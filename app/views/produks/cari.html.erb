@@ -59,7 +59,7 @@
                                 <option>Urutan</option>
                                 <option selected="selected" value="<%= @sortselect %>"><%= @sort %></option>
                                 <option value="1">Terbaru</option>
-                                <option value="2">Terpopuler</option>
+                                <option disabled value="2">Terpopuler</option>
                                 <option value="3">Promo</option>
                                 <option value="4">Rating</option>
                               </select>
@@ -101,12 +101,12 @@
                         <% @cat.each do |p|%>
 												<div class="produklist">
 													<div class="thumbfoto-produk">
-														<a href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+														<a href="<%= produk_path(p) %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
 														<% if p.harga_diskon %>
                             <span class="lagidiskon">-<%= p.diskon %>%</span>
                             <% end %>
 													</div>
-													<a href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+													<a href="<%= produk_path(p) %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
                           <% if p.harga_diskon %>
 													<div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                           <% end %>

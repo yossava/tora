@@ -42,4 +42,7 @@ class Produk < ActiveRecord::Base
         self.diskon = (self.harga - self.harga_diskon) / self.harga * 100
       end
     end
+    def to_param
+    "#{id}-#{nama_produk.parameterize}"
+    end
 end

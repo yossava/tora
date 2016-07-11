@@ -1,8 +1,8 @@
 <div id="sidemenu" class="ctn-compresed">
 								<ul>
 									<li>
-										<span class="iconsidemenu ifashion"></span><a href="/categories/7">Fashion</a>
-										<div class="submenu">
+										<span class="iconsidemenu ifashion"></span><%= link_to "Fashion", Category.find(7) %>
+										<div class="submenu hide">
 											<div class="rowsubmenu col-md-6">
 												<a href="#"><h4 class="haedingsub">Pakaian Terbaru</h4></a>
 												<ul>
@@ -38,25 +38,25 @@
 										</div>
 									</li>
 									<li>
-										 <span class="iconsidemenu igadget"></span><a href="/categories/8">Gadget / Komputer</a>
+										 <span class="iconsidemenu igadget"></span><%= link_to "Gadget / Computer", Category.find(8) %>
 									</li>
 									<li>
-										<span class="iconsidemenu ibeauty"></span><a href="/categories/9">Kecantikan / Kesehatan</a>
+										<span class="iconsidemenu ibeauty"></span><%= link_to "Kecantikan / Kesehatan", Category.find(9) %>
 									</li>
 									<li>
-										<span class="iconsidemenu ibayianak"></span><a href="/categories/10">Bayi / Anak</a>
+										<span class="iconsidemenu ibayianak"></span><%= link_to "Bayi / Anak", Category.find(10) %>
 									</li>
 									<li>
-										<span class="iconsidemenu ielektro"></span><a href="/categories/11">Elekronik</a>
+										<span class="iconsidemenu ielektro"></span><%= link_to "Elektronik", Category.find(11) %>
 									</li>
 									<li>
-										<span class="iconsidemenu isport"></span><a href="/categories/12">Olahraga / Hobi / Otomotif</a>
+										<span class="iconsidemenu isport"></span><%= link_to "Olahraga / Hobi", Category.find(12) %>
 									</li>
 									<li>
-										<span class="iconsidemenu ihome"></span><a href="/categories/13">Rumah / Kebun / Dapur</a>
+										<span class="iconsidemenu ihome"></span><%= link_to "Rumah / Kebun / Dapur", Category.find(13) %>
 									</li>
 									<li>
-										<span class="iconsidemenu ikupon"></span><a href="/categories/14">E-coupon</a>
+										<span class="iconsidemenu ikupon"></span><%= link_to "E-Coupon", Category.find(14) %>
 									</li>
 								</ul>
 							</div>

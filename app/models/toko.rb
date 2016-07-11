@@ -8,4 +8,8 @@ class Toko < ActiveRecord::Base
   has_many :feedbacks,    dependent: :destroy
   has_many :produks,    dependent: :destroy
   has_many :categories, through: :produks
+  
+   def to_param
+    "#{id}-#{nama_toko.parameterize}"
+    end
 end

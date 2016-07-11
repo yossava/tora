@@ -155,7 +155,7 @@ class ProduksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
 
@@ -167,4 +167,5 @@ class ProduksController < ApplicationController
     def produk_params
       params.require(:produk).permit(:nama_produk, :harga, :harga_diskon, :berat, :foto_produk1, :foto_produk2, :foto_produk3, :foto_produk4, :foto_produk5, :foto_produk6, :deskripsi, :harga_grosir1, :harga_grosir2, :harga_grosir3, :harga_grosir4, :harga_grosir5, :jumlah_grosir1min, :jumlah_grosir1max, :jumlah_grosir2min,:jumlah_grosir2max, :jumlah_grosir3min, :jumlah_grosir3max, :jumlah_grosir4min, :jumlah_grosir4max, :jumlah_grosir5min, :jumlah_grosir5max, :user_id, :category_id, :subcategory_id, :toko_id, :deskripsi_lengkap, :harga_beli, :diskon, :stock, :special, :recommended, :top, :rating)
     end
+
 end

@@ -240,7 +240,7 @@
 						<p class="typeorange"><i class="fa fa-map-marker"></i> <%= Toko.find(@produk.toko_id).kota_sebagai %></p>
 						<!--<p class="text">0875 654 653 xxx</p>-->
 						<p class="linkwebtoko typeblue"><%= Toko.find(@produk.toko_id).nama_toko %></p>
-						<a href="/tokos/<%= Toko.find(@produk.toko_id).id %>" class="lhsm-btn kunjungitoko">Kunjungi Toko</a>
+						<%= link_to "Kunjungi Toko", Toko.find(@produk.toko_id), class: "lhsm-btn kunjungitoko" %>
 					</div>
 				</div>
 			</div>
@@ -262,7 +262,7 @@
           <% Produk.where(:category_id => @produk.category_id).each do |produk| %>
 					<div class="produkcarousel">
 						<div class="thumbfoto-produk">
-							<a href="<%= produk_path(produk.id) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
+							<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
               <% if produk.harga_diskon %>
 							<span class="lagidiskon">-<%= produk.diskon %>%</span>
               <% end %>

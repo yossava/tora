@@ -1,19 +1,49 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/header' %>
+		<div id="topkeyword">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
+						<%= render 'layouts/menumobile' %>
+						<span id="labeltopkeyword">Top Keyword</span>
+						<%= render 'layouts/topkey' %>
+						<%= render 'layouts/trolimobile' %>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @static.title %>
-</p>
+		<div id="nav-breadcumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="compresedmenu">
+							<div class="headingcompresed">
+								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
+							</div>
+							<%= render 'layouts/sidemenu' %>
+						</div>
+						<div class="breadcumb">
+							<span><a href="/">Home</a></span>
+							<span>></span>
+							<span><a href="#"><%= @static.title %></a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ./Header -->
 
-<p>
-  <strong>Body:</strong>
-  <%= @static.body %>
-</p>
+		<div class="spacermedium"></div>
 
-<p>
-  <strong>Image:</strong>
-  <%= @static.image %>
-</p>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ctnhlst">
+					<h3 class="headingotherpage"><%= @static.title %></h3>
+					<%=raw @static.body %>
+				</div>
+			</div>
+		</div>
 
-<%= link_to 'Edit', edit_static_path(@static) %> |
-<%= link_to 'Back', statics_path %>
+		<div class="spacerbig"></div>
+<%= render 'layouts/footer' %>

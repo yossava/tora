@@ -69,6 +69,6 @@ class HomeitemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def homeitem_params
-      params.require(:homeitem).permit(:title, :description, :img1, :img2, :img3, :img4, :img5, :img6, :img7, :img8, :img9, :remove_img1, :remove_img2, :remove_img3, :remove_img4, :remove_img5, :remove_img6, :remove_img7, :remove_img8, :remove_img9)
+      params.require(:homeitem).permit(:title, :description, :img1, :img2, :img3, :img4, :img5, :img6, :img7, :img8, :img9, :remove_img1, :remove_img2, :remove_img3, :remove_img4, :remove_img5, :remove_img6, :remove_img7, :remove_img8, :remove_img9, :text1, :text2, :text3, :text4, :text5, :text6, :text7, :text8, :text9, :text10, :text11, :text12, :remove_img1, :remove_img2)
     end
 end

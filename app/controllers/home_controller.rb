@@ -51,6 +51,7 @@ class HomeController < ApplicationController
     @pro2 = Produk.all.sample(10)
     @pro3 = Produk.all.sample(4)
     @pro4 = Produk.where(:att => 1)
+    @newsletter = Newsletter.new
   end
   def profil
   end

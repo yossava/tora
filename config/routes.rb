@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newsletters
   resources :transactions
   resources :homeitems
   resources :statics
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
   get "/cronjobs" => "home#cronjobs"
 
   #AMDIN#ADMIN#ADMIN
+  get 'admin/newsletter' => "admins#newsletter"
   get 'admin/gate' => "admins#login"
   get 'admin/topproduct/:top/:id' => "admins#topproduct"
   get 'admin/topproduct' => "admins#topproduct"
@@ -109,6 +111,8 @@ Rails.application.routes.draw do
   match 'deletecategory/:id' => 'admins#destroycategory', :via => :delete, :as => :admin_destroy_category
   match 'deletesubcategory/:id' => 'admins#destroysubcategory', :via => :delete, :as => :admin_destroy_subcategory
   match 'deletestatic/:id' => 'admins#destroystatic', :via => :delete, :as => :admin_destroy_static
+  match 'deletehomeitem/:id' => 'admins#destroyhomeitem', :via => :delete, :as => :admin_destroy_homeitem
+  match 'deletenewsletter/:id' => 'admins#destroynewsletter', :via => :delete, :as => :admin_destroy_newsletter
 
 
 

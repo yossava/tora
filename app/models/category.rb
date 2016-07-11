@@ -5,4 +5,7 @@ class Category < ActiveRecord::Base
     has_many :subcategories
     has_many :produks
 
+  def to_param
+    "#{id}-#{kategori.parameterize}"
+  end
 end

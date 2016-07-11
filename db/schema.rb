@@ -105,6 +105,24 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.string   "img9"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "text1"
+    t.text     "text2"
+    t.text     "text3"
+    t.text     "text4"
+    t.text     "text5"
+    t.text     "text6"
+    t.text     "text7"
+    t.text     "text8"
+    t.text     "text9"
+    t.text     "text10"
+    t.text     "text11"
+    t.text     "text12"
+  end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pets", force: :cascade do |t|

@@ -33,8 +33,8 @@
 							</div>
 							<ul>
 									<li class="cat cat1">
-                    <span class="iconsidemenu ifashion"></span><a href="/categories/7">Fashion</a>
-										<div class="submenu">
+                    <span class="iconsidemenu ifashion"></span><%= link_to "Fashion", Category.find(7) %>
+										<div class="submenu hide">
 											<div class="rowsubmenu col-md-12">
 												<a href="#"><h4 class="haedingsub">Pakaian Wanita</h4></a>
 												<ul>
@@ -65,37 +65,37 @@
 										</div>
 									</li>
 									<li class="cat cat2">
-                    <span class="iconsidemenu igadget"></span><a href="/categories/8">Gadget / Komputer</a>
+                    <span class="iconsidemenu igadget"></span><%= link_to "Gadget / Komputer", Category.find(8) %>
 									</li>
 									<li class="cat cat3">
-										<span class="iconsidemenu ibeauty"></span><a href="/categories/9">Kecantikan / Kesehatan</a>
+										<span class="iconsidemenu ibeauty"></span><%= link_to "Kecantikan / Kesehatan", Category.find(9) %>
 									</li>
 									<li class="cat cat4">
-										<span class="iconsidemenu ibayianak"></span><a href="/categories/10">Bayi / Anak</a>
+										<span class="iconsidemenu ibayianak"></span><%= link_to "Bayi / Anak", Category.find(10) %>
 									</li>
 									<li class="cat cat5">
-										<span class="iconsidemenu ielektro"></span><a href="/categories/11">Elekronik</a>
+										<span class="iconsidemenu ielektro"></span><%= link_to "Elektronik", Category.find(11) %>
 									</li>
 									<li class="cat cat6">
-										<span class="iconsidemenu isport"></span><a href="/categories/12">Olahraga / Hobi / Otomotif</a>
+										<span class="iconsidemenu isport"></span><%= link_to "Olahraga / Hobi / Otomotif", Category.find(12) %>
 									</li>
 									<li class="cat cat7">
-										<span class="iconsidemenu ihome"></span><a href="/categories/13">Rumah / Kebun / Dapur</a>
+										<span class="iconsidemenu ihome"></span><%= link_to "Rumah / Kebun / Dapur", Category.find(13) %>
 									</li>
 									<li class="cat cat8">
-										<span class="iconsidemenu ikupon"></span><a href="/categories/14">E-coupon</a>
+										<span class="iconsidemenu ikupon"></span><%= link_to "E-coupon", Category.find(14) %>
 									</li>
 									<li class="cat cat9">
-										<span class="iconsidemenu isegar"></span><a href="/categories/15">Bahan Segar</a>
+										<span class="iconsidemenu isegar"></span><%= link_to "Bahan Segar", Category.find(15) %>
 									</li>
 									<li class="cat cat10">
-										<span class="iconsidemenu imakanan"></span><a href="/categories/16">Makanan</a>
+										<span class="iconsidemenu imakanan"></span><%= link_to "Makanan", Category.find(16) %>
 									</li>
 									<li class="cat cat11">
-										<span class="iconsidemenu iminuman"></span><a href="/categories/17">Minuman</a>
+										<span class="iconsidemenu iminuman"></span><%= link_to "Minuman", Category.find(17) %>
 									</li>
 									<li class="cat cat12">
-										<span class="iconsidemenu iperpri"></span><a href="/categories/18">Perawatan Pribadi</a>
+										<span class="iconsidemenu iperpri"></span><%= link_to "Perawatan Pribadi", Category.find(18) %>
 									</li>
 								</ul>
 						</div>
@@ -107,13 +107,13 @@
 							<div class="revolutionbanner" style="background-color:#fff;">
 								<ul>
 									<li data-transition="fade" data-slotamount="5" data-masterspeed="300">
-										<img src="<%= image_path "1.jpg" %>"  data-fullwidthcentering="on" alt="background" />
+										<img src="<%= Homeitem.find(12).img1.url %>"  data-fullwidthcentering="on" alt="background" />
 									</li>
 									<li data-transition="fade" data-slotamount="5" data-masterspeed="500" data-delay="9400">
-										<img src="<%= image_path "2.jpg" %>"  data-fullwidthcentering="on" alt="background" />
+										<img src="<%= Homeitem.find(12).img2.url %>"  data-fullwidthcentering="on" alt="background" />
 									</li>
 									<li data-transition="fade" data-slotamount="5" data-masterspeed="500" data-delay="9400">
-										<img src="<%= image_path "3.jpg" %>"  data-fullwidthcentering="on" alt="background" />
+										<img src="<%= Homeitem.find(12).img3.url %>"  data-fullwidthcentering="on" alt="background" />
 									</li>
 								</ul>
 								<div class="tp-bannertimer tp-bottom"></div>
@@ -127,19 +127,19 @@
 								<div class="listcrausel item">
 									<!--listcarousel-->
 									<a href="#">
-										<img src="<%= image_path "bannerkanan.jpg" %>"  class="responsiveimg"/>
+										<img src="<%= Homeitem.find(13).img1.url %>"  class="responsiveimg"/>
 									</a>
 								</div>
 								<div class="listcrausel item">
 									<!--listcarousel-->
 									<a href="#">
-										<img src="https://placehold.it/320X460" class="responsiveimg"/>
+										<img src="<%= Homeitem.find(13).img2.url %>" class="responsiveimg"/>
 									</a>
 								</div>
 								<div class="listcrausel item">
 									<!--listcarousel-->
 									<a href="#">
-										<img src="https://placehold.it/320X460" class="responsiveimg"/>
+										<img src="<%= Homeitem.find(13).img3.url %>" class="responsiveimg"/>
 									</a>
 								</div>
 							</div>
@@ -158,10 +158,10 @@
                 <% @couponproduct.each do |produkcoupon| %>
 								<div class="listcrauselvoucher item">
 									<!--listcarousel-->
-									<a data-no-turbolink="true"  href="/produks/<%= produkcoupon.id %>" class="wrapimgvd">
+                  <%= link_to produkcoupon, :class => "wrapimgvd", "data-no-turbolink" => true do %>
 										<img src="<%= produkcoupon.foto_produk1.url %>" class="responsiveimg"/>
 										<span class="labelvd">E-coupon</span>
-									</a>
+                  <% end %>
 									<p class="vdtitle"><%= produkcoupon.nama_produk %></p>
 									<p class="fkvdh"><%= number_to_currency(produkcoupon.harga, locale: :id) %></p>
 									<span><%= number_to_currency(produkcoupon.harga_diskon, locale: :id) %></span>
@@ -200,17 +200,21 @@
                       <% Produk.where(:top => true, :category_id => 7).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -222,17 +226,21 @@
 											<% Produk.where(:top => true, :category_id => 8).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                             <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -244,17 +252,21 @@
 											<% Produk.where(:top => true, :category_id => 9).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -266,17 +278,21 @@
 											<% Produk.where(:top => true, :category_id => 11).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -288,17 +304,21 @@
 											<% Produk.where(:top => true, :category_id => 12).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -310,17 +330,21 @@
 											<% Produk.where(:top => true, :category_id => 13).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -332,17 +356,21 @@
 											<% Produk.where(:top => true, :category_id => 14).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %>
+                          <h4 class="titleproduk"><%= p.nama_produk %></h4>
+                        <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -354,17 +382,19 @@
 											<% Produk.where(:top => true, :category_id => 16).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
-													<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+													<%= link_to p, "data-no-turbolink" => true do %>
+                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                          <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
 												</div>
-												<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+												<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                         <% end %>
 												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-												<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
 										</div>
@@ -392,14 +422,14 @@
 							<div class="listproduk4">
 								<div class="listproduk-landscape">
 									<div class="thumbfoto-produk">
-										<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+										<%= link_to p, "data-no-turbolink" => true do %><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/><% end %>
 
                      <% if p.harga_diskon %>
                     <span class="lagidiskon">-<%= p.diskon %>%</span>
                     <% end %>
 									</div>
 									<div class="labelprodukkanan">
-										<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
 										<% if p.harga_diskon %>
                     <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                     <% end %>
@@ -411,14 +441,14 @@
 						</div>
 					</div>
 					<div class="col-md-4 noppading-left">
-						<a href="#"><img src="<%= image_path "bn-iklanside1.jpg" %>" class="responsiveimg iklanimage"></a>
+						<a href="<%= Homeitem.find(11).text1 %>"><img src="<%= Homeitem.find(11).img1.url %>" class="responsiveimg iklanimage"></a>
 					</div>
 				</div>
 				<div class="spacermedium"></div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="fluid_iklan">
-							<a href="#"><img src="https://placehold.it/980x100" class="responsiveimg"></a>
+							<a href="<%= Homeitem.find(11).text2 %>"><img src="<%= Homeitem.find(11).img2.url %>" class="responsiveimg"></a>
 						</div>
 					</div>
 				</div>
@@ -448,12 +478,12 @@
                     <% if produkfashion %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
@@ -461,144 +491,144 @@
                       <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
                       <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/7">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(7), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_gadgetkomputer">
                     <% @gadgetproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/8">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(8), class: "lhsm-btn blokmbl" %>
 									</section>
                   <section id="baru_beauty">
                     <% @beautyproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/9">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(9), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_elektronik">
                     <% @electroproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/11">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(11), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_sporthobi">
                     <% @sportproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/12">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(12), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_homegarden">
                     <% @homeproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/13">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(13), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_service">
                     <% @babyproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/10">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(10), class: "lhsm-btn blokmbl" %>
 									</section>
 									<section id="baru_makanan">
                     <% @foodproduct.each do |produkfashion| %>
 										<div class="produkcarousel normalproduk">
 											<div class="thumbfoto-produk">
-												<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/></a>
+												<%= link_to produkfashion, "data-no-turbolink" => true do %><img src="<%= produkfashion.foto_produk1.url %>" class="responsiveimg"/><% end %>
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
 											</div>
-											<a data-no-turbolink="true" href="/produks/<%= produkfashion.id %>"><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4></a>
+											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
                       <% end %>
 											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
-											<a href="/tokos/<%= Toko.find(produkfashion.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span></a>
+											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
-                    <a class="lhsm-btn blokmbl" href="/categories/16">Lihat Semua Produk</a>
+                    <%= link_to "Lihat Semua Produk", Category.find(16), class: "lhsm-btn blokmbl" %>
 									</section>
 
 
@@ -623,13 +653,13 @@
 							<div class="listproduk4">
 								<div class="listproduk-landscape">
 									<div class="thumbfoto-produk">
-										<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>
+										<%= link_to p, "data-no-turbolink" => true do %><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/><% end %>
 										<% if p.harga_diskon %>
                     <span class="lagidiskon">-<%= p.diskon %>%</span>
                     <% end %>
 									</div>
 									<div class="labelprodukkanan">
-										<a data-no-turbolink="true"  href="/produks/<%= p.id %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
+										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
 										<% if p.harga_diskon %>
                     <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                     <% end %>
@@ -641,8 +671,8 @@
 						</div>
 					</div>
 					<div class="col-md-4 noppading-left">
-						<div class="iklansamping"><a href="#"><img src="<%= image_path "bn-iklanside2.jpg" %>" class="responsiveimg iklanimage"></a></div>
-						<div class="iklansamping"><a href="#"><img src="<%= image_path "bn-iklanside3.jpg" %>" class="responsiveimg iklanimage"></a></div>
+						<div class="iklansamping"><a href="<%= Homeitem.find(11).text3 %>"><img src="<%= Homeitem.find(11).img3.url %>" class="responsiveimg iklanimage"></a></div>
+						<div class="iklansamping"><a href="<%= Homeitem.find(11).text4 %>"><img src="<%= Homeitem.find(11).img4.url %>" class="responsiveimg iklanimage"></a></div>
 					</div>
 				</div>
 			</div>
@@ -661,40 +691,31 @@
 					<div class="col-md-12">
 						<div id="brandcarousel" class="owl-carousel">
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand1.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text1 %>"><img src="<%= Homeitem.find(7).img1.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand2.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text2 %>"><img src="<%= Homeitem.find(7).img2.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand3.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text3 %>"><img src="<%= Homeitem.find(7).img3.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand4.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text4 %>"><img src="<%= Homeitem.find(7).img4.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand5.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text5 %>"><img src="<%= Homeitem.find(7).img5.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand6.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text6 %>"><img src="<%= Homeitem.find(7).img6.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand1.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text7 %>"><img src="<%= Homeitem.find(7).img7.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand2.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text8 %>"><img src="<%= Homeitem.find(7).img8.url %>" class="responsiveimg"></a>
 							</div>
 							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand3.jpg" %>" class="responsiveimg"></a>
-							</div>
-							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand4.jpg" %>" class="responsiveimg"></a>
-							</div>
-							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand5.jpg" %>" class="responsiveimg"></a>
-							</div>
-							<div class="itembrand">
-								<a href="#"><img src="<%= image_path "brand6.jpg" %>" class="responsiveimg"></a>
+								<a href="<%= Homeitem.find(7).text9 %>"><img src="<%= Homeitem.find(7).img9.url %>" class="responsiveimg"></a>
 							</div>
 						</div>
 					</div>

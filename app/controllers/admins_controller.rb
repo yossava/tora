@@ -44,6 +44,9 @@ class AdminsController < ApplicationController
       redirect_to "/admin/finance", notice: "Balance direset"
     end
   end
+  def newsletter
+    @newsletter = Newsletter.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
+  end
   def dashboard
     @balance = []
     User.all.each do |u|
@@ -61,6 +64,14 @@ class AdminsController < ApplicationController
     if current_user.admin
       User.find(params[:id]).update(:admin => false)
       redirect_to :back, notice: "Admin User dihapus"
+    end
+  end
+  def destroynewsletter
+    @newsletter = Newsletter.find(params[:id])
+    @newsletter.destroy
+
+    if @newsletter.destroy
+        redirect_to :back, notice: "Email dihapus."
     end
   end
   def homepage
@@ -129,6 +140,14 @@ class AdminsController < ApplicationController
 
     if @static.destroy
         redirect_to :back, notice: "Halaman dihapus."
+    end
+  end
+  def destroyhomeitem
+     @home = Homeitem.find(params[:id])
+     @home.destroy
+
+    if @home.destroy
+        redirect_to :back, notice: "Item dihapus."
     end
   end
   def destroycategory
