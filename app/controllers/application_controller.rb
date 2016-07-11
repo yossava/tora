@@ -2,12 +2,15 @@ class ApplicationController < ActionController::Base
   before_filter :configure_devise_permitted_parameters, if: :devise_controller?
   before_action :tokosaya
   before_action :troli
+  before_action :news
   require 'csv'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
-
+  def news
+    @newsletter = Newsletter.new
+  end
   def store_location
     # store last url as long as it isn't a /users path
     session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
