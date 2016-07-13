@@ -132,6 +132,9 @@
 								<% if c.harga_diskon %>
                 <span class="lagidiskon">-<%= c.diskon %>%</span>
                 <% end %>
+                <% if c.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 							</div>
 							<a href="<%= produk_path(c) %>"><h4 class="titleproduk"><%= c.nama_produk %></h4></a>
               <% if c.harga_diskon %>

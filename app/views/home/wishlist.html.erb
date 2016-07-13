@@ -59,6 +59,9 @@
 												<div class="thumbfoto-produk">
 													<a href="<%= produk_path(fav) %>"><img src="<%= fav.foto_produk1.url %>" class="responsiveimg"/></a>
 													<span class="lagidiskon">-<%= fav.diskon %>%</span>
+                          <% if fav.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 												</div>
 												<a href="<%= produk_path(fav) %>"><h4 class="titleproduk"><%= fav.nama_produk %></h4></a>
 												<div class="hargaasli">Rp <%= fav.harga %></div>

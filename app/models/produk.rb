@@ -40,7 +40,7 @@ class Produk < ActiveRecord::Base
     end
 
     def hitung_diskon
-      if self.diskon
+      if self.diskon && self.harga_diskon != nil
         self.diskon = (self.harga - self.harga_diskon) / self.harga * 100
       end
     end

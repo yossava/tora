@@ -206,6 +206,9 @@
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
                           <h4 class="titleproduk"><%= p.nama_produk %></h4>
@@ -231,6 +234,9 @@
                           <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
+                          <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
                           <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
@@ -258,6 +264,9 @@
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
                           <h4 class="titleproduk"><%= p.nama_produk %></h4>
@@ -283,6 +292,9 @@
                           <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
+                          <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
                           <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
@@ -310,6 +322,9 @@
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
                           <h4 class="titleproduk"><%= p.nama_produk %></h4>
@@ -335,6 +350,9 @@
                           <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
+                          <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
                           <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
@@ -362,6 +380,9 @@
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
                           <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %>
                           <h4 class="titleproduk"><%= p.nama_produk %></h4>
@@ -387,6 +408,9 @@
                           <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
+                          <% end %>
+                          <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
                           <% end %>
 												</div>
 												<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
@@ -427,6 +451,9 @@
                      <% if p.harga_diskon %>
                     <span class="lagidiskon">-<%= p.diskon %>%</span>
                     <% end %>
+                    <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 									</div>
 									<div class="labelprodukkanan">
 										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
@@ -482,6 +509,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -505,6 +535,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                          <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -524,6 +557,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -543,6 +579,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -562,6 +601,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -581,6 +623,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -600,6 +645,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -619,6 +667,9 @@
                         <% if produkfashion.harga_diskon %>
 												<span class="lagidiskon">-<%= produkfashion.diskon %>%</span>
                         <% end %>
+                        <% if produkfashion.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 											</div>
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
@@ -657,6 +708,9 @@
 										<% if p.harga_diskon %>
                     <span class="lagidiskon">-<%= p.diskon %>%</span>
                     <% end %>
+                    <% if p.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 									</div>
 									<div class="labelprodukkanan">
 										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>

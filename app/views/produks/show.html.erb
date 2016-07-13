@@ -40,6 +40,9 @@
               <% if @produk.harga_diskon %>
 							<span class="lagidiskon detail">-<%= @produk.diskon %>%</span>
               <% end %>
+              <% if @produk.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 						</div>
 						<div class="ttpondesktop">
 							<div id="gallery_01" class="previewprodukcarousel">
@@ -266,6 +269,9 @@
               <% if produk.harga_diskon %>
 							<span class="lagidiskon">-<%= produk.diskon %>%</span>
               <% end %>
+              <% if produk.jumlah_grosir1min %>
+                          <span class="grosiran">grosir</span>
+                          <% end %>
 						</div>
 						<a href="<%= produk_path(produk.id) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
 						<div class="hargaasli"><%= number_to_currency(produk.harga, locale: :id) %></div>
