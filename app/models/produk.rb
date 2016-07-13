@@ -40,8 +40,11 @@ class Produk < ActiveRecord::Base
     end
 
     def hitung_diskon
-      if self.diskon && self.harga_diskon != nil
+      if self.harga_diskon != nil && self.harga_diskon > 0 && self.harga_diskon <  self.harga
         self.diskon = (self.harga - self.harga_diskon) / self.harga * 100
+        else
+        self.diskon = nil
+        self.harga_diskon = nil
       end
     end
     extend FriendlyId
