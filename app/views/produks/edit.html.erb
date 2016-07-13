@@ -83,11 +83,11 @@
 										<div class="row">
 											<div class="colthumbnail">
 
-												<div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk1 %>" class="responsiveimg"></div>
-												<div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk2 %>" class="responsiveimg"></div>
-												<div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk3 %>" class="responsiveimg"></div>
-												<div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk4 %>" class="responsiveimg"></div>
-												<div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk5 %>" class="responsiveimg"></div>
+												<% if @produk.foto_produk1.url %><div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk1 %>" class="responsiveimg"><%= f.check_box :remove_foto_produk1 %> Hapus</div><% end %>
+												<% if @produk.foto_produk2.url %><div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk2 %>" class="responsiveimg"><%= f.check_box :remove_foto_produk2 %> Hapus</div><% end %>
+												<% if @produk.foto_produk3.url %><div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk3 %>" class="responsiveimg"><%= f.check_box :remove_foto_produk3 %> Hapus</div><% end %>
+												<% if @produk.foto_produk4.url %><div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk4 %>" class="responsiveimg"><%= f.check_box :remove_foto_produk4 %> Hapus</div><% end %>
+												<% if @produk.foto_produk5.url %><div class="col-md-2 col-xs-3"><img src="<%= Produk.friendly.find(params[:id]).foto_produk5 %>" class="responsiveimg"><%= f.check_box :remove_foto_produk5 %> Hapus</div><% end %>
 
 											</div>
 										</div>
