@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -104,14 +104,24 @@
 										</div>
 										<div class="col-md-3 col-sm-3 col-xs-6">
 											<label for="hgitmtx">Harga per Buah</label>
-											<h4 class="hgitmtx typeorange">Rp <%= produk.harga %>,-</h4>
+											<h4 class="hgitmtx typeorange"><%= number_to_currency(produk.harga, locale: :id) %></h4>
 											<label for="hggrosirtx">Harga Grosir</label>
 											<p class="hggrosirtx">
+                        <% if produk.jumlah_grosir1min %>
 												<span><%= produk.jumlah_grosir1min %>-<%= produk.jumlah_grosir1max %> &nbsp; : &nbsp; Rp <%= produk.harga_grosir1 %></span>
+                        <% end %>
+                        <% if produk.jumlah_grosir2min %>
 												<span><%= produk.jumlah_grosir2min %>-<%= produk.jumlah_grosir2max %> &nbsp; : &nbsp; Rp <%= produk.harga_grosir2 %></span>
+                        <% end %>
+                        <% if produk.jumlah_grosir3min %>
                         <span><%= produk.jumlah_grosir3min %>-<%= produk.jumlah_grosir3max %> &nbsp; : &nbsp; Rp <%= produk.harga_grosir3 %></span>
+                        <% end %>
+                        <% if produk.jumlah_grosir4min %>
                         <span><%= produk.jumlah_grosir4min %>-<%= produk.jumlah_grosir4max %> &nbsp; : &nbsp; Rp <%= produk.harga_grosir4 %></span>
+                        <% end %>
+                        <% if produk.jumlah_grosir5min %>
                         <span><%= produk.jumlah_grosir5min %>-<%= produk.jumlah_grosir5max %> &nbsp; : &nbsp; Rp <%= produk.harga_grosir5 %></span>
+                        <% end %>
 											</p>
 										</div>
 										<div class="col-md-2 col-sm-2 col-xs-6">
