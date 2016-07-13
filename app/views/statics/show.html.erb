@@ -25,7 +25,7 @@
 						</div>
 						<div class="breadcumb">
 							<span><a href="/">Home</a></span>
-							<span>></span>
+							<span></span>
 							<span><a href="#"><%= @static.title %></a></span>
 						</div>
 					</div>
@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col-md-12 ctnhlst">
 					<h3 class="headingotherpage"><%= @static.title %></h3>
-					<%=raw @static.body %>
+          <%= render(:inline => @static.body) %>
 				</div>
 			</div>
 		</div>

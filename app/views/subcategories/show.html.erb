@@ -33,6 +33,21 @@
 		<div class="spacermedium"></div>
 
 		<div class="container">
+      <div class="row">
+				<div class="col-md-12 col-sm-9">
+					<div id="ktxbanner" class="kt-xbanner owl-carousel">
+            <% if @subcategory.slide1.url %>
+						<div class="item"><img src="<%= @subcategory.slide1.url if @subcategory.slide1.url %>" class="responsiveimg"></div>
+            <% end %>
+            <% if @subcategory.slide2.url %>
+						<div class="item"><img src="<%= @subcategory.slide2.url %>" class="responsiveimg"></div>
+            <% end %>
+            <% if @subcategory.slide3.url %>
+						<div class="item"><img src="<%= @subcategory.slide3.url %>" class="responsiveimg"></div>
+            <% end %>
+					</div>
+				</div>
+			</div>
 
 			<div class="spacermedium"></div>
 			<div class="row">
@@ -48,7 +63,8 @@
 							</div>
 							<div class="col-md-6">
 								<ul class="list-unstyled">
-                  <% Category.find(@subcategory.category_id).subcategories.each do |c| %>
+                  <% @cats = @subcategory.category.first %>
+                  <% @cats.subcategories.each do |c| %>
 									<li><span><i class="fa fa-angle-right"></i></span> <a href="/subcategories/<%= c.id %>"><%= c.subkategori %></a></li>
                   <% end %>
 								</ul>
@@ -114,12 +130,12 @@
             <% @cat.each do |c| %>
 						<div class="produklist">
 							<div class="thumbfoto-produk">
-								<a href="/produks/<%= c.id %>"><img src="<%= c.foto_produk1.url %>" class="responsiveimg"/></a>
+								<a href="<%= produk_path(c) %>"><img src="<%= c.foto_produk1.url %>" class="responsiveimg"/></a>
 								<% if c.harga_diskon %>
                 <span class="lagidiskon">-<%= c.diskon %>%</span>
                 <% end %>
 							</div>
-							<a href="/produks/<%= c.id %>"><h4 class="titleproduk"><%= c.nama_produk %></h4></a>
+							<a href="<%= produk_path(c) %>"><h4 class="titleproduk"><%= c.nama_produk %></h4></a>
               <% if c.harga_diskon %>
 							<div class="hargaasli"><%= number_to_currency(c.harga_diskon, locale: :id) %></div>
 							<div class="hargacoret"><%= number_to_currency(c.harga, locale: :id) %></div>
@@ -127,7 +143,7 @@
               <div class="hargaasli"><%= number_to_currency(c.harga, locale: :id) %></div>
               <div class="hargacoret"></div>
               <% end %>
-							<a href="/tokos/<%= c.toko_id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(c.toko_id).nama_toko %></span></a>
+							<a href="<%= toko_path(Toko.find(c.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(c.toko_id).nama_toko %></span></a>
 						</div>
             <% end %>
 					</div>

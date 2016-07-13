@@ -111,7 +111,7 @@
 													<div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
                           <% end %>
 													<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
-													<a href="/tokos/<%= Toko.find(p.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
+													<a href="<%= toko_path(Toko.find(p.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
 												</div>
                         <% end %>
 										</div>

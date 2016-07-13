@@ -32,7 +32,7 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>user_id</th>
+                  <th>ID</th>
                   <th>Nama</th>
                   <th>Email</th>
                   <th>Toko</th>
@@ -51,14 +51,21 @@
                   <td><% if u.toko %><%= u.toko.nama_toko %><% else %>n/a<% end %></td>
                   <td><%= u.produks.count %></td>
                   <td><%= number_to_currency(u.saldo,locale: :id) %></td>
-                  <td><a class="btn btn-success btn-sm" href="/admin/finance/<%= u.id %>" data-confirm="Balance akan direset !">RESET</a> </td>
+                  <td>
+                  <%= form_for(@financelog) do |f| %>
+                  <input type="hidden" name="financelog[user_id]" value="<%= u.id %>">
+                    <input type="hidden" name="id" value="<%= u.id %>">
+                  <input type="hidden" name="financelog[jumlah]" value="<%= u.saldo %>">
+                  <input type="submit" value="PAID" class="btn btn-success btn-sm" data-confirm="Balance akan direset!">
+                  <% end %>
+                  </td>
 
                 </tr>
                 <% end %>
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>user_id</th>
+                  <th>ID</th>
                   <th>Nama</th>
                   <th>Email</th>
                   <th>Toko</th>

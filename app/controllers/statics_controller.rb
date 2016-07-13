@@ -64,11 +64,11 @@ class StaticsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_static
-      @static = Static.find(params[:id])
+      @static = Static.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def static_params
-      params.require(:static).permit(:title, :body, :image)
+      params.require(:static).permit(:title, :body, :image, :group, :meta_description, :meta_keyword, :slug)
     end
 end

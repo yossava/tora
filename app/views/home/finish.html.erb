@@ -1,4 +1,4 @@
-<%= render 'layouts/header' %>		
+<%= render 'layouts/header' %>
 <div id="topkeyword">
 			<div class="container">
 				<div class="row">
@@ -47,7 +47,7 @@
 							numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam
 						</p>
 						<p>
-							Sekarang Anda dapat melihat dan mengcustomize <a href="/tokos/<%= @toko.id %>/edit" class="typered">halaman toko Anda</a>, atau langsung  <a href="<%= new_produk_path %>" class="typered">menginput produk</a> pertama Anda.
+							Sekarang Anda dapat melihat dan mengcustomize <a href="<%= toko_path(@toko) %>/edit" class="typered">halaman toko Anda</a>, atau langsung  <a href="<%= new_produk_path %>" class="typered">menginput produk</a> pertama Anda.
 							Selamat Berjualan !
 						</p>
 					</div>

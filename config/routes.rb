@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :subsubcategories
+  resources :financelogs
   resources :newsletters
   resources :transactions
   resources :homeitems
@@ -9,10 +11,10 @@ Rails.application.routes.draw do
   resources :favorite_produks
   resources :subcategories
   resources :categories
-  resources :produks
-  resources :tokos
-  resources :rekenings
-  resources :alamats
+  resources :produks, path: 'produk'
+  resources :tokos, path: 'toko'
+  resources :rekenings, path: 'rekening'
+  resources :alamats, path: 'alamat'
   resources :pets
 
 
@@ -36,15 +38,15 @@ Rails.application.routes.draw do
   get "/tentang" => "home#tentang"
   get "/expired/:id" => "home#expired"
   get "/karir" => "home#karir"
-  get "/tokos/:id/review" => "tokos#review"
-  get "/alamats/new/:provinsi" => "alamats#new"
-  get "/alamats/new/:provinsi/:kota" => "alamats#new"
-  get "/tokos/new/:provinsi" => "tokos#new"
-  get "/tokos/new/:provinsi/:kota" => "tokos#new"
-  get "/alamats/edit/:id/:provinsi" => "alamats#edit"
-  get "/alamats/edit/:id/:provinsi/:kota" => "alamats#edit"
-  get "/tokos/:id/edit/:provinsi" => "tokos#edit"
-  get "/tokos/:id/edit/:provinsi/:kota" => "tokos#edit"
+  get "/toko/:id/review" => "tokos#review"
+  get "/alamat/new/:provinsi" => "alamats#new"
+  get "/alamat/new/:provinsi/:kota" => "alamats#new"
+  get "/toko/new/:provinsi" => "tokos#new"
+  get "/toko/new/:provinsi/:kota" => "tokos#new"
+  get "/alamat/edit/:id/:provinsi" => "alamats#edit"
+  get "/alamat/edit/:id/:provinsi/:kota" => "alamats#edit"
+  get "/toko/:id/edit/:provinsi" => "tokos#edit"
+  get "/toko/:id/edit/:provinsi/:kota" => "tokos#edit"
   get "/email" => "home#email"
   get "/cari" => "produks#cari"
   get "/checkout" => "carts#checkout"
@@ -72,13 +74,15 @@ Rails.application.routes.draw do
   get "/terms" => "home#terms"
   get "/kategori" => "tokos#kategori"
   get "/pengiriman/:id" => "tokos#pengiriman"
-  get "/produks/:id/unfav" => "favorite_produks#destroy"
+  get "/produk/:id/unfav" => "favorite_produks#destroy"
   #get "/editalamat:id", to: "alamats#edit", as: 'alamat'
 
   #cronjobs
   get "/cronjobs" => "home#cronjobs"
 
   #AMDIN#ADMIN#ADMIN
+  get 'admin/general' => "admins#general"
+  get 'admin/financelogs' => "admins#financelogs"
   get 'admin/newsletter' => "admins#newsletter"
   get 'admin/gate' => "admins#login"
   get 'admin/topproduct/:top/:id' => "admins#topproduct"
@@ -86,6 +90,14 @@ Rails.application.routes.draw do
   get 'admin/finance' => "admins#finance"
   get 'admin/finance/:id' => "admins#finance"
   get 'admin/beadmin/:id' => "admins#becomeadmin"
+  get 'admin/general/:id' => "admins#becomegeneral"
+  get 'admin/financeadmin/:id' => "admins#becomefinance"
+  get 'admin/ungeneral/:id' => "admins#ungeneral"
+  get 'admin/unfinance/:id' => "admins#unfinance"
+  get 'admin/blockuser/:id' => "admins#blockuser"
+  get 'admin/unblockuser/:id' => "admins#unblockuser"
+  get 'admin/resendconfirmation/:id' => "admins#resendconfirmation"
+  get 'admin/resetpassword/:id' => "admins#resetpassword"
   get 'admin/deladmin/:id' => "admins#deleteadmin"
   get 'admin/users' => "admins#users"
   get 'admin/edituser/:id' => "admins#users"
@@ -101,6 +113,8 @@ Rails.application.routes.draw do
   get 'admin/categories/:id' => "admins#categories"
   get 'admin/subcategories' => "admins#subcategories"
   get 'admin/subcategories/:id' => "admins#subcategories"
+  get 'admin/subsubcategories' => "admins#subsubcategories"
+  get 'admin/subsubcategories/:id' => "admins#subsubcategories"
   get 'admin/statics' => "admins#statics"
   get 'admin/statics/:id' => "admins#statics"
   get 'admin' => "admins#dashboard"
@@ -110,6 +124,7 @@ Rails.application.routes.draw do
   match 'deleteproduct/:id' => 'admins#destroyproduct', :via => :delete, :as => :admin_destroy_product
   match 'deletecategory/:id' => 'admins#destroycategory', :via => :delete, :as => :admin_destroy_category
   match 'deletesubcategory/:id' => 'admins#destroysubcategory', :via => :delete, :as => :admin_destroy_subcategory
+  match 'deletesubsubcategory/:id' => 'admins#destroysubsubcategory', :via => :delete, :as => :admin_destroy_subsubcategory
   match 'deletestatic/:id' => 'admins#destroystatic', :via => :delete, :as => :admin_destroy_static
   match 'deletehomeitem/:id' => 'admins#destroyhomeitem', :via => :delete, :as => :admin_destroy_homeitem
   match 'deletenewsletter/:id' => 'admins#destroynewsletter', :via => :delete, :as => :admin_destroy_newsletter

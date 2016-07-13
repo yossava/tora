@@ -3,11 +3,19 @@ class ApplicationController < ActionController::Base
   before_action :tokosaya
   before_action :troli
   before_action :news
+  before_filter :banned?
   require 'csv'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
+  def banned?
+    if current_user.present? && current_user.block?
+      sign_out current_user
+      flash[:error] = "This account has been suspended...."
+      root_path
+    end
+  end
   def news
     @newsletter = Newsletter.new
   end

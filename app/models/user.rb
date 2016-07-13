@@ -15,4 +15,10 @@ class User < ActiveRecord::Base
   has_many :favorite_produks
   has_many :favorites, through: :favorite_produks, source: :produk
   has_many :feedbacks
+
+  def self.search(search)
+      search = search.downcase
+      where("lower(namalengkap) LIKE :search OR lower(email) LIKE :search", search: "%#{search}%")
+    end
+
 end

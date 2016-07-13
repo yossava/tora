@@ -146,7 +146,7 @@
 							<span>></span>
 							<span><a href="#">Akun Saya</a></span>
 							<span>></span>
-							<span><a href="/tokos/new">Buat Toko</a></span>
+							<span><a href="/toko/new">Buat Toko</a></span>
 						</div>
 					</div>
 				</div>
@@ -371,7 +371,7 @@ $(document).on('ready page:load', function () {
 <script>
 $(document).on('ready page:load', function () {
   $('.provinsi, .kota').bind("keyup change", function(){
-        var newurl = "/tokos/new" + "/" + $('.provinsi').val() <% if @cit %>+ "/" + $('.kota').val()<% end %>;
+        var newurl = "/toko/new" + "/" + $('.provinsi').val() <% if @cit %>+ "/" + $('.kota').val()<% end %>;
         Turbolinks.visit(newurl);
     });
 });

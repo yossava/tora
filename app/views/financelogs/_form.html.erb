@@ -1,0 +1,33 @@
+<%= form_for(@financelog) do |f| %>
+  <% if @financelog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@financelog.errors.count, "error") %> prohibited this financelog from being saved:</h2>
+
+      <ul>
+      <% @financelog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :toko_id %><br>
+    <%= f.number_field :toko_id %>
+  </div>
+  <div class="field">
+    <%= f.label :jumlah %><br>
+    <%= f.text_field :jumlah %>
+  </div>
+  <div class="field">
+    <%= f.label :produk_id %><br>
+    <%= f.number_field :produk_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

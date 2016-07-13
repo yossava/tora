@@ -128,12 +128,12 @@
             <% @cat.each do |c| %>
 						<div class="produklist">
 							<div class="thumbfoto-produk">
-								<a href="/produks/<%= c.id %>"><img src="<%= c.foto_produk1.url %>" class="responsiveimg"/></a>
+								<a href="<%= produk_path(c) %>"><img src="<%= c.foto_produk1.url %>" class="responsiveimg"/></a>
 								<% if c.harga_diskon %>
                 <span class="lagidiskon">-<%= c.diskon %>%</span>
                 <% end %>
 							</div>
-							<a href="/produks/<%= c.id %>"><h4 class="titleproduk"><%= c.nama_produk %></h4></a>
+							<a href="<%= produk_path(c) %>"><h4 class="titleproduk"><%= c.nama_produk %></h4></a>
               <% if c.harga_diskon %>
 							<div class="hargaasli"><%= number_to_currency(c.harga_diskon, locale: :id) %></div>
 							<div class="hargacoret"><%= number_to_currency(c.harga, locale: :id) %></div>
@@ -141,7 +141,7 @@
               <div class="hargaasli"><%= number_to_currency(c.harga, locale: :id) %></div>
               <div class="hargacoret"></div>
               <% end %>
-							<a href="/tokos/<%= c.toko_id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(c.toko_id).nama_toko %></span></a>
+							<a href="<%= toko_path(Toko.find(c.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(c.toko_id).nama_toko %></span></a>
 						</div>
             <% end %>
 					</div>

@@ -12,6 +12,7 @@ class Produk < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   belongs_to :subcategory
+  belongs_to :subsubcategory
   belongs_to :toko
   belongs_to :cart
   has_many :favorite_produks
@@ -20,7 +21,8 @@ class Produk < ActiveRecord::Base
   before_create :alter_my_data
 
     def self.search(search)
-      where("deskripsi_lengkap LIKE :search OR nama_produk LIKE :search", search: "%#{search}%")
+      search = search.downcase
+      where("lower(deskripsi_lengkap) LIKE :search OR lower(nama_produk) LIKE :search", search: "%#{search}%")
     end
 
     def alter_my_data
@@ -42,7 +44,6 @@ class Produk < ActiveRecord::Base
         self.diskon = (self.harga - self.harga_diskon) / self.harga * 100
       end
     end
-    def to_param
-    "#{id}-#{nama_produk.parameterize}"
-    end
+    extend FriendlyId
+    friendly_id :nama_produk, use: :slugged
 end

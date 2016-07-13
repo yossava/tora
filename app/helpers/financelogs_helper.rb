@@ -1,0 +1,2 @@
+module FinancelogsHelper
+end

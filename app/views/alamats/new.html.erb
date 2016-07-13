@@ -145,7 +145,7 @@ $(document).on('ready page:load', function () {
 <script>
 $(document).on('ready page:load', function () {
   $('.provinsi, .kota').bind("keyup change", function(){
-        var newurl = "/alamats/new" + "/" + $('.provinsi').val() <% if @cit %>+ "/" + $('.kota').val()<% end %>;
+        var newurl = "/alamat/new" + "/" + $('.provinsi').val() <% if @cit %>+ "/" + $('.kota').val()<% end %>;
         Turbolinks.visit(newurl);
     });
 });

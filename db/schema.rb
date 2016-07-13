@@ -73,6 +73,11 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.string   "slide3"
   end
 
+  create_table "categories_subcategories", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "subcategory_id"
+  end
+
   create_table "favorite_produks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "produk_id"
@@ -90,6 +95,28 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.integer  "rating"
     t.text     "feed"
   end
+
+  create_table "financelogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "toko_id"
+    t.decimal  "jumlah"
+    t.integer  "produk_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "homeitems", force: :cascade do |t|
     t.string   "title"
@@ -178,7 +205,11 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.boolean  "recommended",       default: false
     t.boolean  "top",               default: false
     t.decimal  "rating"
+    t.string   "slug"
+    t.integer  "subsubcategory_id"
   end
+
+  add_index "produks", ["slug"], name: "index_produks_on_slug", unique: true, using: :btree
 
   create_table "rekenings", force: :cascade do |t|
     t.string   "pemilik"
@@ -194,9 +225,15 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.string   "title"
     t.text     "body"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "group"
+    t.text     "meta_description"
+    t.string   "meta_keyword"
+    t.string   "slug"
   end
+
+  add_index "statics", ["slug"], name: "index_statics_on_slug", unique: true, using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.integer  "seller_id"
@@ -211,12 +248,20 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
   create_table "subcategories", force: :cascade do |t|
     t.string   "subkategori"
     t.text     "deskripsi"
-    t.string   "subcategori_image"
+    t.string   "slide1"
     t.integer  "category_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "gambar_kategori2"
-    t.string   "gambar_kategori3"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "slide2"
+    t.string   "slide3"
+  end
+
+  create_table "subsubcategories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subcategory_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "produk_id"
   end
 
   create_table "tokos", force: :cascade do |t|
@@ -249,7 +294,10 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.string   "terima_pembayaran2"
     t.string   "terima_pembayaran3"
     t.string   "kota_sebagai"
+    t.string   "slug"
   end
+
+  add_index "tokos", ["slug"], name: "index_tokos_on_slug", unique: true, using: :btree
 
   create_table "transactions", force: :cascade do |t|
     t.text     "get"
@@ -281,6 +329,9 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
     t.integer  "saldo",                  default: 0
+    t.boolean  "block",                  default: false
+    t.boolean  "finance",                default: false
+    t.boolean  "general",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

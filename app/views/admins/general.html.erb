@@ -1,0 +1,193 @@
+<div class="wrapper">
+
+  <%= render 'admins/topbar' %>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%= render 'admins/sidebar' %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        General Setting
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">General Setting</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="col-xs-6">
+                <label>UMUM</label><hr>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nama Wesbite</label>
+                  <%= f.text_field :text1, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Title</label>
+                  <%= f.text_field :text2, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <%= f.text_area :description, class: "form-control", rows: "5" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keyword (separated by comma)</label>
+                  <%= f.text_field :text3, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Favicon</label>
+                  <%= f.file_field :img1, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Top Logo</label>
+                  <%= f.file_field :img2, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Bottom Logo</label>
+                  <%= f.file_field :img3, class: "form-control" %>
+                </div>
+                </div>
+                <div class="col-xs-6">
+                <label>CONTACT</label><hr>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">No CS</label>
+                  <%= f.text_field :text4, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <%= f.text_field :text5, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Alamat Lengkap</label>
+                  <%= f.text_area :text6, class: "form-control", rows: "5" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">MAP API</label>
+                  <%= f.text_field :text7, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">FB Url</label>
+                  <%= f.text_field :text8, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Twitter Url</label>
+                  <%= f.text_field :text9, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">IG Url</label>
+                  <%= f.text_field :text10, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">G+ Url</label>
+                  <%= f.text_field :text11, class: "form-control" %>
+                </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="box box-primary">
+            <a style="color:#333;" name="priv">
+            <div class="box-body">
+            <label>PRIVILAGES & ROLES</label><hr>
+              <div class="callout callout-info">
+                <h4>Keterangan</h4>
+              List berikut adalah User yang dijadikan Admin pada menu User (Super Admin)<br>
+              Jika Finance Admin diaktifkan, status berubah dari Super Admin Ke Finance Admin<br>
+              Jika General Admin diaktifkan, status berubah dari Super Admin Ke General Admin<br>
+              </div>
+
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>General</th>
+                  <th>Finance</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% User.where(:admin => true).order(id: :asc).each do |u| %>
+                <tr>
+                  <td><%= u.id %></td>
+                  <td><%= u.namalengkap %></td>
+                  <td><%= u.email %></td>
+                  <% if u.id != 13 %>
+                  <% if u.general == false %>
+                  <td><a class="btn btn-success btn-sm" href="/admin/general/<%= u.id %>#priv">General Admin</a></td>
+                  <% else %>
+                  <td><a class="btn btn-warning btn-sm" href="/admin/ungeneral/<%= u.id %>#priv">Batalkan</a></td>
+                  <% end %>
+                  <% if u.finance == false %>
+                  <td><a class="btn btn-success btn-sm" href="/admin/financeadmin/<%= u.id %>#priv">Finance Admin</a></td>
+                  <% else %>
+                  <td><a class="btn btn-warning btn-sm" href="/admin/unfinance/<%= u.id %>#priv">Batalkan</a></td>
+                  <% end %>
+                  <% else %>
+                  <td></td>
+                  <td></td>
+                  <% end %>
+                </tr>
+                <% end %>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>General</th>
+                  <th>Finance</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+  </footer>
+
+
+</div>
+<% if notice.to_s.include? "Item" %>
+<script>
+$(function () {
+    $.notiny({ text: "<%= notice %>", position: 'right-top' });
+  });
+</script>
+<% end %>
+<% if notice.to_s.include? "Admin" %>
+<script>
+$(function () {
+    $.notiny({ text: "<%= notice %>", position: 'right-top' });
+  });
+</script>
+<% end %>
+

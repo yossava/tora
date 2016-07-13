@@ -33,7 +33,7 @@
 									<a href="<%= new_produk_path %>" data-toggle="tooltip" title="Buat produk baru"><i class="fa fa-caret-right"></i> &nbsp; Tambah Produk</a>
 									<a href="<%= produks_path %>" data-toggle="tooltip" title="Daftar produk toko Anda"><i class="fa fa-caret-right"></i> &nbsp; Daftar Produk</a>
                   <% if Toko.exists?(user_id: current_user.id) %>
-									<a href="/tokos/<%= @toko.id %>/edit" data-toggle="tooltip" title="Pengaturan toko Anda"><i class="fa fa-caret-right"></i> &nbsp; Pengaturan Toko</a>
+									<a href="<%= toko_path(@toko) %>/edit" data-toggle="tooltip" title="Pengaturan toko Anda"><i class="fa fa-caret-right"></i> &nbsp; Pengaturan Toko</a>
                   <% end %>
 								</div>
 							</div>

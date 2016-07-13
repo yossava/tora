@@ -59,7 +59,7 @@
 			<div class="core_menu_toko">
 				<ul class="list-unstyled cmt-list">
 					<li class="active"><a href="#">Produk</a></li>
-					<li><a href="/tokos/<%= @toko.id %>/review">Review</a></li>
+					<li><a href="<%= toko_path(@toko) %>/review">Review</a></li>
 					<li><a href="#">Informasi Toko</a></li>
 					<li><a href="#">Catatan</a></li>
 				</ul>
@@ -106,15 +106,15 @@
               <% @mytoko.each do |produk| %>
 							<div class="produkcarousel myakunproduk toko">
 								<div class="thumbfoto-produk">
-									<a href="/produks/<%= produk.id %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
+									<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
                   <% if produk.harga_diskon %>
 									<span class="lagidiskon">-<%= produk.diskon %>%</span>
                   <% end %>
 								</div>
-								<a href="/produks/<%= produk.id %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
+								<a href="<%= produk_path(produk) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
 								<div class="hargaasli">Rp <%= produk.harga %></div>
 								<div class="hargacoret">Rp <%= produk.harga_diskon %></div>
-								<a href="/tokos/<%= Toko.find(produk.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produk.toko_id).nama_toko %></span></a>
+								<a href="<%= toko_path(Toko.find(produk.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produk.toko_id).nama_toko %></span></a>
 							</div>
               <% end %>
 						</div>

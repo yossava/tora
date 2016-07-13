@@ -24,7 +24,7 @@
 							<span>></span>
 							<span><a href="/edit">Pengaturan</a></span>
 							<span>></span>
-							<span><a href="/alamats">Alamat</a></span>
+							<span><a href="/alamat">Alamat</a></span>
 							<span>></span>
 							<span><a href="#">Ubah Alamat</a></span>
 						</div>
@@ -46,7 +46,7 @@
 							<span>></span>
 							<span><a href="/edit">Pengaturan</a></span>
 							<span>></span>
-							<span><a href="/alamats">Alamat</a></span>
+							<span><a href="/alamat">Alamat</a></span>
 							<span>></span>
 							<span><a href="#">Ubah Alamat</a></span>
 						</div>
@@ -204,7 +204,7 @@
 							<span>></span>
 							<span><a href="/categories">Kategori</a></span>
 							<span>></span>
-							<span><a href="/categories/<%= Category.find(@subcategory.category_id).id %>"><%= Category.find(@subcategory.category_id).kategori %></a></span>
+							<span><a href="/categories/<%= @subcategory.category.first.id %>"><%= @subcategory.category.first.kategori %></a></span>
 							<span>></span>
 							<span><a href="#"><%= @subcategory.subkategori %></a></span>
 						</div>

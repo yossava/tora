@@ -8,8 +8,12 @@ class Toko < ActiveRecord::Base
   has_many :feedbacks,    dependent: :destroy
   has_many :produks,    dependent: :destroy
   has_many :categories, through: :produks
-  
-   def to_param
-    "#{id}-#{nama_toko.parameterize}"
+
+    def self.search(search)
+      search = search.downcase
+      where("lower(nama_toko) LIKE :search OR slug LIKE :search", search: "%#{search}%")
     end
+
+    extend FriendlyId
+    friendly_id :nama_toko, use: :slugged
 end

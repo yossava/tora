@@ -28,7 +28,7 @@ class HomeitemsController < ApplicationController
 
     respond_to do |format|
       if @homeitem.save
-        format.html { redirect_to :back, notice: 'Item was successfully created.' }
+        format.html { redirect_to :back, notice: 'Item berhasil dibuat.' }
         format.json { render :show, status: :created, location: @homeitem }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class HomeitemsController < ApplicationController
   def update
     respond_to do |format|
       if @homeitem.update(homeitem_params)
-        format.html { redirect_to :back, notice: 'Item was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Item telah diperbarui.' }
         format.json { render :show, status: :ok, location: @homeitem }
       else
         format.html { render :edit }

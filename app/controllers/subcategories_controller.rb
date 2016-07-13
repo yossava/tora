@@ -120,6 +120,6 @@ class SubcategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subcategory_params
-      params.require(:subcategory).permit(:subkategori, :deskripsi, :subcategori_image, :category_id)
+      params.require(:subcategory).permit(:subkategori, :deskripsi, :slide1, :slide2, :slide3, :remove_slide1, :remove_slide2, :remove_slide3, {:category_ids => []})
     end
 end

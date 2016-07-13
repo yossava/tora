@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -57,13 +57,13 @@
                       <% current_user.favorites.each do |fav| %>
 											<div class="produkcarousel myakunproduk">
 												<div class="thumbfoto-produk">
-													<a href="/produks/<%= fav.id %>"><img src="<%= fav.foto_produk1.url %>" class="responsiveimg"/></a>
+													<a href="<%= produk_path(fav) %>"><img src="<%= fav.foto_produk1.url %>" class="responsiveimg"/></a>
 													<span class="lagidiskon">-<%= fav.diskon %>%</span>
 												</div>
-												<a href="/produks/<%= fav.id %>"><h4 class="titleproduk"><%= fav.nama_produk %></h4></a>
+												<a href="<%= produk_path(fav) %>"><h4 class="titleproduk"><%= fav.nama_produk %></h4></a>
 												<div class="hargaasli">Rp <%= fav.harga %></div>
 												<div class="hargacoret">Rp <%= fav.harga_diskon %></div>
-												<a href="/tokos/<%= Toko.find(fav.toko_id).id %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(fav.toko_id).nama_toko %></span></a>
+												<a href="<%= toko_path(Toko.find(fav.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(fav.toko_id).nama_toko %></span></a>
 											</div>
                       <% end %>
 										</section>

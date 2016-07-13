@@ -49,6 +49,9 @@
                 <% if flash[:alert] %>
                           <p class="alert"><%= flash[:alert] %></p>
                  <% end %>
+                 <% if flash[:error] %>
+                          <p class="alert"><%= flash[:error] %></p>
+                 <% end %>
                 <%= form_for(:user, :url => session_path(:user)) do |f| %>
 								<div class="form-row has-error">
 									<label for="email">Email</label>

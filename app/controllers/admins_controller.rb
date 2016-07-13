@@ -38,11 +38,15 @@ class AdminsController < ApplicationController
   end
 
   def finance
+    @financelog = Financelog.new
     @users = User.order(id: :asc).where("saldo > ?", 0)
     if params[:id]
       User.find(params[:id]).update(:saldo => 0)
       redirect_to "/admin/finance", notice: "Balance direset"
     end
+  end
+  def financelogs
+    @financelog = Financelog.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
   end
   def newsletter
     @newsletter = Newsletter.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
@@ -60,6 +64,47 @@ class AdminsController < ApplicationController
       redirect_to :back, notice: "Admin User ditambahkan"
     end
   end
+  def becomegeneral
+      User.find(params[:id]).update(:general => true)
+      redirect_to :back, notice: "General Admin ditambahkan"
+  end
+  def becomefinance
+      User.find(params[:id]).update(:finance => true)
+      redirect_to :back, notice: "Finance Admin ditambahkan"
+  end
+  def ungeneral
+      User.find(params[:id]).update(:general => false)
+      redirect_to :back, notice: "Gen Admin dihapus"
+  end
+  def unfinance
+      User.find(params[:id]).update(:finance => false)
+      redirect_to :back, notice: "Finance Admin dihapus"
+  end
+  def blockuser
+    if current_user.admin
+      User.find(params[:id]).update(:block => true)
+      redirect_to :back, notice: "User telah diblokir"
+    end
+  end
+  def unblockuser
+    if current_user.admin
+      User.find(params[:id]).update(:block => false)
+      redirect_to :back, notice: "User telah diunblock"
+    end
+  end
+  def resendconfirmation
+    if current_user.admin
+      User.find(params[:id]).send_confirmation_instructions
+      redirect_to :back, notice: "Email konfirmasi User telah dikirim"
+    end
+  end
+  def resetpassword
+    if current_user.admin
+      User.find(params[:id]).send_reset_password_instructions
+      redirect_to :back, notice: "Email reset password User telah dikirim"
+    end
+  end
+
   def deleteadmin
     if current_user.admin
       User.find(params[:id]).update(:admin => false)
@@ -80,6 +125,9 @@ class AdminsController < ApplicationController
     if params[:id]
     @homeitem = Homeitem.find(params[:id])
     end
+  end
+  def general
+     @homeitem = Homeitem.find(16)
   end
   def statics
     @statics = Static.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
@@ -103,6 +151,13 @@ class AdminsController < ApplicationController
     @subcategory = Subcategory.find(params[:id])
     end
   end
+  def subsubcategories
+    @subsubcategories = Subsubcategory.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
+    @subsubcategory = Subsubcategory.new
+    if params[:id]
+    @subsubcategory = Subsubcategory.find(params[:id])
+    end
+  end
   def users
     @users = User.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
     if params[:id]
@@ -113,11 +168,17 @@ class AdminsController < ApplicationController
         redirect_to :back, notice: "User diupdate."
       end
     end
+    if params[:search]
+      @users = User.search(params[:search])
+    end
   end
   def stores
-    @stores = Toko.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
+    @stores = Toko.order(id: :asc).paginate(:page => params[:page], :per_page => 10)
     if params[:id]
     @toko = Toko.find(params[:id])
+    end
+    if params[:search]
+      @stores = Toko.search(params[:search])
     end
   end
   def products
@@ -127,7 +188,7 @@ class AdminsController < ApplicationController
     end
   end
   def destroystore
-     @store = Toko.find(params[:id])
+     @store = Toko.friendly.find(params[:id])
      @store.destroy
 
     if @store.destroy
@@ -164,6 +225,14 @@ class AdminsController < ApplicationController
 
     if @subcategory.destroy
         redirect_to :back, notice: "Subkategori dihapus."
+    end
+  end
+  def destroysubsubcategory
+     @subsubcategory = Subsubcategory.find(params[:id])
+     @subsubcategory.destroy
+
+    if @subsubcategory.destroy
+        redirect_to :back, notice: "Sub-subkategori dihapus."
     end
   end
   def destroyuser

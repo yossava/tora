@@ -15,57 +15,70 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview <% if params[:action] == "dashboard" %> active <% end %>">
-          <a href="/admin">
+          <a data-no-turbolink="true" href="/admin">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview <% if params[:action] == "users" %> active <% end %>">
-          <a href="/admin/users">
-            <i class="fa fa-user" aria-hidden="true"></i> <span>Users</span>
-          </a>
-        </li>
         <li class="treeview <% if params[:action] == "stores" %> active <% end %>">
-          <a href="/admin/stores">
+          <a data-no-turbolink="true" href="/admin/stores">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Stores</span>
           </a>
         </li>
+        <li class="treeview <% if params[:action] == "users" %> active <% end %>">
+          <a data-no-turbolink="true" href="/admin/users">
+            <i class="fa fa-user" aria-hidden="true"></i> <span>Users</span>
+          </a>
+        </li>
         <li class="treeview <% if params[:action] == "products" %> active <% end %>">
-          <a href="/admin/products">
+          <a data-no-turbolink="true" href="/admin/products">
             <i class="fa fa-tags" aria-hidden="true"></i> <span>Products</span>
           </a>
         </li>
-         <li class="treeview <% if params[:action] == "categories" %> active <% end %>">
-          <a href="/admin/categories">
+         <li class="treeview <% if params[:action] == "categories" || params[:action] == "subcategories" || params[:action] == "subsubcategories" %> active <% end %>">
+          <a data-no-turbolink="true" href="#">
             <i class="fa fa-bars" aria-hidden="true"></i> <span>Categories</span>
+            <i class="fa fa-angle-left pull-right"></i>
           </a>
+           <ul class="treeview-menu">
+            <li <% if params[:action] == "categories" %> class="active" <% end %> ><a data-no-turbolink="true" href="/admin/categories"><i class="fa fa-circle-o"></i> Categories</a></li>
+            <li <% if params[:action] == "subcategories" %> class="active" <% end %> ><a data-no-turbolink="true" href="/admin/subcategories"><i class="fa fa-circle-o"></i> Subcategories</a></li>
+             <li <% if params[:action] == "subsubcategories" %> class="active" <% end %> ><a data-no-turbolink="true" href="/admin/subsubcategories"><i class="fa fa-circle-o"></i> Sub-subcategories</a></li>
+          </ul>
         </li>
-         <li class="treeview <% if params[:action] == "subcategories" %> active <% end %>">
-          <a href="/admin/subcategories">
-            <i class="fa fa-bars" aria-hidden="true"></i> <span>Subcategories</span>
-          </a>
-        </li>
+
          <li class="treeview <% if params[:action] == "statics" %> active <% end %>">
-          <a href="/admin/statics">
+          <a data-no-turbolink="true" href="/admin/statics">
             <i class="fa fa-file-o" aria-hidden="true"></i> <span>Static Pages</span>
           </a>
         </li>
         <li class="treeview <% if params[:action] == "homepage" %> active <% end %>">
-          <a href="/admin/homepage">
+          <a data-no-turbolink="true" href="/admin/homepage">
             <i class="fa fa-home" aria-hidden="true"></i> <span>Home Page</span>
           </a>
         </li>
-        <li class="treeview <% if params[:action] == "finance" %> active <% end %>">
-          <a href="/admin/finance">
+        <li data-no-turbolink="true" class="treeview <% if params[:action] == "finance" || params[:action] == "financelogs" %> active <% end %>">
+          <a href="#">
             <i class="fa fa-money" aria-hidden="true"></i> <span>Finance</span>
+            <i class="fa fa-angle-left pull-right"></i>
           </a>
+          <ul class="treeview-menu">
+            <li <% if params[:action] == "finance" %> class="active" <% end %> ><a data-no-turbolink="true" href="/admin/finance"><i class="fa fa-circle-o"></i> Unpaid Balance</a></li>
+            <li <% if params[:action] == "financelogs" %> class="active" <% end %> ><a data-no-turbolink="true" href="/admin/financelogs"><i class="fa fa-circle-o"></i> Finance Logs</a></li>
+          </ul>
         </li>
+
         <li class="treeview <% if params[:action] == "topproduct" %> active <% end %>">
-          <a href="/admin/topproduct">
+          <a data-no-turbolink="true" href="/admin/topproduct">
             <i class="fa fa-trophy" aria-hidden="true"></i> <span>Top Product</span>
           </a>
         </li>
+        <li class="treeview <% if params[:action] == "general" %> active <% end %>">
+          <a data-no-turbolink="true" href="/admin/general">
+            <i class="fa fa-cogs" aria-hidden="true"></i> <span>General Setting</span>
+          </a>
+        </li>
         <li class="treeview <% if params[:action] == "newsletter" %> active <% end %>">
-          <a href="/admin/newsletter">
+          <a data-no-turbolink="true" href="/admin/newsletter">
             <i class="fa fa-envelope" aria-hidden="true"></i> <span>Newsletter</span>
           </a>
         </li>
