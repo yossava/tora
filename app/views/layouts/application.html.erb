@@ -14,10 +14,15 @@
   <meta name="description" content="<%= @static.meta_description %>">
   <meta name="keywords" content="<%= @static.meta_keyword %>">
   <% else %>
-  <title>Love It Mart | Marketplace</title>
+  <title><%= Homeitem.find(16).text1 + " | " + Homeitem.find(16).text2 %></title>
+  <meta name="description" content="<%= Homeitem.find(16).description %>">
+  <meta name="keywords" content="<%= Homeitem.find(16).text3 %>">
   <% end %>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <% if Homeitem.find(16).img1.url %>
+  <link rel="shortcut icon" type="image/png" href="<%= Homeitem.find(16).img1.url %>"/>
+  <% end %>
   <link rel="stylesheet" type="text/css" href="<%= stylesheet_path "gayana/css/bootstrap.min.css" %>" />
   <link rel="stylesheet" type="text/css" href="<%= stylesheet_path "gayana/css/jquery-ui.min.css" %>" />
   <link rel="stylesheet" type="text/css" href="<%= stylesheet_path "gayana/css/sadaya.css" %>" />
