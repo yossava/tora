@@ -201,7 +201,7 @@
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
-                            <img src="<%= p.foto_produk1.url %>" class="responsiveimg"/>
+                            <%= image_tag p.foto_produk1.url, class: "responsiveimg" %>
                           <% end %>
 													<% if p.harga_diskon %>
                           <span class="lagidiskon">-<%= p.diskon %>%</span>
@@ -215,8 +215,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -244,8 +247,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -273,8 +279,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -302,8 +311,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -331,8 +343,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -360,8 +375,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -389,8 +407,11 @@
                         <% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -416,8 +437,11 @@
 												<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
 												<% if p.harga_diskon %>
                         <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
                         <% end %>
-												<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 												<%= link_to Toko.find(p.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span><% end %>
 											</div>
                       <% end %>
@@ -458,9 +482,12 @@
 									<div class="labelprodukkanan">
 										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
 										<% if p.harga_diskon %>
-                    <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
-                    <% end %>
-										<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                        <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <% else %>
+                        <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                        <div class="hargacoret">&nbsp;</div>
+                        <% end %>
 									</div>
 								</div>
 							</div>
@@ -542,8 +569,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -564,8 +594,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -586,8 +619,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -608,8 +644,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -630,8 +669,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -652,8 +694,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -674,8 +719,11 @@
 											<%= link_to produkfashion, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= produkfashion.nama_produk %></h4><% end %>
                       <% if produkfashion.harga_diskon %>
 											<div class="hargaasli"><%= number_to_currency(produkfashion.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
                       <% end %>
-											<div class="hargacoret"><%= number_to_currency(produkfashion.harga, locale: :id) %></div>
 											<%= link_to Toko.find(produkfashion.toko_id), :class => "tambahketroli", "data-no-turbolink" => true do %><span class="troliblack"></span><span class="ttb"><%= Toko.find(produkfashion.toko_id).nama_toko %></span><% end %>
 										</div>
                     <% end %>
@@ -714,10 +762,13 @@
 									</div>
 									<div class="labelprodukkanan">
 										<%= link_to p, "data-no-turbolink" => true do %><h4 class="titleproduk"><%= p.nama_produk %></h4><% end %>
-										<% if p.harga_diskon %>
-                    <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
-                    <% end %>
-										<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+										  <% if p.harga_diskon %>
+											<div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                      <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                      <% else %>
+                      <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                      <div class="hargacoret">&nbsp;</div>
+                      <% end %>
 									</div>
 								</div>
 							</div>
@@ -793,7 +844,6 @@
 <%= javascript_include_tag "jquery.themepunch.revolution.js" %>
 <%= javascript_include_tag "owl.carousel.js" %>
 <!-- ./Script -->
-
 			<!--=============================== RevoSlider ==============================-->
 			<script type="text/javascript">
 				var tpj=jQuery;

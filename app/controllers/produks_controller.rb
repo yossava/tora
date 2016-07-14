@@ -1,6 +1,8 @@
 class ProduksController < ApplicationController
   before_action :set_produk, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :cari]
+  before_filter :store_history, only: [:show]
+
 
 
   # GET /produks
@@ -161,6 +163,11 @@ class ProduksController < ApplicationController
 
     def set_produk
       @produk = Produk.friendly.find(params[:id])
+    end
+    def store_history
+      session[:history] ||= []
+      session[:history].delete_at(0) if session[:history].size >= 10
+      session[:history] << request.url
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

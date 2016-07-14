@@ -96,20 +96,20 @@
 															<span class="inv"><%= s.invoice %></span>
 														</div>
 														<div class="row">
-															<div class="col-md-6 lpwp">
-																<span class="imglpwp"><img src="<%= Produk.find(s.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
-																<h4><%= Produk.find(s.produk_id).nama_produk %></h4>
-																<p><%= s.jumlah %> X <%= Produk.find(s.produk_id).harga %></p>
-															</div>
-															<div class="col-md-3">
-																<label>Subtotal</label>
-																<p><%= Produk.find(s.produk_id).harga * s.jumlah %></p>
-															</div>
-															<div class="col-md-3">
-																<label>Ongkir</label>
-																<p><%= s.ongkir %></p>
-															</div>
-														</div>
+											<div class="col-md-6 lpwp">
+												<span class="imglpwp"><img src="<%= Produk.find(s.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
+												<h4><%= Produk.find(s.produk_id).nama_produk %></h4>
+												<p><%=s.jumlah %> X <%= number_to_currency((s.subtotal - s.ongkir) / s.jumlah, locale: :id) %></p>
+											</div>
+											<div class="col-md-3">
+												<label>Subtotal</label>
+												<p><%= number_to_currency(s.subtotal - s.ongkir, locale: :id) %></p>
+											</div>
+											<div class="col-md-3">
+												<label>Ongkir</label>
+												<p><%= number_to_currency(s.ongkir,locale: :id) %></p>
+											</div>
+										</div>
 														<hr style="border-color:#ddd;"></hr>
 														<div class="row">
 															<div class="col-md-6">

@@ -24,6 +24,7 @@
 													<div class="row buynowform qty">
 														<div class="col-md-4"><label class="headingslbl">Quantity</label></div>
 														<div class="col-md-8"> <%= f.text_field :jumlah, class: "quantity", value: 1 %>
+                            <div style="font-size:12px;color:orange;" class="hargagrosir"></div>
                             <input type="hidden" class="quantityform" value="<%= @produk.harga_beli %>" >
                             <input type="hidden" name="cart[ongkir]" class="ongkirtotal">
                             <input type="hidden" name="cart[kurir]" class="cartkurir">

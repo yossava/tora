@@ -48,7 +48,7 @@
 								<div data-responsive-tabs>
 									<nav>
 										<ul class="listtabna ">
-											<li ><a href="#wishlist">Wishlist (7)</a></li>
+											<li ><a href="#wishlist">Wishlist (<%= current_user.favorites.count %>)</a></li>
 											<li><a href="#dilihat">Produk yang terakhir dilihat</a></li>
 										</ul>
 									</nav>
@@ -64,23 +64,26 @@
                           <% end %>
 												</div>
 												<a href="<%= produk_path(fav) %>"><h4 class="titleproduk"><%= fav.nama_produk %></h4></a>
-												<div class="hargaasli">Rp <%= fav.harga %></div>
-												<div class="hargacoret">Rp <%= fav.harga_diskon %></div>
+												<div class="hargaasli"><%= number_to_currency(fav.harga, locale: :id) %></div>
+												<div class="hargacoret"><%= number_to_currency(fav.harga_diskon, locale: :id) %></div>
 												<a href="<%= toko_path(Toko.find(fav.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(fav.toko_id).nama_toko %></span></a>
 											</div>
                       <% end %>
 										</section>
                     <section id="dilihat">
+                      <% session[:history].uniq.each do |s| %>
+                      <% last = Produk.friendly.find(s.split('/')[-1]) %>
 											<div class="produkcarousel myakunproduk">
 												<div class="thumbfoto-produk">
-													<a href="#"><img src="gayana/gambar/konten/produk1.jpg" class="responsiveimg"/></a>
-													<span class="lagidiskon">-5%</span>
+													<a href="<%= produk_path(last) %>"><img src="<%= last.foto_produk1.url %>" class="responsiveimg"/></a>
+													<span class="lagidiskon">-<%= last.diskon %>%</span>
 												</div>
-												<a href="#"><h4 class="titleproduk">Blanditiis praesentium voluptatum deleniti..</h4></a>
-												<div class="hargaasli">Rp 250.000</div>
-												<div class="hargacoret">Rp 275.000</div>
-												<a href="#" class="tambahketroli"><span class="troliblack"></span><span class="ttb">Tambah ke Troli</span></a>
+												<a href="<%= produk_path(last) %>"><h4 class="titleproduk"><%= last.nama_produk %></h4></a>
+												<div class="hargaasli"><%= number_to_currency(last.harga, locale: :id) %></div>
+												<div class="hargacoret"><%= number_to_currency(last.harga_diskon, locale: :id) %></div>
+												<a href="<%= toko_path(Toko.find(last.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(last.toko_id).nama_toko %></span></a>
 											</div>
+                      <% end %>
 										</section>
 									</div>
 								</div>

@@ -381,11 +381,38 @@ $(document).ready(function(){
     var $s = $("#cart_ongkir");
     var kurir = $('option:selected', this).attr('jenis');
     if($r.length ==1){
-        var t = parseInt($r.val(), 10);
         var n = parseInt($d.val(), 10);
+        <% if @produk.jumlah_grosir1min %>
+        if ( n >= <%= @produk.jumlah_grosir1min %> && n <= <%= @produk.jumlah_grosir1max %>){
+        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir1, locale: :id) %>");
+                               var g = parseInt(<%= @produk.harga_grosir1 %>, 10);
+        } <% if @produk.jumlah_grosir2min %> else if (n >= <%= @produk.jumlah_grosir2min %> && n <= <%= @produk.jumlah_grosir2max %>){
+        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir2, locale: :id) %>");
+                               var g = parseInt(<%= @produk.harga_grosir2 %>, 10);
+        }<% end %><% if @produk.jumlah_grosir3min %> else if (n >= <%= @produk.jumlah_grosir3min %> && n <= <%= @produk.jumlah_grosir3max %>){
+        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir3, locale: :id) %>");
+                               var g = parseInt(<%= @produk.harga_grosir3 %>, 10);
+        } <% end %><% if @produk.jumlah_grosir4min %>else if (n >= <%= @produk.jumlah_grosir4min %> && n <= <%= @produk.jumlah_grosir4max %>){
+        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir4, locale: :id) %>");
+                               var g = parseInt(<%= @produk.harga_grosir4 %>, 10);
+        }<% end %><% if @produk.jumlah_grosir5min %> else if (n >= <%= @produk.jumlah_grosir5min %> && n <= <%= @produk.jumlah_grosir5max %>){
+        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir5, locale: :id) %>");
+                               var g = parseInt(<%= @produk.harga_grosir5 %>, 10);
+        } <% end %> else {
+        $('.hargagrosir').html("");
+          var g = 0;
+        }
+        <% else %>
+        var g = 0;
+        <% end %>
+        var t = parseInt($r.val(), 10);
         var s = parseInt($s.val(), 10);
         var berat = Math.round(n*<%= @produk.berat %>/1000);
-        var tot = t*n+s*berat;
+        if (g > 0){
+        var tot = g*n+s*berat;
+        } else {
+          var tot = t*n+s*berat;
+        }
         var ongkir = s*berat;
         if (isNaN(tot)) tot = 0;
         if (isNaN(s)) s = 0;

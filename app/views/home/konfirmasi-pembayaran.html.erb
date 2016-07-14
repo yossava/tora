@@ -72,7 +72,7 @@
                   <p class="ttl-tagihan">Transaction ID : <strong><%= t.txid %><% if (t.created_at + 4.days - Time.now).to_i/86400 < 1 %> <span class="label label-danger">EXPIRED </span><% end %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
-									<p class="ttl-tagihan">Total Tagihan : <strong><%= t.subtotal %></strong></p>
+									<p class="ttl-tagihan">Total Tagihan : <strong><%= number_to_currency(t.subtotal, locale: :id) %></strong></p>
 									<div class="spacermedium"></div>
 									<div class="wrapdtkonf">
 										<div class="heading-wdkf">
@@ -83,15 +83,15 @@
 											<div class="col-md-6 lpwp">
 												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
 												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
-												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+												<p><%= t.jumlah %> X <%= number_to_currency((t.subtotal - t.ongkir) / t.jumlah, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Subtotal</label>
-												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+												<p><%= number_to_currency(t.subtotal - t.ongkir, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Ongkir</label>
-												<p><%= t.ongkir %></p>
+												<p><%= number_to_currency(t.ongkir,locale: :id) %></p>
 											</div>
 										</div>
 										<hr style="border-color:#ddd;"></hr>

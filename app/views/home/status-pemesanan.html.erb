@@ -68,15 +68,15 @@
 											<div class="col-md-6 lpwp">
 												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
 												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
-												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+												<p><%= t.jumlah %> X <%= number_to_currency((t.subtotal - t.ongkir) / t.jumlah, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Subtotal</label>
-												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+												<p><%= number_to_currency(t.subtotal - t.ongkir, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Ongkir</label>
-												<p><%= t.ongkir %></p>
+												<p><%= number_to_currency(t.ongkir,locale: :id) %></p>
 											</div>
 										</div>
 										<hr style="border-color:#ddd;"></hr>
@@ -126,15 +126,15 @@
 											<div class="col-md-6 lpwp">
 												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
 												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
-												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+												<p><%= t.jumlah %> X <%= number_to_currency((t.subtotal - t.ongkir) / t.jumlah, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Subtotal</label>
-												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+												<p><%= number_to_currency(t.subtotal - t.ongkir, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Ongkir</label>
-												<p><%= t.ongkir %></p>
+												<p><%= number_to_currency(t.ongkir,locale: :id) %></p>
 											</div>
 										</div>
 										<hr style="border-color:#ddd;"></hr>
@@ -184,15 +184,15 @@
 											<div class="col-md-6 lpwp">
 												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
 												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
-												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+												<p><%= t.jumlah %> X <%= number_to_currency((t.subtotal - t.ongkir) / t.jumlah, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Subtotal</label>
-												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+												<p><%= number_to_currency(t.subtotal - t.ongkir, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Ongkir</label>
-												<p><%= t.ongkir %></p>
+												<p><%= number_to_currency(t.ongkir,locale: :id) %></p>
 											</div>
 										</div>
 										<hr style="border-color:#ddd;"></hr>
@@ -244,15 +244,15 @@
 											<div class="col-md-6 lpwp">
 												<span class="imglpwp"><img src="<%= Produk.find(t.produk_id).foto_produk1.url %>" class="responsiveimg"></span>
 												<h4><%= Produk.find(t.produk_id).nama_produk %></h4>
-												<p><%= t.jumlah %> X <%= Produk.find(t.produk_id).harga %></p>
+												<p><%= t.jumlah %> X <%= number_to_currency((t.subtotal - t.ongkir) / t.jumlah, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Subtotal</label>
-												<p><%= Produk.find(t.produk_id).harga * t.jumlah %></p>
+												<p><%= number_to_currency(t.subtotal - t.ongkir, locale: :id) %></p>
 											</div>
 											<div class="col-md-3">
 												<label>Ongkir</label>
-												<p><%= t.ongkir %></p>
+												<p><%= number_to_currency(t.ongkir,locale: :id) %></p>
 											</div>
 										</div>
 										<hr style="border-color:#ddd;"></hr>

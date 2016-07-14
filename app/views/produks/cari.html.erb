@@ -105,12 +105,18 @@
 														<% if p.harga_diskon %>
                             <span class="lagidiskon">-<%= p.diskon %>%</span>
                             <% end %>
+                            <% if p.jumlah_grosir1min %>
+                            <span class="grosiran">grosir</span>
+                            <% end %>
 													</div>
 													<a href="<%= produk_path(p) %>"><h4 class="titleproduk"><%= p.nama_produk %></h4></a>
                           <% if p.harga_diskon %>
-													<div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                          <div class="hargaasli"><%= number_to_currency(p.harga_diskon, locale: :id) %></div>
+                          <div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
+                          <% else %>
+                          <div class="hargaasli"><%= number_to_currency(p.harga, locale: :id) %></div>
+                          <div class="hargacoret">&nbsp;</div>
                           <% end %>
-													<div class="hargacoret"><%= number_to_currency(p.harga, locale: :id) %></div>
 													<a href="<%= toko_path(Toko.find(p.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(p.toko_id).nama_toko %></span></a>
 												</div>
                         <% end %>
