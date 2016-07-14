@@ -196,7 +196,7 @@ class AdminsController < ApplicationController
     end
   end
   def destroystatic
-     @static = Static.find(params[:id])
+     @static = Static.friendly.find(params[:id])
      @static.destroy
 
     if @static.destroy
@@ -245,7 +245,7 @@ class AdminsController < ApplicationController
   end
 
   def destroyproduct
-     @product = Produk.find(params[:id])
+     @product = Produk.friendly.find(params[:id])
      @product.destroy
 
     if @product.destroy
