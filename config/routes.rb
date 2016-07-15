@@ -81,6 +81,10 @@ Rails.application.routes.draw do
   get "/cronjobs" => "home#cronjobs"
 
   #AMDIN#ADMIN#ADMIN
+  devise_scope :user do
+    delete 'logout' => "devise/sessions#destroy"
+    get 'edit' => "devise/registrations#edit"
+  end
   get 'admin/general' => "admins#general"
   get 'admin/financelogs' => "admins#financelogs"
   get 'admin/newsletter' => "admins#newsletter"
@@ -137,14 +141,9 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :users, controllers: {
-  confirmations: "users/confirmations",
-  passwords: "users/passwords",
-  registrations: "users/registrations",
-  sessions: "users/sessions",
-  unlocks: "users/unlocks",
-  update: "/profil",
-  }, :path => '', :path_names => {:sign_in => 'masuk', :sign_out => 'logout'}
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', :confirmations => "users/confirmations" }
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

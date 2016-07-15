@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   mount_uploader :profil_image, ImageUploader
   devise :registerable, :confirmable
+  devise :omniauthable, :omniauth_providers => [:facebook]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,6 +20,14 @@ class User < ActiveRecord::Base
   def self.search(search)
       search = search.downcase
       where("lower(namalengkap) LIKE :search OR lower(email) LIKE :search", search: "%#{search}%")
-    end
+  end
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.namalengkap = auth.info.name   # assuming the user model has a name
+    user.remote_profil_image_url = auth.info.image.gsub('http://','https://') # assuming the user model has an image
+  end
+end
 
 end

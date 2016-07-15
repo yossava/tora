@@ -40,7 +40,11 @@
 												<h4>Atau Masuk Dengan:</h4>
 											</div>
 											<div class="listotherlogin">
-												<div class="sosmedlogin absolut"><a href="#"><span class="loginoptionbtn facebook"><i class="fa fa-facebook"></i></span></a></div>
+												<div class="sosmedlogin absolut">
+                          <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                          <span class="loginoptionbtn facebook"><i class="fa fa-facebook"></i></span>
+                          <% end %>
+                        </div>
 												<div class="sosmedlogin absolut"><a href="#"><span class="loginoptionbtn twitter"><i class="fa fa-twitter"></i></span></a></div>
 												<div class="sosmedlogin absolut"><a href="#"><span class="loginoptionbtn gplus"><i class="fa fa-google-plus"></i></span></a></div>
 												<div class="sosmedlogin absolut"><a href="#"><span class="loginoptionbtn instagram"><i class="fa fa-instagram"></i></span></a></div>

@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -53,7 +53,9 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="ctnblok-logreg">
+                <% if notice %>
                 <p id="notice"><%= notice %></p>
+                <% end %>
                 <%= form_for(@rekening) do |f| %>
 								<div class="form-row has-error">
 									<label for="nmalamat">Nama Akun / Pemilik</label>
@@ -64,7 +66,12 @@
 									<label for="penerima">No. Rekening</label>
 									<input type="text" name="rekening[nomor_rekening]" id="penerima" placeholder="">
 								</div>
-								<div class="form-row">
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="ctnblok-logreg">
+                <div class="form-row">
 									<label for="prov">Nama Bank</label>
 									<select name="rekening[nama_bank]" id="prov">
 										<option>Pilih Bank</option>
@@ -73,18 +80,10 @@
 										<option>BNI</option>
 									</select>
 								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="ctnblok-logreg">
 								<div class="form-row">
 									<label for="kdpos">Cabang</label>
 									<input type="text" name="rekening[cabang]" id="kdpos" placeholder="">
 									<p class="helpertext">* Contoh: KC jakarta citra 2 extension - Jakarta Barat</p>
-								</div>
-								<div class="form-row">
-									<label for="kdpos">Password Akun Anda</label>
-									<input class="passwordrek" required="true" type="password" name="user[password]" id="kdpos" placeholder="******">
 								</div>
 								<br>
 								<div class="form-row reg">

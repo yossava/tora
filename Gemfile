@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #gem 'filterrific'
 gem 'rails', '4.2.6'
+gem 'omniauth-facebook'
 gem 'friendly_id', '~> 5.1.0'
 gem 'pg'
 gem 'nicepay', '~> 0.1.2'

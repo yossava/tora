@@ -200,3 +200,6 @@ h4.titleproduk {
 select option:disabled {
     color: #bfbfbf;
 }
+p.alert {
+  border: 1px solid #eb0e43;
+}

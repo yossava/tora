@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 					<%= render 'layouts/tabakun' %>
 					<div class="row">
 						<div class="col-md-12">
-							<a data-no-turbolink="true" class="tambahalmt-btn" href="rekenings/new"><i class="fa fa-plus"></i> Tambah Rekening Bank</a>
+							<a data-no-turbolink="true" class="tambahalmt-btn" href="rekening/new"><i class="fa fa-plus"></i> Tambah Rekening Bank</a>
               <p id="notice"><%= notice %></p>
 							<div class="row">
 								<div class="col-md-12">
@@ -63,7 +63,7 @@
                           <% end %>
 													<div class="optionrek">
 														<a href="<%= edit_rekening_path(rekening) %>"><span><i class="fa fa-pencil"></i> Ubah</span></a>
-                            <a data-confirm="Apakah anda yakin?" rel="nofollow" data-method="delete" href="rekenings/<%= rekening.id %>"><i class="fa fa-times"></i> Hapus</a>
+                            <a data-confirm="Apakah anda yakin?" rel="nofollow" data-method="delete" href="rekening/<%= rekening.id %>"><i class="fa fa-times"></i> Hapus</a>
 													</div>
 												</div>
 											</div>

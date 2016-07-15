@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_devise_permitted_parameters
-    permitted_params = [:email, :password, :password_confirmation, :namalengkap, :nomor_handphone, :is_female, :date_of_birth, :profil_image]
+    permitted_params = [:email, :password, :password_confirmation, :namalengkap, :nomor_handphone, :is_female, :date_of_birth, :profil_image, :remote_profil_image_url]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.for(:account_update) {

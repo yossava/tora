@@ -332,6 +332,8 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.boolean  "block",                  default: false
     t.boolean  "finance",                default: false
     t.boolean  "general",                default: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -12,6 +12,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def after_inactive_sign_up_path_for(resource)
       '/konfirmasi'
     end
+    def update_resource(resource, params)
+      if current_user.provider
+        params.delete("current_password")
+        resource.update_without_password(params)
+      else
+        resource.update_with_password(params)
+      end
+    end
 
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]

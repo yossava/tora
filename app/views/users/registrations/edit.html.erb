@@ -224,10 +224,12 @@
                        <%= f.label :Alamat_email %><br />
                        <%= f.email_field :email, autofocus: true %>
                      </div>
+                    <% if !current_user.provider %>
 										<div class="form-row">
 											<label for="password">Password</label>
 											<input required="true" type="password" name="user[current_password]" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
 										</div>
+                    <% end %>
 									</div>
 								</div>
 							</div>

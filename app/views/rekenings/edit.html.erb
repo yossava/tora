@@ -23,7 +23,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -55,28 +55,26 @@
 							<div class="ctnblok-logreg">
                 <%= form_for(@rekening) do |f| %>
                     <div class="form-row">
-                      <%= f.label :Nama_akun %><br>
+                      <%= f.label :Nama_akun %>
                       <%= f.text_field :pemilik %>
                     </div>
                     <div class="form-row">
-                       <%= f.label :No_rekening %><br>
+                       <%= f.label :No_rekening %>
                        <%= f.text_field :nomor_rekening %>
                     </div>
-                    <div><%= f.label :Nama_bank, class: "form-row" %><br />
-                    <%= f.select :nama_bank, ["BCA", "BNI", "Mandiri"] %></div>
+
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="ctnblok-logreg">
                 <div class="form-row">
-                   <%= f.label :Cabang %><br>
+                 <%= f.label :Nama_bank %>
+                 <%= f.select :nama_bank, ["BCA", "BNI", "Mandiri"] %></div>
+                <div class="form-row">
+                   <%= f.label :Cabang %>
                    <%= f.text_field :cabang %>
                    <p class="helpertext">* Contoh: KC jakarta citra 2 extension - Jakarta Barat</p>
                 </div>
-								<div class="form-row">
-									<label for="kdpos">Password Akun Anda</label>
-									<input required="true" class="passwordrek" type="password" name="" id="kdpos" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-								</div>
 								<br>
 								<div class="form-row reg">
 									<input type="submit" name="" value="Simpan" class="gosignin" >

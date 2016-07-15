@@ -24,7 +24,7 @@
 							</div>
 							<%= render 'layouts/sidemenu' %>
 						</div>
-						
+
             <%= render 'layouts/bread' %>
 					</div>
 				</div>
@@ -67,7 +67,9 @@
 							<div class="colomacr">
 								<h4 class="title">Data Akun</h4>
 								<p><span class="spacerrightspan">Email</span> <span class="titikdua">:</span> <%= current_user.email %></p>
+                <% if !current_user.provider %>
 								<p><span class="spacerrightspan">Password</span> <span class="titikdua">:</span> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></p>
+                <% end %>
 							</div>
 						</div>
 					</div>
