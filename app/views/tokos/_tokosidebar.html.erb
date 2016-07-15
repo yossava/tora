@@ -15,7 +15,9 @@
 									</div>
 								</div>
 								<div class="absolute-editbtn">
+                  <% if current_user.toko %>
                   <a href="<%= toko_path(@toko) %>/edit" class="editalm"><i class="fa fa-pencil-square-o"></i></a>
+                  <% end %>
 								</div>
 							</div><% end %>
 <div class="rowMas-control">
