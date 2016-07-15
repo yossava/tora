@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <% @homeitems.each do |u| %>
+                  <% @homeitems.where.not(:id => 17).each do |u| %>
                 <tr>
                   <td><%= u.id %></td>
                   <td><%= u.title %></td>

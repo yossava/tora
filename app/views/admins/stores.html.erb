@@ -171,25 +171,11 @@
                   <%= f.file_field :toko_image, class: "form-control" %><br><br>
                   </div>
                 </div><hr>
-                <div class="form-group col-xs-4">
-                  <label for="exampleInputEmail1">Banner 1</label>
+                <div class="form-group col-xs-12">
+                  <label for="exampleInputEmail1">Banner Toko</label>
                   <%= f.text_field :banner1, class: "form-control", disabled: true  %><br>
                   <% if @toko.banner1.url %>
                   <%= image_tag @toko.banner1, style: "width:100%;"%>
-                  <% end %>
-                </div>
-                <div class="form-group col-xs-4">
-                  <label for="exampleInputEmail1">Banner 2</label>
-                  <%= f.text_field :banner2, class: "form-control", disabled: true  %><br>
-                  <% if @toko.banner2.url %>
-                  <%= image_tag @toko.banner2, style: "width:100%;"%>
-                  <% end %>
-                </div>
-                <div class="form-group col-xs-4">
-                  <label for="exampleInputEmail1">Banner 3</label>
-                  <%= f.text_field :banner3, class: "form-control", disabled: true  %><br>
-                  <% if @toko.banner3.url %>
-                  <%= image_tag @toko.banner3, style: "width:100%;"%>
                   <% end %>
                 </div>
                 </div>

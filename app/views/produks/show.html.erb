@@ -262,7 +262,7 @@
 			</div>
 			<div class="ctnterkait">
 				<div id="otherproduk" class="owl-carousel">
-          <% Produk.where(:category_id => @produk.category_id).each do |produk| %>
+          <% Produk.where(:category_id => @produk.category_id, :block => false).each do |produk| %>
 					<div class="produkcarousel">
 						<div class="thumbfoto-produk">
 							<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>

@@ -226,25 +226,12 @@
 									<div class="form-row">
 										<label for="ftpr">Banner Toko</label>
                     <%= f.file_field :banner1, id: "input-42", class: "file-loading" %>
-                    <%= f.file_field :banner2, id: "input-42", class: "file-loading" %>
-                    <%= f.file_field :banner3, id: "input-42", class: "file-loading" %>
 										<div class="row">
 											<div class="colthumbnail">
                         <% if @toko.banner1.url %>
-												<div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path @toko.banner1.url %>" class="responsiveimg"></div>
-                        <% else %>
-                        <div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path 'tokopic.png' %>" class="responsiveimg"></div>
+												<div class="col-md-12 col-xs-12" style="margin:10px 0px;"><img src="<%= image_path @toko.banner1.url %>" class="responsiveimg"></div>
                         <% end %>
-												<% if @toko.banner2.url %>
-												<div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path @toko.banner2.url %>" class="responsiveimg"></div>
-                        <% else %>
-                        <div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path 'tokopic.png' %>" class="responsiveimg"></div>
-                        <% end %>
-												<% if @toko.banner3.url %>
-												<div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path @toko.banner3.url %>" class="responsiveimg"></div>
-                        <% else %>
-                        <div class="col-md-4 col-xs-4" style="margin:10px 0px;"><img src="<%= image_path 'tokopic.png' %>" class="responsiveimg"></div>
-                        <% end %>
+
 												<div class="col-md-12"><p class="text-muted">Maksimal 3 Banner 800px x 350px. &nbsp; Ekstensi yang diperbolehkan: .JPG .JPEG .GIF .PNG</p></div>
 											</div>
 										</div>

@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.decimal  "rating"
     t.string   "slug"
     t.integer  "subsubcategory_id"
+    t.boolean  "block",             default: false
   end
 
   add_index "produks", ["slug"], name: "index_produks_on_slug", unique: true, using: :btree

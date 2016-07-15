@@ -125,7 +125,7 @@
             <p class="hasilsort">Menampilkan Hasil:<br /> Harga minimal: <strong><%= number_to_currency(@min,locale: :id) %></strong> | Harga maksimal:  <strong><%= number_to_currency(@maxvalue, locale: :id) %></strong> | Urutan: <strong><%= @sort %></strong></p>
             <% end %>
 					<div class="kt-list-produk">
-            <% @cat.each do |c| %>
+            <% @cat.where(:block => false).each do |c| %>
 						<div class="produklist">
 							<div class="thumbfoto-produk">
 								<a href="<%= produk_path(c) %>"><img src="<%= c.foto_produk1.url %>" class="responsiveimg"/></a>

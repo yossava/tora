@@ -37,7 +37,9 @@
                   <th>Email</th>
                   <th>Toko</th>
                   <th>Produk</th>
-                  <th>Cleared Balance</th>
+                  <th>Saldo Sebelum Fee</th>
+                  <th>Saldo Setelah Fee</th>
+                  <th>Detail</th>
                   <th>Reset Balance</th>
                 </tr>
                 </thead>
@@ -51,10 +53,14 @@
                   <td><% if u.toko %><%= u.toko.nama_toko %><% else %>n/a<% end %></td>
                   <td><%= u.produks.count %></td>
                   <td><%= number_to_currency(u.saldo,locale: :id) %></td>
+                  <% @fee = (u.created_at + Homeitem.find(17).text1.to_i.days - Time.now).to_i/86400 %>
+                  <td><% if @fee < 1 %><%= number_to_currency(u.saldo * (100 - Homeitem.find(17).text2.to_i) / 100 , locale: :id) %><% else %><%= number_to_currency(u.saldo, locale: :id) %><% end %></td>
+                  <td><a class="btn btn-info" href="/admin/rekening/<%= u.id %>">Daftar Rek</a></td>
+
                   <td>
                   <%= form_for(@financelog) do |f| %>
                   <input type="hidden" name="financelog[user_id]" value="<%= u.id %>">
-                    <input type="hidden" name="id" value="<%= u.id %>">
+                  <input type="hidden" name="id" value="<%= u.id %>">
                   <input type="hidden" name="financelog[jumlah]" value="<%= u.saldo %>">
                   <input type="submit" value="PAID" class="btn btn-success btn-sm" data-confirm="Balance akan direset!">
                   <% end %>
@@ -63,19 +69,35 @@
                 </tr>
                 <% end %>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>ID</th>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Toko</th>
-                  <th>Produk</th>
-                  <th>Cleared Balance</th>
-                  <th>Reset Balance</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
+            <% if params[:user] %>
+            <hr>
+
+            <div class="box-body">
+              <strong>Daftar Rekening User: <%= User.find(params[:user]).namalengkap %></strong><br><br>
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Bank</th>
+                  <th>No Rekening</th>
+                  <th>Cabang</th>
+                  <th>Pemilik Rekening</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% User.find(params[:user]).rekenings.each do |r| %>
+                  <tr>
+                    <td><%= r.nama_bank %></td>
+                    <td><%= r.nomor_rekening %></td>
+                    <td><%= r.cabang %></td>
+                    <td><%= r.pemilik %></td>
+                   </tr>
+                  <% end %>
+                 </tbody>
+              </table>
+            </div>
+            <% end %>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -85,6 +107,7 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
     </section>
     <!-- /.content -->
   </div>

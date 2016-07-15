@@ -44,6 +44,9 @@ class AdminsController < ApplicationController
       User.find(params[:id]).update(:saldo => 0)
       redirect_to "/admin/finance", notice: "Balance direset"
     end
+    if params[:user]
+      @rekening = User.find(params[:user])
+    end
   end
   def financelogs
     @financelog = Financelog.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
@@ -86,11 +89,27 @@ class AdminsController < ApplicationController
       redirect_to :back, notice: "User telah diblokir"
     end
   end
+  def blockproduct
+    if current_user.admin
+      Produk.find(params[:id]).update(:block => true)
+      redirect_to :back, notice: "Produk telah diblok"
+    end
+  end
   def unblockuser
     if current_user.admin
       User.find(params[:id]).update(:block => false)
       redirect_to :back, notice: "User telah diunblock"
     end
+  end
+  def unblockproduct
+    if current_user.admin
+      Produk.find(params[:id]).update(:block => false)
+      redirect_to :back, notice: "Produk telah diunblock"
+    end
+  end
+  def fee
+    @homeitem = Homeitem.find(17)
+    @stores = Toko.order(id: :asc).paginate(:page => params[:page], :per_page => 10)
   end
   def resendconfirmation
     if current_user.admin

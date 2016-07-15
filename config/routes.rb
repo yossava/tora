@@ -85,7 +85,9 @@ Rails.application.routes.draw do
     delete 'logout' => "devise/sessions#destroy"
     get 'edit' => "devise/registrations#edit"
   end
+  get 'admin/rekening/:user' => "admins#finance"
   get 'admin/general' => "admins#general"
+  get 'admin/fee' => "admins#fee"
   get 'admin/financelogs' => "admins#financelogs"
   get 'admin/newsletter' => "admins#newsletter"
   get 'admin/gate' => "admins#login"
@@ -100,6 +102,8 @@ Rails.application.routes.draw do
   get 'admin/unfinance/:id' => "admins#unfinance"
   get 'admin/blockuser/:id' => "admins#blockuser"
   get 'admin/unblockuser/:id' => "admins#unblockuser"
+  get 'admin/blockproduct/:id' => "admins#blockproduct"
+  get 'admin/unblockproduct/:id' => "admins#unblockproduct"
   get 'admin/resendconfirmation/:id' => "admins#resendconfirmation"
   get 'admin/resetpassword/:id' => "admins#resetpassword"
   get 'admin/deladmin/:id' => "admins#deleteadmin"

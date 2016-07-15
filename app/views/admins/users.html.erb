@@ -43,6 +43,7 @@
                   <th>Toko</th>
                   <th>Produk</th>
                   <th>Admin</th>
+                  <th>Membership</th>
                   <th>Jadi Admin</th>
                   <th>Detail</th>
                   <th>Hapus User</th>
@@ -66,6 +67,7 @@
                   <% else %>
                   <td class="bg-gray color-palette" ><%= u.admin %></td>
                   <% end %>
+                  <td><%= (u.created_at + 90.days - Time.now).to_i/86400 %> Days Remaining</td>
                   <% if u.admin == false %>
                   <td><a class="btn btn-success btn-sm" href="/admin/beadmin/<%= u.id %>">Jadikan Admin</a></td>
                   <% else %>
@@ -86,6 +88,7 @@
                   <th>Toko</th>
                   <th>Produk</th>
                   <th>Admin</th>
+                  <th>Membership</th>
                   <th>Jadi Admin</th>
                   <th>Detail</th>
                   <th>Hapus User</th>

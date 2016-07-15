@@ -197,7 +197,7 @@
 								<div class="content isitab">
 									<section id="fashion">
 										<div id="fashionslider" class="owl-carousel">
-                      <% Produk.where(:top => true, :category_id => 7).first(10).each do |p| %>
+                      <% Produk.where(:top => true, :category_id => 7, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -229,7 +229,7 @@
 									</section>
 									<section id="gadgetkomputer">
 										<div id="gadgetkomputerslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 8).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 8, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -261,7 +261,7 @@
 									</section>
 									<section id="beauty">
 										<div id="beautyslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 9).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 9, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -293,7 +293,7 @@
 									</section>
 									<section id="elektronik">
 										<div id="elektronikslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 11).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 11, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -325,7 +325,7 @@
 									</section>
                   <section id="sporthobi">
 										<div id="sporthobislider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 12).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 12, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -357,7 +357,7 @@
 									</section>
                   <section id="homegarden">
 										<div id="homegardenslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 13).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 13, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -389,7 +389,7 @@
 									</section>
                   <section id="coupon">
 										<div id="couponslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 14).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 14, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -421,7 +421,7 @@
 									</section>
                   <section id="makanan">
 										<div id="makananslider" class="owl-carousel">
-											<% Produk.where(:top => true, :category_id => 16).first(10).each do |p| %>
+											<% Produk.where(:top => true, :category_id => 16, :block => false).first(10).each do |p| %>
 											<div class="produkcarousel">
 												<div class="thumbfoto-produk">
 													<%= link_to p, "data-no-turbolink" => true do %>
@@ -466,7 +466,7 @@
 								<h4>Spesial Promo</h4>
 								<a href="#"><span>Lihat Semua</span></a>
 							</div>
-              <% Produk.where(:special => true).first(4).each do |p| %>
+              <% Produk.where(:special => true, :block => false).first(4).each do |p| %>
 							<div class="listproduk4">
 								<div class="listproduk-landscape">
 									<div class="thumbfoto-produk">
@@ -748,7 +748,7 @@
 				<div class="row">
 					<div class="col-md-8 noppading-right">
 						<div class="wraplistproduk4 nobordered">
-							<% Produk.where(:recommended => true).first(8).each do |p| %>
+							<% Produk.where(:recommended => true, :block => false).first(8).each do |p| %>
 							<div class="listproduk4">
 								<div class="listproduk-landscape">
 									<div class="thumbfoto-produk">

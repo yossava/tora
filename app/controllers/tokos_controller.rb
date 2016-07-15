@@ -26,6 +26,7 @@ class TokosController < ApplicationController
   # GET /tokos/1.json
   def show
     @mytoko = User.find(@toko.user_id).produks.paginate(:page => params[:page], :per_page => 12)
+
   end
 
   # GET /tokos/new
@@ -94,7 +95,7 @@ class TokosController < ApplicationController
         format.html { redirect_to :back, notice: 'Toko telah diperbarui.' }
         format.json { render :show, status: :ok, location: @toko }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back }
         format.json { render json: @toko.errors, status: :unprocessable_entity }
       end
     end

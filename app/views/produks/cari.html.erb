@@ -98,7 +98,7 @@
                       </form>
 										</div>
 										<div class="kt-list-produk">
-                        <% @cat.each do |p|%>
+                        <% @cat.where(:block => false).each do |p|%>
 												<div class="produklist">
 													<div class="thumbfoto-produk">
 														<a href="<%= produk_path(p) %>"><img src="<%= p.foto_produk1.url %>" class="responsiveimg"/></a>

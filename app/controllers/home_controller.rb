@@ -47,10 +47,6 @@ class HomeController < ApplicationController
     @cit = @city['rajaongkir']['results']
   end
   def index
-    @pro = Produk.order("RANDOM()").limit(20)
-    @pro2 = Produk.all.sample(10)
-    @pro3 = Produk.all.sample(4)
-    @pro4 = Produk.where(:att => 1)
   end
   def profil
   end
@@ -72,7 +68,7 @@ class HomeController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def produk
-      @produks = Produk.all
+      @produks = Produk.where(:block => false)
       @couponcat = Category.find(14)
       @fashioncat = Category.find(7)
       @gadgetcat = Category.find(8)
@@ -82,14 +78,14 @@ class HomeController < ApplicationController
       @homecat = Category.find(13)
       @babycat = Category.find(10)
       @makanancat = Category.find(16)
-      @fashionproduct = Produk.where(:category_id => @fashioncat).order('created_at DESC').take(10)
-      @gadgetproduct = Produk.where(:category_id => @gadgetcat).order('created_at DESC').take(10)
-      @beautyproduct = Produk.where(:category_id => @beautycat).order('created_at DESC').take(10)
-      @electroproduct = Produk.where(:category_id => @elektronikcat).order('created_at DESC').take(10)
-      @sportproduct = Produk.where(:category_id => @sportcat).order('created_at DESC').take(10)
-      @homeproduct = Produk.where(:category_id => @homecat).order('created_at DESC').take(10)
-      @babyproduct = Produk.where(:category_id => @babycat).order('created_at DESC').take(10)
-      @foodproduct = Produk.where(:category_id => @makanancat).order('created_at DESC').take(10)
-      @couponproduct = Produk.where(:category_id => @couponcat).order('created_at DESC').take(10)
+      @fashionproduct = Produk.where(:category_id => @fashioncat, :block => false).order('created_at DESC').take(10)
+      @gadgetproduct = Produk.where(:category_id => @gadgetcat, :block => false).order('created_at DESC').take(10)
+      @beautyproduct = Produk.where(:category_id => @beautycat, :block => false).order('created_at DESC').take(10)
+      @electroproduct = Produk.where(:category_id => @elektronikcat, :block => false).order('created_at DESC').take(10)
+      @sportproduct = Produk.where(:category_id => @sportcat, :block => false).order('created_at DESC').take(10)
+      @homeproduct = Produk.where(:category_id => @homecat, :block => false).order('created_at DESC').take(10)
+      @babyproduct = Produk.where(:category_id => @babycat, :block => false).order('created_at DESC').take(10)
+      @foodproduct = Produk.where(:category_id => @makanancat, :block => false).order('created_at DESC').take(10)
+      @couponproduct = Produk.where(:category_id => @couponcat, :block => false).order('created_at DESC').take(10)
     end
 end
