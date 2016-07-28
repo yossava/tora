@@ -86,22 +86,6 @@ class ProduksController < ApplicationController
 
   # GET /produks/1
   # GET /produks/1.json
-    def show
-
-      if user_signed_in?
-        FavoriteProduk.where(:user_id => current_user.id, :produk_id => @produk.id).each do |del|
-        @delfav = del
-        end
-      end
-    if user_signed_in?
-      @favorite_produk = FavoriteProduk.new
-      @cart = Cart.new
-      @fav = []
-      current_user.favorites.each do |fav|
-        @fav << fav.id
-      end
-    end
-  end
   def form
     @tokoid = params[:tokoid]
     @agen = []
@@ -121,10 +105,10 @@ class ProduksController < ApplicationController
      end
     @produk = Produk.find(params[:produk])
     respond_to do |format|
-      format.js { render :file => "/produks/show2.js.erb" }
+      format.js { render :file => "/produks/show.js.erb" }
     end
   end
-  def show2
+  def show
     @cart = Cart.new
     @produk = Produk.friendly.find(params[:id])
     @favorite_produk = FavoriteProduk.new

@@ -69,7 +69,7 @@ class CartsController < ApplicationController
       if @cart.save
         format.html { redirect_to :back, notice: 'Cart was successfully created.' }
         format.json { render :show, status: :created, location: @cart }
-        format.js { render :file => "/produks/show2.js.erb" }
+        format.js { render :file => "/produks/show.js.erb" }
       else
         format.html { render :new }
         format.json { render json: @cart.errors, status: :unprocessable_entity }

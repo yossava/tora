@@ -77,7 +77,6 @@ Rails.application.routes.draw do
   get "/pengiriman/:id" => "tokos#pengiriman"
   get "/produk/:id/unfav" => "favorite_produks#destroy"
   post "/delfav" => "favorite_produks#destroy"
-  get "/p/:id" => "produks#show2"
   #get "/editalamat:id", to: "alamats#edit", as: 'alamat'
 
   #cronjobs

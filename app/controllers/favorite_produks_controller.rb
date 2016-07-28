@@ -38,7 +38,7 @@ class FavoriteProduksController < ApplicationController
         if params[:origin] == "home"
         format.js { render :file => "/home/index2.js.erb" }
         elsif params[:origin] == "show"
-        format.js { render :file => "/produks/show2.js.erb" }
+        format.js { render :file => "/produks/show.js.erb" }
         end
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class FavoriteProduksController < ApplicationController
         if params[:origin] == "home"
         format.js { render :file => "/home/index2.js.erb" }
         elsif params[:origin] == "show"
-        format.js { render :file => "/produks/show2.js.erb" }
+        format.js { render :file => "/produks/show.js.erb" }
         end
     end
   end

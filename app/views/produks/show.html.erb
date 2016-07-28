@@ -1,440 +1,730 @@
-<%= render 'layouts/header' %>
-		<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
+<%= render "layouts/torakoheader" %>
+<!-- end header -->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="/" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <a href="<%= category_path(@produk.category) %>" title="Return to Home"><%= @produk.category.kategori %></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <a href="<%= subcategory_path(@produk.subcategory) %>" title="Return to Home"><%= @produk.subcategory.subkategori %></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><%= @produk.nama_produk %></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <div class="column col-xs-12 col-sm-3" id="left_column">
+                <!-- block best sellers -->
+                <div class="block left-module">
+                    <p class="title_block">INFORMASI PENJUAL</p>
+                    <div class="block_content">
+                    	<div class="row">
+                            <div class="col-md-4">
+                                <img src="<%= @produk.toko.toko_image.url %>" >
+                            </div>
+                            <div class="col-md-8">
+                                <strong><%= @produk.toko.nama_toko %></strong>
+                                <% @percent = [] %>
+                                <% @feedbacks =  @produk.toko.feedbacks %>
+                                <% @feedbacks.each do |f| %>
+                                <% @percent << f.rating %>
+                                <% end %>
+                                <p style="font-size:10px;color:grey;"><%= @percent.sum * 100/ (@feedbacks.count * 5)  %>% dari <%= @feedbacks.count %> feedbacks</p>
+                                <p class="product-star merah">
+                                   <% (@percent.sum / @feedbacks.count).times do  %>
+                                    <i class="fa fa-star"></i>
+                                   <% end %>
+                                  <% (5 - (@percent.sum / @feedbacks.count)).times do  %>
+                                    <i class="fa fa-star-o"></i>
+                                   <% end %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12 kota"><i style="margin-right:10px;" class="fa fa-map-marker" aria-hidden="true"></i><%= @produk.toko.kota_sebagai %></div>
+ 						</div>
+                        <hr />
+                        <div class="spacer"></div>
+                        <div class="row">
+	                        <div class="col-md-12 spacer">
+	                                   <p class="penjual merah">
+		                                   <i style="margin-right:5px;" class="fa fa-user" aria-hidden="true"></i>Bergabung: <%= @produk.toko.user.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y") %> <br/>
+		                                   <i style="margin-right:5px;" class="fa fa-sign-in" aria-hidden="true"></i>Login: <%= time_ago_in_words(@produk.toko.user.last_sign_in_at) %> ago <br/>
+										   <i style="margin-right:5px;" class="fa fa-times" aria-hidden="true"></i>Menerima: <%= Cart.where(:seller_id => @produk.toko.user_id, :state => 6).count %> dari <%= Cart.where(:seller_id => @produk.toko.user_id, :state => 6).count + Cart.where(:seller_id => @produk.toko.user_id, :state => 8).count %> Pesanan<br/><br/>
+                                       <a href="<%= toko_path(@produk.toko) %>" style="width:100%;" class="btn btn-danger">Kunjungi Toko </a>
+										</p>
+	                        </div>
+                        </div>
 
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<%= render 'layouts/sidemenu' %>
-						</div>
-						<%= render 'layouts/bread' %>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ./Header -->
+                    </div>
+                </div>
 
-		<div class="spacermedium"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-5">
-					<div class="previewproduk-detail">
-						<div class="wrapperimgdetail">
-							<img id="zoom_03" src="<%= @produk.foto_produk1.url %>" data-zoom-image="<%= @produk.foto_produk1.url %>" class="responsiveimg"/>
-              <% if @produk.harga_diskon %>
-							<span class="lagidiskon detail">-<%= @produk.diskon %>%</span>
-              <% end %>
-              <% if @produk.jumlah_grosir1min %>
-                          <span class="grosiran">grosir</span>
+                <div class="block left-module">
+                    <p class="title_block">NEW PRODUCTS</p>
+                    <div class="block_content">
+                        <ul class="products-block best-sell">
+                          <% @newproduct.each do |p| %>
+                                <li>
+                                    <div class="products-block-left">
+                                        <a href="#">
+                                            <img src="<%= p.foto_produk1.url %>" alt="SPECIAL PRODUCTS">
+                                        </a>
+                                    </div>
+                                    <div class="products-block-right">
+                                        <p class="product-name">
+                                            <a href="<%= produk_path(p) %>"><%= p.nama_produk %></a>
+                                        </p>
+                                        <p class="product-price"><%= number_to_currency(p.harga_beli, locale: :id) %></p>
+                                      <% if p.feedbacks.count > 0 %>
+                                        <% @rating = [] %>
+                                        <% p.feedbacks.each do |f| %>
+                                        <% @rating << f.rating %>
+                                        <% end %>
+                                        <% @rating = @rating.sum / p.feedbacks.count %>
+                                        <p class="product-star">
+                                          <% @rating.times do %>
+                                            <i class="fa fa-star"></i>
+                                          <% end %>
+                                          <% (5 - @rating).times do %>
+                                            <i class="fa fa-star-o"></i>
+                                          <% end %>
+                                        </p>
+                                     <% else %>
+                                      <p class="product-star">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                      </p>
+                                     <% end %>
+                                    </div>
+                                </li>
                           <% end %>
-						</div>
-						<div class="ttpondesktop">
-							<div id="gallery_01" class="previewprodukcarousel">
-                <% if @produk.foto_produk1.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk1.url %>" data-zoom-image="<%= @produk.foto_produk1.url %>"><img id="img_01" src="<%= @produk.foto_produk1.url %>" /></a>
-                <% end %>
-                <% if @produk.foto_produk2.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk2.url %>" data-zoom-image="<%= @produk.foto_produk2.url %>"><img id="img_01" src="<%= @produk.foto_produk2.url %>" /></a>
-                <% end %>
-                <% if @produk.foto_produk3.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk3.url %>" data-zoom-image="<%= @produk.foto_produk3.url %>"><img id="img_01" src="<%= @produk.foto_produk3.url %>" /></a>
-                <% end %>
-                <% if @produk.foto_produk4.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk4.url %>" data-zoom-image="<%= @produk.foto_produk4.url %>"><img id="img_01" src="<%= @produk.foto_produk4.url %>" /></a>
-                <% end %>
-                <% if @produk.foto_produk5.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk5.url %>" data-zoom-image="<%= @produk.foto_produk5.url %>"><img id="img_01" src="<%= @produk.foto_produk5.url %>" /></a>
-                <% end %>
+                            </ul>
+                    </div>
+                </div>
+                <!-- ./block best sellers  -->
+                <!-- block category -->
 
-							</div>
-						</div>
-					</div>
-					<div class="shareproduk">
-						<h4>Bagikan Produk:</h4>
-						<div class="sharethis">
-							<span class='st_facebook_hcount' displayText='Facebook'></span>
-							<span class='st_twitter_hcount' displayText='Tweet'></span>
-							<span class='st_googleplus_hcount' displayText='Google +'></span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-7">
-					<div class="deskripsiproduk-detail">
-						<div class="headingproduk-detail">
-							<h3><%= @produk.nama_produk %></h3>
-              <% if @produk.stock >= 1 %>
-							<p>Availability  : <span class="typered">In Stock (<%= @produk.stock %>)</span></p>
-              <% else %>
-              <p>Availability  : <span class="typered">Out of Stock (0)</span></p>
-              <% end %>
-						</div>
-						<div class="ttponmobile">
-							<div id="gallery_01" class="previewprodukcarousel">
-								<% if @produk.foto_produk1.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk1.url %>" data-zoom-image="<%= @produk.foto_produk1.url %>"><img id="img_01" src="<%= @produk.foto_produk1.url %>" /></a>
-                <% end %>
-								<% if @produk.foto_produk2.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk2.url %>" data-zoom-image="<%= @produk.foto_produk2.url %>"><img id="img_01" src="<%= @produk.foto_produk2.url %>" /></a>
-                <% end %>
-								<% if @produk.foto_produk3.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk3.url %>" data-zoom-image="<%= @produk.foto_produk3.url %>"><img id="img_01" src="<%= @produk.foto_produk3.url %>" /></a>
-                <% end %>
-								<% if @produk.foto_produk4.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk4.url %>" data-zoom-image="<%= @produk.foto_produk4.url %>"><img id="img_01" src="<%= @produk.foto_produk4.url %>" /></a>
-                <% end %>
-								<% if @produk.foto_produk5.url %>
-								<a class="listowldetail" href="#" data-image="<%= @produk.foto_produk5.url %>" data-zoom-image="<%= @produk.foto_produk5.url %>"><img id="img_01" src="<%= @produk.foto_produk5.url %>" /></a>
-                <% end %>
+                <!-- ./block category  -->
 
-							</div>
-						</div>
-						<p class="isideskripsi-detail">
-							<%= @produk.deskripsi %>
-						</p>
-						<div class="harga-detail">
-							<span class="col-md-6 noppading-left col-xs-12">Harga Normal</span><span class="hargacoret-detail col-md-6 col-xs-12"><%= number_to_currency(@produk.harga, locale: :id) %></span>
-							<span class="col-md-6 noppading-left col-xs-12">Harga Setelah Diskon</span><span class="hargaasli-detail col-md-6 col-xs-12"><%= number_to_currency(@produk.harga_diskon, locale: :id) %></span>
-						</div>
-						<div class="opsiproduk-detail">
-              <% if user_signed_in? %>
-							<%= render 'produks/buybuttonloggedin' %>
-              <% else %>
-              <%= render 'produks/buybuttonloggedout' %>
-              <% end %>
-						</div>
 
-						<!--Modal-->
-						<div class="modal fade" id="wishlistpopup" role="dialog">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title"><i class="fa fa-info-circle"></i> Wishlist</h4>
-									</div>
-									<div class="modal-body">
-										<p>Produk Telah Berhasil ditambahkan ke <a href="#"><strong>Wishlist</strong></a> Anda</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Modal-->
-
-						<!--Modal-->
-						<div class="modal fade" id="buynowform" role="dialog">
-							<div class="modal-dialog modal-md">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Form Pembelian</h4>
-									</div>
-									<div class="modal-body">
-										<div class="colomacr">
-                      <% if user_signed_in? %>
-											<%= render 'produks/buyformloggedin' %>
-                      <% else %>
-                      <%= render 'produks/buyformloggedout' %>
-                      <% end %>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Modal-->
-
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="borderedmargin"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-9">
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#deskripsi">Deskripsi Produk</a></li>
-						<li><a data-toggle="tab" href="#ulasan">Ulasan(<%= @produk.feedbacks.count %>)</a></li>
-					</ul>
-
-					<div class="tab-content" style="padding-top: 1em;">
-						<div id="deskripsi" class="tab-pane fade in active">
-							<h4>Spesifikasi Lengkap</h4>
-							<p class="ctndes">
-								<%= @produk.deskripsi_lengkap %>
-							</p>
-						</div>
-						<div id="ulasan" class="tab-pane fade">
-							<div class="blok-ulasan">
-								<div class="headingulasan">
-									<img src="<%= image_path "ulasanicon.png" %>" class="ulasanicon"/>
-									<h3>Ulasan Produk</h3>
-								</div>
-								<div class="sectionbutton-ulasan">
-									<div class="pagingulasan">
-										<ul class="pagination styledpaging">
-											<li><a href="#"><span class="arrowpaging"><i class="fa fa-angle-left"></i></span></a></li>
-											<li><a href="#">1</a></li>
-											<li ><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li class="active"><a href="#">4</a></li>
-											<li ><a href="#"><span class="arrowpaging"><i class="fa fa-angle-right"></i></span></a></li>
-										</ul>
-									</div>
-								</div>
-								<section class="ctnUlasan">
-									<ul>
-                    <% @produk.feedbacks.each do |f| %>
-										<li>
-											<div class="profilthumbUlasan">
-												<div style= "width:10%;" class="thumb">
-													<img src="<%= User.find(f.user_id).profil_image.url %>" class="responsiveimg"/>
-												</div>
-												<div class="desinline">
-													<p><%= User.find(f.user_id).namalengkap %></p>
-													<span class="timedetails"><%= f.created_at %></span>
-													<div class="rattingprodukzzx"><span>Penilaian pembeli:</span> <i class="starblock ratting<%= f.rating %>"></i></div>
-												</div>
-											</div>
-											<div class="rating"></div>
-											<p class="ctnkutip-ulasan"><%= f.feed %></p>
-										</li>
-                    <% end %>
-
-								  </ul>
-							  </section>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="blok-penjual">
-				<div class="headingulasan penjual">
-					<h3>Informasi Penjual</h3>
-				</div>
-				<div class="profilthumbToko">
-					<div class="thumb">
-            <% if Toko.find(@produk.toko_id).toko_image.avatar.url %>
-						<img style="width:54px;" src="<%= Toko.find(@produk.toko_id).toko_image.avatar.url %>" class="responsiveimg"/>
-            <% else %>
-            <img style="width:54px;" src="<%= image_path 'tokopic.png' %>" class="responsiveimg"/>
-            <% end %>
-					</div>
-					<div class="desinline toko">
-						<p class="namaToko"><%= User.find(@produk.user_id).namalengkap %></p>
-						<p class="typeorange"><i class="fa fa-map-marker"></i> <%= Toko.find(@produk.toko_id).kota_sebagai %></p>
-						<!--<p class="text">0875 654 653 xxx</p>-->
-						<p class="linkwebtoko typeblue"><%= Toko.find(@produk.toko_id).nama_toko %></p>
-						<%= link_to "Kunjungi Toko", Toko.find(@produk.toko_id), class: "lhsm-btn kunjungitoko" %>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	<br>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="heading-terkait">
-				<hr class="hrline">
-				<h4>Produk Terkait</h4>
-				<div class="absolutenavslide">
-					<a class="prevpr other" id="prevother"></a>
-					<a class="nextpr other" id="nextother"></a>
-				</div>
-			</div>
-			<div class="ctnterkait">
-				<div id="otherproduk" class="owl-carousel">
-          <% Produk.where(:category_id => @produk.category_id, :block => false).each do |produk| %>
-					<div class="produkcarousel">
-						<div class="thumbfoto-produk">
-							<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
-              <% if produk.harga_diskon %>
-							<span class="lagidiskon">-<%= produk.diskon %>%</span>
-              <% end %>
-              <% if produk.jumlah_grosir1min %>
-                          <span class="grosiran">grosir</span>
+                <!-- left silide -->
+                <div class="col-left-slide left-module">
+                    <ul class="owl-carousel owl-style2" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
+                        <li><a href="#"><img src="/assets/data/slide-left.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="/assets/data/slide-left2.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="/assets/data/slide-left3.png" alt="slide-left"></a></li>
+                    </ul>
+                </div>
+                <!--./left silde-->
+                <!-- block best sellers -->
+                <div class="block left-module">
+                    <p class="title_block">ON SALE</p>
+                    <div class="block_content product-onsale">
+                        <ul class="product-list owl-carousel" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
+                          <% @onsale.each do |p| %>
+                            <li>
+                                <div class="product-container">
+                                    <div class="left-block">
+                                        <a href="<%= produk_path(p) %>">
+                                            <img class="img-responsive" alt="product" src="<%= p.foto_produk1.url %>" />
+                                        </a>
+                                        <div class="price-percent-reduction2">-<%= p.diskon %>% OFF</div>
+                                    </div>
+                                    <div class="right-block">
+                                        <h5 class="product-name"><a href="#"><%= p.nama_produk %></a></h5>
+                                       <% if p.feedbacks.count > 0 %>
+                                        <% @rating = [] %>
+                                        <% p.feedbacks.each do |f| %>
+                                        <% @rating << f.rating %>
+                                        <% end %>
+                                        <% @rating = @rating.sum / p.feedbacks.count %>
+                                        <div class="product-star">
+                                            <% @rating.times do %>
+                                            <i class="fa fa-star"></i>
+                                            <% end %>
+                                            <% (5 - @rating).times do %>
+                                            <i class="fa fa-star-o"></i>
+                                            <% end %>
+                                        </div>
+                                      <% else %>
+                                        <div class="product-star">
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                        </div>
+                                      <% end %>
+                                        <div class="content_price">
+                                     <% if p.diskon.present? && p.diskon > 0 %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_diskon,locale: :id) %></span>
+                                      <span class="price old-price"><%= number_to_currency(p.harga,locale: :id) %></span>
+                                    <% else %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_beli,locale: :id) %></span>
+                                      <span class="price old-price"></span>
+                                    <% end %>
+                                        </div>
+                                    </div>
+                                    <div class="product-bottom">
+                                        <a class="btn-add-cart" title="Produk Detail" href="<%= produk_path(p) %>">Details</a>
+                                    </div>
+                                </div>
+                            </li>
                           <% end %>
-						</div>
-						<a href="<%= produk_path(produk.id) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
-						<div class="hargaasli"><%= number_to_currency(produk.harga, locale: :id) %></div>
-						<div class="hargacoret"><%= number_to_currency(produk.harga_diskon, locale: :id) %></div>
-						<a href="<%= toko_path(produk.toko_id) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produk.toko_id).nama_toko %></span></a>
-					</div>
-          <% end %>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ./block best sellers  -->
+                <!-- left silide -->
+                <div class="col-left-slide left-module">
+                    <div class="banner-opacity">
+                        <a href="#"><img src="/assets/data/ads-banner.jpg" alt="ads-banner"></a>
+                    </div>
+                </div>
+                <!--./left silde-->
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <!-- Product -->
+                    <div id="product">
+                        <div class="primary-box row">
+                            <div class="pb-left-column col-xs-12 col-sm-6">
+                                <!-- product-imge-->
+                                <div class="product-image">
+                                    <div class="product-full">
+                                        <img id="product-zoom" src='<%= @produk.foto_produk1.url %>' data-zoom-image="<%= @produk.foto_produk1.url %>"/>
+                                    </div>
+                                    <div class="product-img-thumb" id="gallery_01">
+                                        <ul class="owl-carousel" data-items="3" data-nav="true" data-dots="false" data-margin="20" data-loop="true">
+                                          <% if @produk.foto_produk1.present? %>
+                                            <li>
+                                                <a href="#" data-image="<%= @produk.foto_produk1.url %>" data-zoom-image="<%= @produk.foto_produk1.url %>">
+                                                    <img id="product-zoom"  src="<%= @produk.foto_produk1.url %>" />
+                                                </a>
+                                            </li>
+                                          <% end %>
+                                          <% if @produk.foto_produk2.present? %>
+                                            <li>
+                                                <a href="#" data-image="<%= @produk.foto_produk2.url %>" data-zoom-image="<%= @produk.foto_produk2.url %>">
+                                                    <img id="product-zoom"  src="<%= @produk.foto_produk2.url %>" />
+                                                </a>
+                                            </li>
+                                          <% end %>
+                                          <% if @produk.foto_produk3.present? %>
+                                            <li>
+                                                <a href="#" data-image="<%= @produk.foto_produk3.url %>" data-zoom-image="<%= @produk.foto_produk3.url %>">
+                                                    <img id="product-zoom"  src="<%= @produk.foto_produk3.url %>" />
+                                                </a>
+                                            </li>
+                                          <% end %>
+                                          <% if @produk.foto_produk4.present? %>
+                                            <li>
+                                                <a href="#" data-image="<%= @produk.foto_produk4.url %>" data-zoom-image="<%= @produk.foto_produk4.url %>">
+                                                    <img id="product-zoom"  src="<%= @produk.foto_produk4.url %>" />
+                                                </a>
+                                            </li>
+                                          <% end %>
+                                          <% if @produk.foto_produk5.present? %>
+                                            <li>
+                                                <a href="#" data-image="<%= @produk.foto_produk5.url %>" data-zoom-image="<%= @produk.foto_produk5.url %>">
+                                                    <img id="product-zoom"  src="<%= @produk.foto_produk5.url %>" />
+                                                </a>
+                                            </li>
+                                          <% end %>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- product-imge-->
+                            </div>
+                            <div class="pb-right-column col-xs-12 col-sm-6">
+                                <h1 class="product-name"><%= @produk.nama_produk %></h1>
+                                <div class="product-comments">
+                                  <% if @produk.feedbacks.count > 0 %>
+                                        <% @rating = [] %>
+                                        <% @produk.feedbacks.each do |f| %>
+                                        <% @rating << f.rating %>
+                                        <% end %>
+                                        <% @rating = (@rating.sum / @produk.feedbacks.count) %>
+                                    <div class="product-star">
+                                         <% @rating.times do %>
+                                            <i class="fa fa-star"></i>
+                                          <% end %>
+                                          <% (5 - @rating).times do %>
+                                            <i class="fa fa-star-o"></i>
+                                          <% end %>
+                                    </div>
+                                  <% else %>
+                                    <div class="product-star">
+                                      <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                    </div>
+                                  <% end %>
+                                    <div class="comments-advices">
+                                        <a href="#">Based  on <%= @produk.feedbacks.count %> ratings</a>
+                                    </div>
+                                </div>
+                                <div class="product-price-group">
+                                  <% if @produk.diskon.present? && @produk.diskon > 0 %>
+                                    <span class="price"><%= number_to_currency(@produk.harga_diskon,locale: :id) %></span>
+                                    <span class="old-price"><%= number_to_currency(@produk.harga,locale: :id) %></span>
+                                    <span class="discount">-<%= @produk.diskon %>%</span>
+                                  <% else %>
+                                    <span class="price"><%= number_to_currency(@produk.harga_beli,locale: :id) %></span>
+                                  <% end %>
+                                </div>
+                                <div class="info-orther">
+                                    <p>Stock: <span class="in-stock"><%= @produk.stock %></span></p>
+                                </div>
+                                <div class="product-desc">
+                                    <%= @produk.deskripsi %>
+                                </div>
+                                 <div class="form-action">
+                                    <div class="button-group">
+                                        <a data-toggle="modal" data-target="#myModal" class="btn-add-cart" href="#">Add to cart</a>
+                                    </div>
+                                    <div class="button-group">
+                                        <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
+                                        <br>Wishlist</a>
+                                        <a class="compare" href="#"><i class="fa fa-signal"></i>
+                                        <br>
+                                        Compare</a>
+                                    </div>
+                                </div>
+                                <div class="form-share">
+                                    <div class="sendtofriend-print">
+                                        <a href="javascript:print();"><i class="fa fa-print"></i> Print</a>
+                                        <a href="#">Share: </a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url_for(:only_path => false) %>"> <i style="font-size:2em;margin-right:5px;" class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                                      <a href="https://twitter.com/home?status=<%= url_for(:only_path => false) %>"> <i style="font-size:2em;margin-right:5px;" class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                                      <a href="https://plus.google.com/share?url=<%= url_for(:only_path => false) %>"> <i style="font-size:2em;margin-right:5px;" class="fa fa-google-plus-square" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="network-share">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="myModal" role="dialog">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Buy Now</h4><div style="float:right;" class="loading"></div>
+                                  </div>
+                                  <div class="modal-body">
+                                      <!-- form -->
+                                      <%= form_tag buyform_path, class: "buyform", remote: true do %>
+                                      <%= hidden_field_tag :produk, @produk.id %>
+                                      <%= hidden_field_tag :asal, @produk.toko.kota %>
+                                      <%= hidden_field_tag :tokoid, @produk.toko.id %>
+                                      <button class="buybutton hide" type="submit">Update</button>
+                                    <div class="col-md-6">
+                                      <p style="font-size:0.9em;">Nama Produk</p>
+                                      <p style="text-transform: capitalize;color:#af0000;margin-bottom: 20px;" ><%= @produk.nama_produk %></p>
+                                      <div style="padding-left:0px;" class="col-md-6">
+                                        <p style="font-size:0.9em;">Jumlah Barang</p>
+                                        <input type="text" value="1" name="quantity" class="quantity" required>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <p style="font-size:0.9em;">Harga Barang</p>
+                                        <p class="harga" style="color:#af0000;" ><%= number_to_currency(@produk.harga_beli,locale: :id) %></p>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p>Keterangan</p>
+                                      <textarea class="catatan" name="catatan" placeholder="Warna / Ukuran / catatan lainnya" style="height: 93px; resize: none; overflow-y: hidden; border: 1px solid rgb(153, 153, 153); box-shadow: rgb(204, 204, 204) 0px 0px 3px; opacity: 0.8;"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <p>Alamat Tujuan</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <select class="selectaddress" name="tujuan" style="margin-bottom:20px;" required>
+                                        <option value="">Pilih Alamat</option>
+                                        <% current_user.alamats.each do |a| %>
+                                        <option value="<%= a.id %>"><%= a.sebagai %></option>
+                                        <% end %>
+                                      </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <p class="alamat"></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <p>Kurir Pengiriman</p>
+                                      <p class="kurir" ></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <p>Ongkos Kirim</p>
+                                      <p class="ongkir"></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <p>Subtotal</p>
+                                      <p class="subtotal"></p>
+                                    </div>
+                                    <div class="col-md-12">
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                    <% end %>
+                         <%= form_for(@cart, html: {class: "form-row has-error", id: "form_buyproduk"},remote: true) do |f| %>
+                         <%= f.hidden_field :produk_id, value: @produk.id %>
+                         <%= f.hidden_field :user_id, value: current_user.id %>
+                         <%= f.hidden_field :alamat_id %>
+                         <%= f.hidden_field :catatan %>
+                         <%= f.hidden_field :jumlah %>
+                         <%= f.hidden_field :kurir %>
+                         <%= f.hidden_field :ongkir %>
+                         <%= f.hidden_field :seller_id, value: @produk.user_id %>
+                         <%= f.hidden_field :subtotal, value: @total %>
+                         <%= f.hidden_field :toko_id, value: @produk.toko_id %>
+                         <%= f.hidden_field :invoice, value: "INV/" + Time.now.strftime("%Y%m%d").to_s + "/" + @produk.toko_id.to_s + "/" + @produk.id.to_s + "/" + current_user.id.to_s %>
+                         <button disabled type="submit" style="width:100%;margin-top:20px;" class="btn btn-danger"><i style="margin-top:2px;" class="fa fa-cart-plus" aria-hidden="true"></i> Beli Produk Ini </button>
+                          <% end %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+</div>
 
-<div class="spacerbig"></div>
-<%= render 'layouts/footer' %>
+                        </div>
+                        <!-- tab product -->
+                        <div class="product-tab">
+                            <ul class="nav-tab">
+                                <li class="active">
+                                    <a aria-expanded="false" data-toggle="tab" href="#product-detail">Product Details</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#reviews">reviews</a>
+                                </li>
+                            </ul>
+                            <div class="tab-container">
+                                <div id="product-detail" class="tab-panel active">
+                                    <%= @produk.deskripsi_lengkap %>
+                                </div>
+                                <div id="reviews" class="tab-panel">
+                                    <div class="product-comments-block-tab">
+                                      <% @produk.feedbacks.each do |f| %>
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Grade</span>
+                                                    <span class="reviewRating">
+                                                      <% f.rating.times do %>
+                                                        <i class="fa fa-star"></i>
+                                                      <% end %>
+                                                      <% (5 - f.rating).times do %>
+                                                        <i class="fa fa-star-o"></i>
+                                                      <% end %>
+                                                    </span>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong><%= User.find(f.user_id).namalengkap %></strong></span>
+                                                    <br><em><%= f.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                <%= f.feed %>
+                                            </div>
+                                        </div>
+                                      <% end %>
+                                    </div>
 
-<!-- footer -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./tab product -->
+                        <!-- box product -->
+                        <div class="page-product-box">
+                            <h3 class="heading">Related Products</h3>
+                            <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
+                              <% @related.each do |p| %>
+                                <li>
+                                    <div class="product-container">
+                                        <div class="left-block">
+                                            <a href="<%= produk_path(p) %>">
+                                                <img class="img-responsive" alt="product" src="<%= p.foto_produk1.url %>" />
+                                            </a>
+                                                <% if user_signed_in? %>
+                                                <% if !@fav.include? p.id %>
+                                                <div class="quick-view produk-<%= p.id %>">
+                                                  <%= form_for @favorite_produk, remote: true do |f| %>
+                                                  <%= f.hidden_field :user_id, value: current_user.id %>
+                                                  <%= f.hidden_field :produk_id, value: p.id %>
+                                                  <input type="hidden" name="origin" value="show">
+                                                  <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                                  <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                                  <% end %>
+                                               </div>
+                                             <% else %>
+                                             <% @myfav = FavoriteProduk.where(:user_id => current_user.id, :produk_id => p.id).first %>
+                                            <div class="quick-view produk-<%= p.id %>">
+                                            <%= form_tag delfav_path, remote: true do %>
+                                            <%= hidden_field_tag :id, @myfav.id %>
+                                            <input type="hidden" name="origin" value="show">
+                                            <button title="Remove from wishlist" class="heart un" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                              <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            <% end %>
+                                            </div>
+                                            <% end %>
+                                            <% end %>
+                                            <div class="add-to-cart">
+                                                <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
+                                            </div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#"><%= p.nama_produk %></a></h5>
+                                            <% if p.feedbacks.count > 0 %>
+                                              <% @rating = [] %>
+                                              <% p.feedbacks.each do |f| %>
+                                              <% @rating << f.rating %>
+                                              <% end %>
+                                              <% @rating = @rating.sum / p.feedbacks.count %>
+                                              <div class="product-star">
+                                                <% @rating.times do %>
+                                                  <i class="fa fa-star"></i>
+                                                <% end %>
+                                                <% (5 - @rating).times do %>
+                                                  <i class="fa fa-star-o"></i>
+                                                <% end %>
+                                              </div>
+                                           <% else %>
+                                            <div class="product-star">
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                            </div>
+                                           <% end %>
+                                            <div class="content_price">
+                                     <% if p.diskon.present? && p.diskon > 0 %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_diskon,locale: :id) %></span>
+                                      <span class="price old-price"><%= number_to_currency(p.harga,locale: :id) %></span>
+                                    <% else %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_beli,locale: :id) %></span>
+                                      <span class="price old-price"></span>
+                                    <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                              <% end %>
+                            </ul>
+                        </div>
+                        <!-- ./box product -->
+                        <!-- box product -->
+                        <div class="page-product-box">
+                            <h3 class="heading">You might also like</h3>
+                            <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
+                                <% @also.each do |p| %>
+                                <li>
+                                    <div class="product-container">
+                                        <div class="left-block">
+                                            <a href="<%= produk_path(p) %>">
+                                                <img class="img-responsive" alt="product" src="<%= p.foto_produk1.url %>" />
+                                            </a>
+                                            <% if user_signed_in? %>
+                                                <% if !@fav.include? p.id %>
+                                                <div class="quick-view produk-<%= p.id %>">
+                                                  <%= form_for @favorite_produk, remote: true do |f| %>
+                                                  <%= f.hidden_field :user_id, value: current_user.id %>
+                                                  <%= f.hidden_field :produk_id, value: p.id %>
+                                                  <input type="hidden" name="origin" value="show">
+                                                  <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                                  <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                                  <% end %>
+                                               </div>
+                                             <% else %>
+                                             <% @myfav = FavoriteProduk.where(:user_id => current_user.id, :produk_id => p.id).first %>
+                                            <div class="quick-view produk-<%= p.id %>">
+                                            <%= form_tag delfav_path, remote: true do %>
+                                            <%= hidden_field_tag :id, @myfav.id %>
+                                            <input type="hidden" name="origin" value="show">
+                                            <button title="Remove from wishlist" class="heart un" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                              <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            <% end %>
+                                            </div>
+                                            <% end %>
+                                            <% end %>
+                                            <div class="add-to-cart">
+                                                <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
+                                            </div>
+                                        </div>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#"><%= p.nama_produk %></a></h5>
+                                            <% if p.feedbacks.count > 0 %>
+                                              <% @rating = [] %>
+                                              <% p.feedbacks.each do |f| %>
+                                              <% @rating << f.rating %>
+                                              <% end %>
+                                              <% @rating = @rating.sum / p.feedbacks.count %>
+                                              <div class="product-star">
+                                                <% @rating.times do %>
+                                                  <i class="fa fa-star"></i>
+                                                <% end %>
+                                                <% (5 - @rating).times do %>
+                                                  <i class="fa fa-star-o"></i>
+                                                <% end %>
+                                              </div>
+                                           <% else %>
+                                            <div class="product-star">
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                            </div>
+                                           <% end %>
+                                            <div class="content_price">
+                                     <% if p.diskon.present? && p.diskon > 0 %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_diskon,locale: :id) %></span>
+                                      <span class="price old-price"><%= number_to_currency(p.harga,locale: :id) %></span>
+                                    <% else %>
+                                      <span class="price product-price"><%= number_to_currency(p.harga_beli,locale: :id) %></span>
+                                      <span class="price old-price"></span>
+                                    <% end %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                              <% end %>
+                            </ul>
+                        </div>
+                        <!-- ./box product -->
+                    </div>
+                <!-- Product -->
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
 
+<!-- Footer -->
+<footer style="" id="footer">
+     <div class="container">
+            <!-- introduce-box -->
+            <div id="introduce-box" class="row">
+                <div class="col-md-3">
+                    <div id="address-box">
+                        <a href="#"><img src="/assets/images/toralog.png" alt="" /></a>
+                        <div id="address-list">
+                            <div class="tit-name">Address:</div>
+                            <div class="tit-contain">Jl Monumen Nasional.</div>
+                            <div class="tit-name">Phone:</div>
+                            <div class="tit-contain">021 7788 777</div>
+                            <div class="tit-name">Email:</div>
+                            <div class="tit-contain">support@torako.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="introduce-title">My Account</div>
+                            <ul id = "introduce-Account" class="introduce-list">
+                                <li><a href="#">My Order</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">My Credit Slip</a></li>
+                                <li><a href="#">My Addresses</a></li>
+                                <li><a href="#">My Personal In</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="introduce-title">Support</div>
+                            <ul id = "introduce-support"  class="introduce-list">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Affiliate Program</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="contact-box">
+                        <div class="introduce-title">Newsletter</div>
+                        <div class="input-group" id="mail-box">
+                          <input type="text" placeholder="Your Email Address"/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">OK</button>
+                          </span>
+                        </div><!-- /input-group -->
+                        <div class="introduce-title">Let's Socialize</div>
+                        <div class="social-link">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fa fa-vk"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /#introduce-box -->
+
+            <!-- #trademark-box -->
+            <div id="trademark-box" class="row">
+                <div class="col-sm-12">
+                    <ul id="trademark-list">
+                        <li id="payment-methods">Accepted Payment Methods</li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-ups.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-qiwi.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-wu.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-cn.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-visa.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-mc.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-ems.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-dhl.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-fe.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-wm.jpg"  alt="ups"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /#trademark-box -->
+
+            <!-- #trademark-text-box -->
+
+            <div id="footer-menu-box">
+
+                <div style="height:150px;" class="col-sm-12"></div>
+                <p class="text-center">Copyrights &#169; 2016 Torako. All Rights Reserved. Designed by on-line.co.id</p>
+            </div><!-- /#footer-menu-box -->
+        </div>
+</footer>
 <script>
-	$(document).ready(function() {
-		var owl = $(".previewprodukcarousel");
-		owl.owlCarousel(
-			{
-				autoPlay : false,
-				items :4,
-				pagination : true,
-				lazyLoad : true,
-				goToFirstSpeed : 2000,
-				autoHeight : true,
-				responsive:true
-			}
-		);
-	});
-</script>
-<!--=============================== RevoSlider ==============================-->
-<script type="text/javascript">
-	var tpj=jQuery;
-	//tpj.noConflict();
-	tpj(document).on('ready page:load', function () {
-		if (tpj.fn.cssOriginal!=undefined)
-			tpj.fn.css = tpj.fn.cssOriginal;
-		tpj('.revolutionbanner').revolution(
-			{
-				delay:9000,
-				startwidth:'100%', 						// 1100 = default content width
-				startheight:335,
-				onHoverStop:"off",						// Stop Banner Timet at Hover on Slide on/off
-				hideThumbs:0,
-				navigationType:"bullet",
-				soloArrowLeftHalign:"left",
-				soloArrowLeftValign:"center",
-				soloArrowLeftHOffset:0,
-				soloArrowLeftVOffset:0,
-				soloArrowRightHalign:"right",
-				soloArrowRightValign:"center",
-				soloArrowRightHOffset:0,
-				soloArrowRightVOffset:0,
-				touchenabled:"On",						// Enable Swipe Function : on/off
-				stopAtSlide:-1,							// Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
-				stopAfterLoops:-1,						// Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
-				hideCaptionAtLimit:0,					// It Defines if a caption should be shown under a Screen Resolution ( Basod on The Width of Browser)
-				hideAllCaptionAtLilmit:0,				// Hide all The Captions if Width of Browser is less then this value
-				hideSliderAtLimit:0,					// Hide the whole slider, and stop also functions if Width of Browser is less than this value
-				fullWidth:"off",
-				shadow:0								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows -  (No Shadow in Fullwidth Version !)
-			});
-	});
-</script>
-
-<script>
-    $("#zoom_03").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'gayana/gambar/icon/clock-loading.gif'});
-
-	$("#zoom_03").bind("click", function(e) {
-		var ez =   $('#zoom_03').data('elevateZoom');
-		$.fancybox(ez.getGalleryList());
-		return false;
-	});
-</script>
-<% if user_signed_in? %>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#cart_alamat_id").change(function(){
-        $('#ongkir').html("pilih alamat tujuan");
-        $(this).find("option:selected").each(function(){
-            if($(this).attr("value")=="red"){
-                $(".box").not(".red").fadeOut();
-                $(".red").fadeIn();
-            }
-            <% current_user.alamats.each do |a| %>
-            else if($(this).attr("kota")=="<%= a.kabupaten %>"){
-                $('#ongkir').html("sedang mengambil data...");
-                $(".addressblock").not(".<%= a.kabupaten %>").fadeOut();
-                $(".<%= a.kabupaten %>").fadeIn();
-            }<% end %>
-            else{
-                $(".addressblock").fadeOut();
-            }
-        });
-    }).change();
-});
-</script>
-<% end %>
-<script>
-  $('.quantity, .kurir').bind("keyup change", function(){
-    var $r = $(".quantityform");
-    var $d = $(".quantity");
-    var $s = $("#cart_ongkir");
-    var kurir = $('option:selected', this).attr('jenis');
-    if($r.length ==1){
-        var n = parseInt($d.val(), 10);
-        <% if @produk.jumlah_grosir1min %>
-        if ( n >= <%= @produk.jumlah_grosir1min %> && n <= <%= @produk.jumlah_grosir1max %>){
-        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir1, locale: :id) %>");
-                               var g = parseInt(<%= @produk.harga_grosir1 %>, 10);
-        } <% if @produk.jumlah_grosir2min %> else if (n >= <%= @produk.jumlah_grosir2min %> && n <= <%= @produk.jumlah_grosir2max %>){
-        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir2, locale: :id) %>");
-                               var g = parseInt(<%= @produk.harga_grosir2 %>, 10);
-        }<% end %><% if @produk.jumlah_grosir3min %> else if (n >= <%= @produk.jumlah_grosir3min %> && n <= <%= @produk.jumlah_grosir3max %>){
-        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir3, locale: :id) %>");
-                               var g = parseInt(<%= @produk.harga_grosir3 %>, 10);
-        } <% end %><% if @produk.jumlah_grosir4min %>else if (n >= <%= @produk.jumlah_grosir4min %> && n <= <%= @produk.jumlah_grosir4max %>){
-        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir4, locale: :id) %>");
-                               var g = parseInt(<%= @produk.harga_grosir4 %>, 10);
-        }<% end %><% if @produk.jumlah_grosir5min %> else if (n >= <%= @produk.jumlah_grosir5min %> && n <= <%= @produk.jumlah_grosir5max %>){
-        $('.hargagrosir').html("Anda mendapat harga grosir @<%= number_to_currency(@produk.harga_grosir5, locale: :id) %>");
-                               var g = parseInt(<%= @produk.harga_grosir5 %>, 10);
-        } <% end %> else {
-        $('.hargagrosir').html("");
-          var g = 0;
-        }
-        <% else %>
-        var g = 0;
-        <% end %>
-        var t = parseInt($r.val(), 10);
-        var s = parseInt($s.val(), 10);
-        var berat = Math.round(n*<%= @produk.berat %>/1000);
-        if (g > 0){
-        var tot = g*n+s*berat;
-        } else {
-          var tot = t*n+s*berat;
-        }
-        var ongkir = s*berat;
-        if (isNaN(tot)) tot = 0;
-        if (isNaN(s)) s = 0;
-        if (isNaN(berat)) berat = 0;
-        if (isNaN(ongkir)) ongkir = 0;
-        $('.total').html("Rp " + tot + ",00");
-        $('.judulongkir').html("Ongkos Kirim (" + berat + "kg)");
-        $('.subtotal').val(tot);
-        $('.ongkirtotal').val(ongkir);
-        $('.cartkurir').val(kurir);
-        $('.rpongkir').html("Rp " + ongkir + ",00");
-
-
-    }
-});
-</script>
-<script>
-  $('#cart_alamat_id').bind("change", function(){
-    var alamat = $('option:selected', this).attr('kota');
-    $('#tujuan').val(alamat);
-    if ($('#tujuan').val() != ''){
-    $('.cek').click();
-    }
+  $('.quantity, .selectaddress, .kurir, .catatan').bind("keyup change", function(){
+    $(".loading").html('<%= image_tag "loader.gif" %>');
+    $(".buybutton").click();
+    $(".btn-danger").attr("disabled", "disabled")
 });
 </script>
