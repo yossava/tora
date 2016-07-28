@@ -1,0 +1,8 @@
+<% if params[:action] == "create" %>
+$('.produk-<%= @productid %>').html('<%= j render "/home/whislist" %>');
+$.notiny({ text: "Wishlist telah ditambahkan", position: 'right-top' });
+<% end %>
+<% if params[:action] == "destroy" %>
+$('.produk-<%= @productid %>').html('<%= j render "/home/unwhislist" %>');
+$.notiny({ text: "Wishlist telah dihapus", position: 'right-top' });
+<% end %>

@@ -102,6 +102,45 @@ class ProduksController < ApplicationController
       end
     end
   end
+  def form
+    @tokoid = params[:tokoid]
+    @agen = []
+    @agen << Toko.find(@tokoid).agen1
+    @agen << Toko.find(@tokoid).agen2
+    @agen << Toko.find(@tokoid).agen3
+    @agen << Toko.find(@tokoid).agen4
+    @agen << Toko.find(@tokoid).agen5
+    @agen << Toko.find(@tokoid).agen6
+    @agen << Toko.find(@tokoid).agen7
+    if params[:asal]
+      @tujuan = Alamat.find(params[:tujuan]).kabupaten
+      ongkir = RestClient.post 'http://pro.rajaongkir.com/api/cost', :originType => 'city', :destinationType => 'city', :origin => params[:asal], :destination => @tujuan, :weight => 1000, :courier => 'jne:tiki:pos', :key => '45c5c245f49664fcd38a86f3c24f7763'
+       @ongkir = JSON.parse ongkir
+       @all = @ongkir['rajaongkir']['results']
+       @count = @ongkir['rajaongkir']['results'][0]['costs'].count
+     end
+    @produk = Produk.find(params[:produk])
+    respond_to do |format|
+      format.js { render :file => "/produks/show2.js.erb" }
+    end
+  end
+  def show2
+    @cart = Cart.new
+    @produk = Produk.friendly.find(params[:id])
+    @favorite_produk = FavoriteProduk.new
+    if user_signed_in?
+        @fav = []
+        current_user.favorites.each do |fav|
+        @fav << fav.id
+        end
+    end
+    @pcategory = Category.find(@produk.category.id)
+    @related = Produk.where(:category_id => @pcategory).first(5)
+    @also = Produk.where(:category_id => @pcategory).last(5)
+    @onsale = Produk.where("diskon > ?", 0).order("RANDOM()").limit(5)
+    @newproduct = Produk.order("created_at desc").first(5)
+    render layout: "show"
+  end
 
   # GET /produks/new
   def new

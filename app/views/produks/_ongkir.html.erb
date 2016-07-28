@@ -1,15 +1,15 @@
 <% if @count > 0 %>
-<select style="text-transform: uppercase;" class="kurir" required="required" id="cart_ongkir">
+<select name="ongkir" style="text-transform: uppercase;" id="cart_ongkir">
 <option selected="selected" value="">Pilih Ekspedisi</option>
 <% @all.each do |a| %>
 <% a['costs'].each do |b| %>
 <% b['cost'].each do |c| %>
   <% @jenis = a['code'].upcase + "-" + b['service'].upcase %>
-  <option <% if @agen.include? @jenis %><% else %> disabled <% end %> jenis="<%= @jenis %>" value="<%= c['value'] %>"><%= a['code'] %>-<%= b['service'] %>-<%= c['value'] %></option>
+  <option <% if @agen.include? @jenis %><% else %> disabled <% end %> jenis="<%= @jenis %>" value="<%= @jenis %>-<%= c['value'] %>"><%= a['code'] %>-<%= b['service'] %>-<%= c['value'] %></option>
 <% end %>
 <% end %>
 <% end %>
 </select>
 <% else %>
-Ekspedisi tidak tersedia
+<span class="label label-danger">Tidak tersedia</span>
 <% end %>

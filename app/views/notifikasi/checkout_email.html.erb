@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Hi <%= User.find(@mycart.last.user_id).namalengkap %></h1>
-    <p>
-      Pesanan Anda, untuk invoice <% @mycart.each do |c| %><%= c.invoice %>,<% end %><br />
-      Status: <%= @status %>
+    <h1>Hi <%= User.find(@recentcart.last.user_id).namalengkap %></h1>
+    <p>Silakan melakukan pembayaran untuk pesanan Anda: <br>
+      Pesanan Anda, untuk invoice <% @recentcart.each do |c| %><%= c.invoice %>,<% end %><br />
+      Ke salah satu rekening berikut: <br><br>
+
+      BCA 664464 an Torako <br>
+      BRI 664464 an Torako <br>
+      BNI 664464 an Torako <br>
+      MANDIRI 664464 an Torako <br><br>
+
+      Konfirmasi melalui akun anda
     </p>
-  </body>
-</html>

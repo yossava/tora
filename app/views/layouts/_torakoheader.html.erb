@@ -1,0 +1,270 @@
+<div id="header" class="header">
+    <div class="top-header">
+        <div style="">
+            <div class="nav-top-links">
+                <a class="first-item" href="#"><img alt="phone" src="/assets/images/phone.png" />00-62-658-658</a>
+                Marketplace Produk Korea & Jepang No.1 !
+
+            </div>
+
+            <div style="" class="support-link">
+                <% if user_signed_in? %><a href="#">Welcome, <%= current_user.namalengkap %></a><% else %><a href="/masuk">Login</a><% end %>
+                <a href="/profil">Account</a>
+                <a href="/wishlist">Wishlist</a>
+                <a href="#">Services</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </div>
+    <!--/.top-header -->
+    <!-- MAIN HEADER -->
+    <div style="" class="container main-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 logo">
+                <a href="/"><img alt="Torako Logo" src="<%= Homeitem.find(16).img2.url %>" /></a>
+            </div>
+            <div class="col-xs-7 col-sm-7 header-search-box">
+                <form class="form-inline">
+                      <div class="form-group input-serach searchpadding">
+                        <input type="text"  placeholder="Keyword here...">
+                      </div>
+                      <button type="submit" class="pull-right btn-search"></button>
+                </form>
+            </div>
+            <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">
+                <a class="cart-link" href="order.html">
+                    <span class="title">Shopping cart</span>
+                    <span style="font-size:10px;" class="total"><% if user_signed_in? %><%= @troli.count %><% end %> items - <% if user_signed_in? %><%= number_to_currency(@totaltroli.sum, locale: :id) %><% end %></span>
+                    <% if user_signed_in? %><span class="notify notify-left"><%= @troli.count %></span><% end %>
+                </a>
+                <div class="cart-block">
+                    <div class="cart-block-content">
+                        <h5 class="cart-title"><% if user_signed_in? %><%= @troli.count %><% end %> Items in my cart</h5>
+                        <div class="cart-block-list">
+                            <ul>
+                              <% if user_signed_in? %>
+                              <% @troli.each do |t| %>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a data-confirm="Apakah anda yakin?" rel="nofollow" data-method="delete" href="carts/<%= t.id %>" class="remove_link"></a>
+                                        <a href="#">
+                                        <img class="img-responsive" src="<%= Produk.find(t.produk_id).foto_produk1.url %>" alt="<%= Produk.find(t.produk_id).nama_produk %>">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name"><%= Produk.find(t.produk_id).nama_produk %></p>
+                                        <p class="p-rice"><%= number_to_currency(Produk.find(t.produk_id).harga_beli, locale: :id) %></p>
+                                        <p>Qty: <%= t.jumlah %></p>
+                                    </div>
+                                </li>
+                              <% end %>
+                              <% end %>
+                            </ul>
+                        </div>
+                        <div class="toal-cart">
+                            <span>Total</span>
+                            <span class="toal-price pull-right"><% if user_signed_in? %><%= number_to_currency(@totaltroli.sum, locale: :id) %><% end %></span>
+                        </div>
+                        <div class="cart-buttons">
+                            <a href="/bayar" class="btn-check-out">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container" style="width:100%;">
+            <div class="row">
+                <div class="col-sm-3" id="box-vertical-megamenus">
+                    <div class="box-vertical-megamenus">
+                        <h4 class="title">
+                            <span class="title-menu">Categories</span>
+                            <span class="btn-open-mobile pull-right home-page"><i class="fa fa-bars"></i></span>
+                        </h4>
+                    <div class="vertical-menu-content is-home">
+                        <ul class="vertical-menu-list">
+                            <li><a href="#"><i class="fa fa-desktop" aria-hidden="true"></i>Electronics</a></li>
+                            <li>
+                                <a class="parent" href="#"><i class="fa fa-briefcase" aria-hidden="true"></i>Fashion Pria</a>
+                                <div class="vertical-dropdown-menu">
+                                    <div class="vertical-groups col-sm-12">
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Tennis</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Tennis</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Swimming</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Shoes</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-custom-html col-sm-12">
+                                            <a href="#"><img src="assets/data/banner-megamenu.jpg" alt="Banner"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="#"><i class="fa fa-diamond" aria-hidden="true"></i>Fashion Wanita</a></li>
+                            <li><a href="#"><i class="fa fa-cubes" aria-hidden="true"></i>Toys & Figure</a></li>
+                            <li>
+                                <a class="parent" href="#">
+                                <i class="fa fa-book" aria-hidden="true"></i>Book & Comic</a>
+                                <div class="vertical-dropdown-menu">
+                                        <div class="vertical-groups col-sm-12">
+                                            <div class="mega-group col-sm-12">
+                                                <h4 class="mega-group-header"><span>Special products</span></h4>
+                                                <div class="row mega-products">
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/data/p10.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">Rp 38</div>
+                                                            <div class="old-price">Rp 45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/data/p11.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">Rp 38</div>
+                                                            <div class="old-price">Rp 45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/data/p12.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">Rp 38</div>
+                                                            <div class="old-price">Rp 45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/data/p13.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">Rp 38</div>
+                                                            <div class="old-price">Rp 45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+                            <li><a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>Food & Snacks</a></li>
+                            <li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>Film,Music,Poster</a></li>
+                            <li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>Others</a></li>
+
+                        </ul>
+                        <div class="all-category invisible"><span class="open-cate">All Categories</span></div>
+                    </div>
+                </div>
+                </div>
+                <div id="main-menu" class="col-sm-9 main-menu">
+                  <% if params[:action] == "show2" %>
+                    <nav class="navbar navbar-default">
+                        <div style="padding-right:62px;" class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div style="float:right;" id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="nohover"><a href="#">Home</a></li>
+                                    <li class="nohover"><a href="category.html">Daily Deals</a></li>
+                                    <li class="nohover"><a href="category.html">Promo Spesial</a></li>
+                                    <li class="nohover"><a href="category.html">Kontak</a></li>
+                                    <li class="nohover"><a href="category.html">Blog</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                  <% end %>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <i style="color:white;" class="fa fa-shopping-cart"></i>
+                <div style="margin-right:150px;" class="shopping-cart-box-ontop-content"></div>
+            </div>
+        </div>
+    </div>
+</div>

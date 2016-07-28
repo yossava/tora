@@ -1,0 +1,46 @@
+<% if params[:controller] == "favorite_produks" && params[:action] == "create" %>
+$('.produk-<%= @productid %>').html('<%= j render "/produks/wishlist" %>');
+$.notiny({ text: "Wishlist telah ditambahkan", position: 'right-top' });
+<% end %>
+<% if params[:action] == "destroy" %>
+$('.produk-<%= @productid %>').html('<%= j render "/produks/unwishlist" %>');
+$.notiny({ text: "Wishlist telah dihapus", position: 'right-top' });
+<% end %>
+<% if params[:action] == "form" %>
+$('.loading').html('');
+$('.alamat').html('<%= j render "/produks/buyform" %>');
+$(".alamat").attr('style',  'border:solid 1px lightgray;padding:10px 9px;border-radius:2px;margin-bottom: 20px;');
+<% if !params[:ongkir] || params[:ongkir] == "" %>
+$('.kurir').html("<%= j render "/produks/ongkir" %>");
+<% else %>
+$('.kurir').html('<%= params[:ongkir] %>');
+<% end %>
+$('.harga').html('<%= number_to_currency(@produk.harga_beli * params[:quantity].to_i,locale: :id) %>');
+<% if params[:ongkir] %> <!-- avoid nil class of params[:ongkir] -->
+<% @berat = (params[:quantity].to_i * @produk.berat / 1000).ceil %>
+$('.ongkir').html('<%= number_to_currency((@berat * params[:ongkir].scan(/\d+/).first.to_i),locale: :id) %><br><p class="label label-default">berat total: <%= @berat %>kg<p>');
+<% @total = (@produk.harga_beli * params[:quantity].to_i) + (@berat * params[:ongkir].scan(/\d+/).first.to_i) %>
+$('.subtotal').html("<%= number_to_currency(@total,locale: :id) %>");
+$('#cart_jumlah').val("<%= params[:quantity] %>");
+$('#cart_kurir').val("<%= params[:ongkir] %>");
+$('#cart_catatan').val("<%= params[:catatan] %>");
+$('#cart_alamat_id').val("<%= params[:tujuan] %>");
+$('#cart_subtotal').val("<%= @total %>");
+$('#cart_ongkir').val("<%= @berat * params[:ongkir].scan(/\d+/).first.to_i %>");
+<% if @total > 0 && params[:ongkir].length > 0 %>
+  $(".btn-danger").removeAttr("disabled")
+<% end %>
+<% end %>
+<% end %>
+<% if params[:controller] == "carts" && params[:action] == "create" %>
+<% @sub = [] %>
+<% current_user.cart.where(:state => 1).each do |c| %>
+<% @sub << c.subtotal %>
+<% end %>
+$('.cart-block-content').html("<%= j render "/produks/cartproduct" %>");
+$('.modal-body').html('Produk ditambahkan ke cart');
+$('.total').html('<%= current_user.cart.where(:state => 1).count %> Items - <%= number_to_currency(@sub.sum,locale: :id) %>');
+$('.notify-left').html('<%= current_user.cart.where(:state => 1).count %>');
+$('.close').click();
+$.notiny({ text: "Produk ditambahkan ke cart", position: 'right-top' });
+<% end %>

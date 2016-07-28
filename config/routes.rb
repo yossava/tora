@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  post '/buyform' => "produks#form"
   get '/updaterating/:produk_id' => "feedbacks#updaterating"
   get '/bank' => "transactions#bank"
   get '/va/:bank' => "transactions#va"
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   get '/update' => "transactions#updatetx"
   get '/record' => "transactions#record"
   post '/record' => "transactions#record"
-  root 'home#index'
+  root 'home#index2'
   get "/cek" => "transactions#cek"
   get "/va" => "transactions#va"
   get "/cc" => "transactions#cc"
@@ -75,6 +76,8 @@ Rails.application.routes.draw do
   get "/kategori" => "tokos#kategori"
   get "/pengiriman/:id" => "tokos#pengiriman"
   get "/produk/:id/unfav" => "favorite_produks#destroy"
+  post "/delfav" => "favorite_produks#destroy"
+  get "/p/:id" => "produks#show2"
   #get "/editalamat:id", to: "alamats#edit", as: 'alamat'
 
   #cronjobs

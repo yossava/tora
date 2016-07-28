@@ -27,11 +27,19 @@ class FavoriteProduksController < ApplicationController
   # POST /favorite_produks.json
   def create
     @favorite_produk = FavoriteProduk.new(favorite_produk_params)
+    @productid = @favorite_produk.produk_id
+    @fproduk = Produk.find(@favorite_produk.produk_id)
+
 
     respond_to do |format|
       if @favorite_produk.save
         format.html { redirect_to :back, notice: 'Favorite produk was successfully created.' }
         format.json { render :show, status: :created, location: @favorite_produk }
+        if params[:origin] == "home"
+        format.js { render :file => "/home/index2.js.erb" }
+        elsif params[:origin] == "show"
+        format.js { render :file => "/produks/show2.js.erb" }
+        end
       else
         format.html { render :new }
         format.json { render json: @favorite_produk.errors, status: :unprocessable_entity }
@@ -56,10 +64,17 @@ class FavoriteProduksController < ApplicationController
   # DELETE /favorite_produks/1
   # DELETE /favorite_produks/1.json
   def destroy
+    @productid = @favorite_produk.produk_id
+    @fproduk = Produk.find(@favorite_produk.produk_id)
     @favorite_produk.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Favorite produk was successfully destroyed.' }
       format.json { head :no_content }
+        if params[:origin] == "home"
+        format.js { render :file => "/home/index2.js.erb" }
+        elsif params[:origin] == "show"
+        format.js { render :file => "/produks/show2.js.erb" }
+        end
     end
   end
 

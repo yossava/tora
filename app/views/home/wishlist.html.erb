@@ -71,6 +71,7 @@
                       <% end %>
 										</section>
                     <section id="dilihat">
+                      <% if session[:history] %>
                       <% session[:history].uniq.each do |s| %>
                       <% last = Produk.friendly.find(s.split('/')[-1]) %>
 											<div class="produkcarousel myakunproduk">
@@ -83,6 +84,7 @@
 												<div class="hargacoret"><%= number_to_currency(last.harga_diskon, locale: :id) %></div>
 												<a href="<%= toko_path(Toko.find(last.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(last.toko_id).nama_toko %></span></a>
 											</div>
+                      <% end %>
                       <% end %>
 										</section>
 									</div>

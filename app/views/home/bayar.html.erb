@@ -104,14 +104,10 @@
     <div class="form-row">
       <label>Metode Pembayaran</label>
     <select required class="pembayaran">
-      <option value="">PILIH METODE PEMBAYARAN</option>
-      <option value="cc">KARTU KREDIT</option>
-      <option value="/va/CENA">TRANSFER BCA</option>
-      <option value="/va/BNIN">TRANSFER BNI</option>
-      <option value="/va/BMRI">TRANSFER MANDIRI</option>
-      <option value="/va/HNBN">TRANSFER HANA BANK</option>
-      <option value="/va/IBBK">TRANSFER MAYBANK</option>
-      <option value="/va/BBBA">TRANSFER PERMATA BANK</option>
+      <option value="#/">PILIH METODE PEMBAYARAN</option>
+      <option value="/checkout">TRANSFER BCA</option>
+      <option value="/checkout">TRANSFER BNI</option>
+      <option value="/checkout">TRANSFER MANDIRI</option>
     </select>
     </div>
   </div>
@@ -133,7 +129,7 @@
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-12">
         <% if @currentcart.present? %>
-        <a style="display:none;" href="/cc" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
+        <a href="#/" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% else %>
         <a style="background-color:grey;" href="#" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% end %>
@@ -152,18 +148,7 @@
   $('.pembayaran').bind("change", function(){
     var jenis = $('option:selected', this).attr('value');
     $('a.ckbtn-krnjng').attr('href', jenis);
-    $(".ckbtn-krnjng").fadeIn();
+    $(".ckbtn-krnjng").removeAttr("disabled");
 
 });
-</script>
-<script>
-  	$('.ckbtn-krnjng').click(function(){
-		var $this = $(this);
-		$this.toggleClass('See');
-		if($this.hasClass('Sees')){
-			$this.text('See');
-		} else {
-			$this.text('Mohon Tunggu..');
-		}
-	});
 </script>

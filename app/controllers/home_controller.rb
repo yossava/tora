@@ -46,8 +46,31 @@ class HomeController < ApplicationController
     @pro = @province['rajaongkir']['results']
     @cit = @city['rajaongkir']['results']
   end
-  def index
+  def index2
+    if user_signed_in?
+        FavoriteProduk.where(:user_id => current_user.id).each do |del|
+        @delfav = del
+        end
+      end
+      if user_signed_in?
+        @fav = []
+        current_user.favorites.each do |fav|
+        @fav << fav.id
+      end
+    end
+    @favorite_produk = FavoriteProduk.new
+    @bestseller = Produk.first(5)
+    @onsale = Produk.where("harga_diskon > ?", 0 ).first(5)
+    @newproduct = Produk.all.order("created_at desc").first(5)
+    @fashionpria = Produk.all.order("created_at desc").first(5)
+    @fashionwanita = Produk.all.order("created_at desc").first(5)
+    @toys = Produk.all.order("created_at desc").first(5)
+    @elektronik = Produk.all.order("created_at desc").first(5)
+    @book = Produk.all.order("created_at desc").first(5)
+    @food = Produk.all.order("created_at desc").first(5)
+    render layout: "main"
   end
+  
   def profil
   end
 

@@ -1,0 +1,7 @@
+<% @myfav = FavoriteProduk.where(:user_id => current_user.id, :produk_id => @productid).first %>
+                                            <%= form_tag delfav_path, remote: true do %>
+                                            <%= hidden_field_tag :id, @myfav.id %>
+<input type="hidden" name="origin" value="show">
+                                            <button title="Remove from wishlist" class="heart un" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+<a title="Kunjungi Toko" class="compare" href="<%= toko_path(@fproduk.toko) %>"></a>
+                                              <% end %>

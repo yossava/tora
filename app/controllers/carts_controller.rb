@@ -8,49 +8,6 @@ class CartsController < ApplicationController
     @carts = Cart.all
   end
 
-  def konfirmasi
-    Nicepay.iMid=('IONPAYTEST')
-    Nicepay.merchantKey=('33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==')
-    Nicepay.dbProcessUrl=("#{URI.parse(root_url)}/record")
-    Nicepay.callBackUrl=("#{URI.parse(root_url)}/update")
-    checkStatus = Nicepay::Api::CheckStatus.new(Nicepay.requestParam)
-    Nicepay.setRequestParam('iMid', Nicepay.iMid)
-    Nicepay.setRequestParam('referenceNo', Cart.where(:txid => params[:txid]).first.invoice)
-    @currentcart = Cart.where(:txid => params[:txid])
-    @subtotal = []
-    @currentcart.each do |c|
-    @subtotal << c.subtotal
-    end
-    @subtotal = @subtotal.sum.to_s
-    Nicepay.setRequestParam('amt', @subtotal)
-    Nicepay.setRequestParam('tXid', params[:txid])
-    Nicepay.setRequestParam('merchantToken', Nicepay.merchantTokenC)
-    response = checkStatus.response
-    if response["resultCd"].to_s == "0000"
-        @status = response["status"].to_s
-        @amount = response["amt"].to_s
-        @ref = response["referenceNo"].to_s
-        @trx = response["tXid"].to_s
-
-        else
-        @status = "\nOops! Check Status failed to generate! We have recorded the event. \nPlease try again later.\n\n"
-        @result = response["resultCd"]
-        @msg =  response["resultMsg"]
-        end
-      if @status == "0"
-        Cart.where(:txid => params[:txid]).update_all(:state => 3)
-        redirect_to :back, notice: "Pembayaran #{params[:txid]} TELAH diterima!"
-        mycart = Cart.find(params[:id])
-        status = "Telah Dikonfirmasi Buyer"
-        Notifikasi.sample_email(current_user, mycart, status).deliver_later
-        else
-        redirect_to :back, notice: "Pembayaran #{params[:txid]} BELUM diterima!"
-      end
-        Nicepay.flushParam
-
-
-  end
-
   def terima_pesanan
     Cart.find(params[:id]).update(:state => 7)
     redirect_to :back
@@ -80,7 +37,10 @@ class CartsController < ApplicationController
     Notifikasi.sample_email(current_user, mycart, status).deliver_later
   end
   def checkout
-    Cart.where(:user_id => current_user.id, :state=> 1).update_all(:state => 3)
+    cart = Cart.where(:user_id => current_user.id, :state => 1)
+    countcart = cart.count
+    cart.update_all(:state => 2)
+    Notifikasi.checkout_email(current_user, countcart).deliver_later
     redirect_to '/payment'
   end
 
@@ -109,6 +69,7 @@ class CartsController < ApplicationController
       if @cart.save
         format.html { redirect_to :back, notice: 'Cart was successfully created.' }
         format.json { render :show, status: :created, location: @cart }
+        format.js { render :file => "/produks/show2.js.erb" }
       else
         format.html { render :new }
         format.json { render json: @cart.errors, status: :unprocessable_entity }

@@ -56,6 +56,10 @@ class ApplicationController < ActionController::Base
   def troli
     if user_signed_in? && current_user.cart
       @troli = current_user.cart.where(:state => 1)
+      @totaltroli = []
+      @troli.each do |t|
+        @totaltroli << Produk.find(t.produk_id).harga_beli * t.jumlah
+      end
       @troli2 = current_user.cart.where(:state => 2)
       @troli2live = current_user.cart.where(:state => 2, :expired => false)
       @troli3 = current_user.cart.where(:state => 3)
