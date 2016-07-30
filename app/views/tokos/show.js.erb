@@ -2,3 +2,4 @@ $('.kt-list-produk').html('<%= j render "/tokos/showajax" %>');
 $('.store-halaman').html('<%= will_paginate @mytoko %>');
 $('.store-typelight').html('<%= page_entries_info @mytoko %>');
 $('.pagination a').attr('data-remote', 'true');
+$(".loading").html('');
