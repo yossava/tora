@@ -5394,3 +5394,192 @@ button.un:hover {
   border: 1px solid rgb(153, 153, 153);
   box-shadow: rgb(204, 204, 204) 0px 0px 3px;
 }
+body.modal-open { overflow:inherit; padding-right:inherit !important; }
+a.btn-add-cart:focus {
+  color:white !important;
+}
+.store-info-lapse{
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-top: -50px;
+  z-index: 10;
+  position: relative;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+.store-pic {
+  position: relative;
+  margin-top: -50px;
+  margin-left: 20px;
+  background-color: #FFF;
+  z-index: 10;
+  width: 200px;
+  box-shadow: 5px 5px 3px #777;
+  border-radius: 5px;
+}
+.store-pic img {
+  width: 80%;
+  margin-left: 10%;
+  margin-top:7px;
+  margin-bottom:7px;
+}
+.title_toko {
+    color: white;
+    margin-left: 250px;
+    font-size: 1.2em;
+    font-weight: bold;
+    top: 5px;
+    position: absolute;
+}
+.slogan {
+    margin-left: 250px;
+    color: white;
+    position: absolute;
+    top: 26px;
+    font-style: italic;
+    font-size: .9em;
+}
+.store-desc {
+    height: 150px;
+    border-width: medium 2px 2px;
+    border-style: none solid solid;
+    border-color: -moz-use-text-color rgba(255, 22, 22, 0.86) rgba(255, 22, 22, 0.86);
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    position: relative;
+    margin-top: -92px;
+    padding-left: 250px;
+    padding-top: 20px;
+    padding-right: 30px;
+}
+.store-setting {
+  padding:10px;
+  float:right;
+}
+.kt-list-produk {
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
+}
+.product-carousel {
+    display: inline-block;
+    border: 1px solid lightgray;
+    margin-right: 5px;
+    width: 19%;
+    margin-bottom: 15px;
+    position: relative;
+}
+.grosiran {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    padding: 2px 5px;
+    background: rgb(242, 75, 75) none repeat scroll 0% 0%;
+}
+.lagidiskon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #FFF;
+    padding: 2px 5px;
+    background: #0B8D0D none repeat scroll 0% 0%;
+}
+.titleproduk {
+  font-size: 1.1em;
+  color: #C22424;
+  font-weight: bold;
+  text-align: center;
+}
+.hargaasli {
+    text-align: center;
+    font-size: 1.1em;
+    color: rgb(255, 18, 18);
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.store-sort {
+    border: 2px solid #FEB5B5;
+    margin-top: 20px;
+    padding: 10px 64px;
+    background-color: #FFE7E7;
+}
+.store-cari {
+    height: 30px;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    width: 200px;
+    display: inline;
+    background-color: white;
+}
+.store-select-sort {
+  height: 30px;
+  padding: 5px;
+  border: solid 1px lightgray;
+  width: 200px;
+  display: inline;
+}
+.store-select-page {
+  height: 30px;
+  padding: 5px;
+  border: solid 1px lightgray;
+  width: 100px;
+  display: inline;
+}
+.store-search-btn {
+    height: 30px;
+    width: 80px;
+    padding-top: 3px;
+    border-radius: 2px;
+    margin-top: -2px;
+}
+.store-share {
+    position: absolute;
+    bottom: 0px;
+}
+.store-share a{
+    font-size: 3em;
+    float:left;
+    color: #FF5151;
+    margin-right: 5px;
+}
+.store-share-link {
+    color: #8C8C8C;
+    font-size: .8em;
+}
+.store-typelight {
+    margin-left: 67px;
+    margin-bottom: 20px;
+}
+.store-halaman .previous_page, .store-halaman a, .store-halaman .next_page {
+    background-color: red;
+    padding: 8px;
+    color: white;
+}
+.store-halaman {
+  padding-left: 67px;
+}
+.store-halaman .current {
+    background-color: #FF9191;
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+}
+.store-right ul li {
+    color: #FFF;
+    float: right;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.store-right i {
+  margin-top:2px;
+  margin-right:4px;
+}
+.title_toko i {
+  color: orange;
+  font-size: 0.8em;
+  margin-top: 4px;
+}

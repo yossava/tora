@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  post '/toko/:id' => "tokos#show"
   post '/buyform' => "produks#form"
   get '/updaterating/:produk_id' => "feedbacks#updaterating"
   get '/bank' => "transactions#bank"

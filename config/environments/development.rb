@@ -15,7 +15,7 @@ Rails.application.configure do
       :port => 587,
       :domain => "nitrous.io",
       :authentication => :login,
-      :user_name => "support@netvcc.co.id",
+      :user_name => "support@on-line.co.id",
       :password => "sy0ssaV@s"
     }
 

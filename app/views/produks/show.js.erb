@@ -38,9 +38,10 @@ $('#cart_ongkir').val("<%= @berat * params[:ongkir].scan(/\d+/).first.to_i %>");
 <% @sub << c.subtotal %>
 <% end %>
 $('.cart-block-content').html("<%= j render "/produks/cartproduct" %>");
-$('.modal-body').html('Produk ditambahkan ke cart');
+$('.modal-title').html('Sukses');
+$('.modal-body').html('<%= image_tag "check.png", style: "width:30px;" %> Produk ditambahkan ke cart');
+setTimeout(function() {$('#myModal').modal('hide');}, 2000);
+$('.modal-backdrop').remove();
 $('.total').html('<%= current_user.cart.where(:state => 1).count %> Items - <%= number_to_currency(@sub.sum,locale: :id) %>');
 $('.notify-left').html('<%= current_user.cart.where(:state => 1).count %>');
-$('.close').click();
-$.notiny({ text: "Produk ditambahkan ke cart", position: 'right-top' });
 <% end %>

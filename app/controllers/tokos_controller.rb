@@ -26,7 +26,16 @@ class TokosController < ApplicationController
   # GET /tokos/1.json
   def show
     @mytoko = User.find(@toko.user_id).produks.paginate(:page => params[:page], :per_page => 12)
+    if params[:filter]
+      @page = params[:perpage]
+      @tokoid = @toko.id
+      @mytoko = Produk.search(params[:search]).where(:toko_id => @tokoid).order(params[:sort]).paginate(:page => params[:page], :per_page => @page)
 
+    end
+    respond_to do |format|
+        format.html {render layout: "toko"}
+        format.js
+    end
   end
 
   # GET /tokos/new

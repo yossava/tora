@@ -1,0 +1,15 @@
+              <% @mytoko.each do |produk| %>
+							<div class="product-carousel">
+								<div class="thumbfoto-produk">
+									<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
+                  <% if produk.harga_diskon %>
+									<span class="lagidiskon"><i style="margin-top:4px;margin-right: 0px;" class="fa fa-tags"></i> <%= produk.diskon %>%</span>
+                  <% end %>
+                  <% if produk.jumlah_grosir1min %>
+                          <span class="grosiran"><i style="margin-top:4px;" class="fa fa-lightbulb-o"></i> grosir</span>
+                          <% end %>
+								</div>
+								<a href="<%= produk_path(produk) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
+								<div class="hargaasli">Rp <%= produk.harga_beli %></div>
+							</div>
+              <% end %>

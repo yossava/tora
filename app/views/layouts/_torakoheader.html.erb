@@ -24,12 +24,12 @@
                 <a href="/"><img alt="Torako Logo" src="<%= Homeitem.find(16).img2.url %>" /></a>
             </div>
             <div class="col-xs-7 col-sm-7 header-search-box">
-                <form class="form-inline">
+                  <%= form_tag(cari_path, :method => "get", class: "form-inline") do %>
                       <div class="form-group input-serach searchpadding">
-                        <input type="text"  placeholder="Keyword here...">
+                        <%= text_field_tag :search, params[:search], placeholder: "Pakaian, Gadget atau apapun.." %>
                       </div>
                       <button type="submit" class="pull-right btn-search"></button>
-                </form>
+                <% end %>
             </div>
             <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">
                 <a class="cart-link" href="order.html">

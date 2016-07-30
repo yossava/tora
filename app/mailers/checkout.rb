@@ -1,5 +1,5 @@
 class Checkout < ApplicationMailer
-  default from: "support@netvcc.co.id"
+  default from: "support@on-line.co.id"
 
   def checkout_email(current_user, countcart)
     @status = "Petunjuk pembayaran"

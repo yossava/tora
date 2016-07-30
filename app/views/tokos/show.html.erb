@@ -1,139 +1,204 @@
-    <%= render 'layouts/header' %>
-		<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
+    <%= render 'layouts/torakoheader' %>
+		<div class="columns-container">
+      <div class="store-image"><%= image_tag @toko.banner1.url, style: "width:100%;" %></div>
+      <div class="store-info-lapse">
+        <div class="title_toko"><%= @toko.nama_toko %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <label class="slogan"><%= @toko.slogan %></label>
+        <div class="store-right">
+          <ul>
+            <li><i class="fa fa-home" aria-hidden="true"></i><%= @toko.user.created_at.in_time_zone("Jakarta").strftime("%d %B %Y") %></li>
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i><%= time_ago_in_words(@toko.user.last_sign_in_at) %> ago</li>
+            <li><i class="fa fa-shopping-cart" aria-hidden="true"></i><%= @toko.user.cart.count %></li>
+            <li><i class="fa fa-map-marker" aria-hidden="true"></i><%= @toko.kota_sebagai %></li>
+          </ul>
+        </div>
+      </div>
+			<div class="store-pic"><img src="<%= @toko.toko_image.url %>"></div>
+      <div class="store-desc">
+        <span class="store-quote"><i class="fa fa-quote-left"></i> <%= @toko.deskripsi %></span>
+        <% if current_user.id == @toko.user_id %>
+					<a href="<%= edit_toko_path %>" class="label label-danger store-setting"><i class="fa fa-cog"></i> Setting</a>
+        <% end %>
+        <div class="store-share">
+          <p class="store-share-link">Share Link:</p>
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= url_for(:only_path => false) %>"><i class="fa fa-facebook-square"></i></a>
+          <a target="_blank" href="https://twitter.com/home?status=<%= url_for(:only_path => false) %>"><i class="fa fa-twitter-square"></i></a>
+          <a target="_blank" href="https://plus.google.com/share?url=<%= url_for(:only_path => false) %>"><i class="fa fa-google-plus-square"></i></a>
+          <a target="_blank" href="#"><i class="fa fa-envelope-square"></i></a>
+        </div>
+      </div>
+      <div class="store-sort">
+        <%= form_tag toko_path, remote: true do %>
+        <input type="hidden" name="id" value="<%= @toko.id %>">
+        <input class="store-cari" type="text" name="search" placeholder="Masukan kata kunci">
+          <select class="store-select-sort" name="sort">
+            <option value="created_at desc">Terbaru</option>
+            <option value="harga_beli asc">Termurah</option>
+            <option value="harga_beli desc">Termahal</option>
+            <option value="diskon desc">Diskon</option>
+          </select>
+          <select class="store-select-page" name="perpage">
+            <option value="5">5</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="60">60</option>
+            <option value="100">100</option>
+          </select>
+          <input class="btn btn-danger store-search-btn" type="submit" value="filter" name="filter">
+        <% end %>
+      </div>
 
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<%= render 'layouts/sidemenu' %>
-						</div>
-						<div class="breadcumb">
-							<span><a href="#">Home</a></span>
-							<span>></span>
-							<span><a href="#">Toko</a></span>
-							<span>></span>
-							<span><a href="#"><%= @toko.nama_toko %></a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ./Header -->
-
-		<div class="spacermedium"></div>
-
-		<div class="container">
-        <%= image_tag @toko.banner1.url, style: "width:100%;" %>
-			<div class="header_lp-toko">
-				<div class="wrap-left-htoko">
-					<div class="foto_toko"><img src="<%= @toko.toko_image.url %>" class="responsiveimg"></div>
-					<h1 class="title_toko"><%= @toko.nama_toko %> &nbsp; <span <% if @toko.status == "Tutup" %> style="background-color:red;"<% end %> class="label_sttoko"> Toko <%= @toko.status %></span></h1>
-          <% if @toko.status == "Tutup" %>
-          <br>Tutup Sampai: <%= @toko.tutup_sampai %>
-          <hr>
-          <% end %>
-					<label class="sttltoko"><%= @toko.slogan %></label>
-					<p class="shortse_toko">
-						<span class="quote_toko"><i class="fa fa-quote-left"></i></span> <%= @toko.deskripsi %>
-					</p>
-          <% if current_user.id == @toko.user_id %>
-					<a href="<%= edit_toko_path %>" class="linktokoedit"><i class="fa fa-cog"></i> Setting</a>
-          <% end %>
-				</div>
-			</div>
-			<div class="core_menu_toko">
-				<ul class="list-unstyled cmt-list">
-					<li class="active"><a href="#">Produk</a></li>
-					<li><a href="<%= toko_path(@toko) %>/review">Review</a></li>
-					<li><a href="#">Informasi Toko</a></li>
-					<li><a href="#">Catatan</a></li>
-				</ul>
-
-			</div>
-			<div class="row mainkntn_toko">
-				<div class="col-md-3">
-					<div class="sidebartoko">
-						<div class="schb_onotko">
-							<input type="text" name="" placeholder="Cari Produk">
-							<button class="scbbtn" name=""><i class="fa fa-search"></i></button>
-						</div>
-						<div class="list_mnkategori_toko">
-							<h4 class="titlesdk">Kategori</h4>
-							<ul class="mainmn_kt_toko list-unstyled">
-                <% @cats = [] %>
-                <%  User.find(@toko.user_id).produks.each do |produk| %>
-                <% @cats << produk.category_id %>
-                <% end %>
-                <% @cats = @cats.uniq %>
-                <% @cats.each do |cat| %>
-                <% if cat %>
-								<li><a href="#"><%= Category.find(cat).kategori %></a></li>
-                <% end %>
-                <% end %>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-9">
-					<div class="listproduk_toko">
-						<div class="controll_tkproduk">
-							<h3>Semua Produk</h3>
-							<div class="absfilter">
-								<label>Urutkan :</label>
-								<select class="form-control">
-									<option>Terbaru</option>
-									<option>Terlaris</option>
-									<option>Promo</option>
-								</select>
-							</div>
-						</div>
 						<div class="kt-list-produk">
               <% @mytoko.each do |produk| %>
-							<div class="produkcarousel myakunproduk toko">
+							<div class="product-carousel">
 								<div class="thumbfoto-produk">
 									<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
                   <% if produk.harga_diskon %>
-									<span class="lagidiskon">-<%= produk.diskon %>%</span>
+									<span class="lagidiskon"><i style="margin-top:4px;margin-right: 0px;" class="fa fa-tags"></i> <%= produk.diskon %>%</span>
                   <% end %>
                   <% if produk.jumlah_grosir1min %>
-                          <span class="grosiran">grosir</span>
+                          <span class="grosiran"><i style="margin-top:4px;" class="fa fa-lightbulb-o"></i> grosir</span>
                           <% end %>
 								</div>
 								<a href="<%= produk_path(produk) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
-								<div class="hargaasli">Rp <%= produk.harga %></div>
-								<div class="hargacoret">Rp <%= produk.harga_diskon %></div>
-								<a href="<%= toko_path(Toko.find(produk.toko_id)) %>" class="tambahketroli"><span class="troliblack"></span><span class="ttb"><%= Toko.find(produk.toko_id).nama_toko %></span></a>
+								<div class="hargaasli">Rp <%= produk.harga_beli %></div>
 							</div>
               <% end %>
 						</div>
-					</div>
+
 
 					<div class="pagingarea">
-						<div class="halaman">
+						<div class="store-halaman">
             <%= will_paginate @mytoko %>
             </div>
-						<p class="typelight">Menampilkan 1-12 dari <%= @mytoko.count %> Produk</p>
+						<p class="store-typelight"><%= page_entries_info @mytoko %></p>
 					</div>
-				</div>
 
-			</div>
 		</div>
+    <footer style="" id="footer">
+     <div class="container">
+            <!-- introduce-box -->
+            <div id="introduce-box" class="row">
+                <div class="col-md-3">
+                    <div id="address-box">
+                        <a href="#"><img src="/assets/images/toralog.png" alt="" /></a>
+                        <div id="address-list">
+                            <div class="tit-name">Address:</div>
+                            <div class="tit-contain">Jl Monumen Nasional.</div>
+                            <div class="tit-name">Phone:</div>
+                            <div class="tit-contain">021 7788 777</div>
+                            <div class="tit-name">Email:</div>
+                            <div class="tit-contain">support@torako.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="introduce-title">My Account</div>
+                            <ul id = "introduce-Account" class="introduce-list">
+                                <li><a href="#">My Order</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">My Credit Slip</a></li>
+                                <li><a href="#">My Addresses</a></li>
+                                <li><a href="#">My Personal In</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="introduce-title">Support</div>
+                            <ul id = "introduce-support"  class="introduce-list">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Affiliate Program</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="contact-box">
+                        <div class="introduce-title">Newsletter</div>
+                        <div class="input-group" id="mail-box">
+                          <input type="text" placeholder="Your Email Address"/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">OK</button>
+                          </span>
+                        </div><!-- /input-group -->
+                        <div class="introduce-title">Let's Socialize</div>
+                        <div class="social-link">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fa fa-vk"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
 
-		<div class="spacerbig"></div>
-    <%= render 'layouts/footer' %>
+                </div>
+            </div><!-- /#introduce-box -->
+
+            <!-- #trademark-box -->
+            <div id="trademark-box" class="row">
+                <div class="col-sm-12">
+                    <ul id="trademark-list">
+                        <li id="payment-methods">Accepted Payment Methods</li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-ups.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-qiwi.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-wu.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-cn.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-visa.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-mc.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-ems.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-dhl.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-fe.jpg"  alt="ups"/></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/assets/data/trademark-wm.jpg"  alt="ups"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /#trademark-box -->
+
+            <!-- #trademark-text-box -->
+
+            <div id="footer-menu-box">
+
+                <div style="height:150px;" class="col-sm-12"></div>
+                <p class="text-center">Copyrights &#169; 2016 Torako. All Rights Reserved. Designed by on-line.co.id</p>
+            </div><!-- /#footer-menu-box -->
+        </div>
+</footer>
+<script>
+  $('.store-cari, .store-select-sort, .store-select-page').bind("keyup change", function(){
+    $(".store-search-btn").click();
+});
+</script>
+<script>
+$(function(){
+   $('.pagination a').attr('data-remote', 'true')
+});
+</script>
