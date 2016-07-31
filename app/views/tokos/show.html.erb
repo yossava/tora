@@ -1,5 +1,5 @@
     <%= render 'layouts/torakoheader' %>
-		<div class="columns-container">
+		<div class="columns-container toko-container">
       <div class="store-image"><%= image_tag @toko.banner1.url, style: "width:100%;" %></div>
       <div class="store-info-lapse">
         <div class="title_toko"><%= @toko.nama_toko %>
@@ -22,17 +22,43 @@
 			<div class="store-pic"><img src="<%= @toko.toko_image.url %>"></div>
       <div class="store-desc">
         <span class="store-quote"><i class="fa fa-quote-left"></i> <%= @toko.deskripsi %></span>
-        <% if current_user.id == @toko.user_id %>
+        <% if user_signed_in? && current_user.id == @toko.user_id %>
 					<a href="<%= edit_toko_path %>" class="label label-danger store-setting"><i class="fa fa-cog"></i> Setting</a>
         <% end %>
-        <div class="store-share">
-          <p class="store-share-link">Share Link:</p>
-          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= url_for(:only_path => false) %>"><i class="fa fa-facebook-square"></i></a>
-          <a target="_blank" href="https://twitter.com/home?status=<%= url_for(:only_path => false) %>"><i class="fa fa-twitter-square"></i></a>
-          <a target="_blank" href="https://plus.google.com/share?url=<%= url_for(:only_path => false) %>"><i class="fa fa-google-plus-square"></i></a>
-          <a target="_blank" href="#"><i class="fa fa-envelope-square"></i></a>
+        <div class=store-right-desc>
+          <span><i class="fa fa-tachometer" aria-hidden="true"></i> Sedang</span><br>
+          Kecepatan Toko
+        </div>
+        <div class=store-right-desc>
+          <span><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
+</span><br>
+          Reputasi
+        </div>
+        <div class=store-right-desc>
+          <span><i class="fa fa-check-circle" aria-hidden="true"></i>
+ 54</span><br>
+          Produk Terjual
+        </div>
+        <div class=store-right-desc>
+          <span><i class="fa fa-heart" aria-hidden="true"></i>
+ 109</span><br>
+          Favorit
         </div>
       </div>
+      <div class="store-share">
+          <p class="store-share-link">Bagikan:</p>
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= url_for(:only_path => false) %>"><i style="color: #2D4373;" class="fa fa-facebook-square"></i></a>
+          <a target="_blank" href="https://twitter.com/home?status=<%= url_for(:only_path => false) %>"><i style="color:#00ACED;" class="fa fa-twitter-square"></i></a>
+          <a target="_blank" href="https://plus.google.com/share?url=<%= url_for(:only_path => false) %>"><i style="color:#DD4B39;" class="fa fa-google-plus-square"></i></a>
+          <a target="_blank" href="#"><i style="color:#060;" class="fa fa-envelope-square"></i></a>
+          <a style="float:right;" href="#" class="btn btn-success store-button"><i style="margin-top:1px;" class="fa fa-envelope" aria-hidden="true"></i>
+ Kirim Pesan</a>
+          <a style="float:right;" href="#" class="btn btn-success store-button"><i style="margin-top:1px;" class="fa fa-heart" aria-hidden="true"></i>
+ Jadikan Favorit</a>
+        <a style="float:right;" href="#" class="btn btn-danger store-button">Lihat Detail Statistik <i style="margin-top:2px;" class="fa fa-chevron-down" aria-hidden="true"></i>
+</a>
+
+        </div>
       <div class="store-sort">
         <%= form_tag toko_path, remote: true do %>
         <input type="hidden" name="id" value="<%= @toko.id %>">

@@ -292,7 +292,11 @@
                                 </div>
                                  <div class="form-action">
                                     <div class="button-group">
+                                      <% if user_signed_in? %>
                                         <a data-toggle="modal" data-target="#myModal" class="btn-add-cart" href="#">Add to cart</a>
+                                      <% else %>
+                                      <a href="/masuk" class="btn-add-cart" href="#">Add to cart</a>
+                                      <% end %>
                                     </div>
                                     <div class="button-group">
                                         <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
@@ -314,6 +318,7 @@
                                     </div>
                                 </div>
                             </div>
+                          <% if user_signed_in? %>
                             <div class="modal fade" id="myModal" role="dialog">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -393,6 +398,7 @@
                                 </div>
                               </div>
                             </div>
+                          <% end %>
 </div>
 
                         </div>

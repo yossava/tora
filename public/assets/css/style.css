@@ -5409,30 +5409,33 @@ a.btn-add-cart:focus {
 }
 .store-pic {
   position: relative;
-  margin-top: -50px;
+  margin-top: -70px;
   margin-left: 20px;
-  background-color: #FFF;
   z-index: 10;
-  width: 200px;
-  box-shadow: 5px 5px 3px #777;
-  border-radius: 5px;
+  width: 120px;
+  border: solid 4px white;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 2px;
 }
 .store-pic img {
-  width: 80%;
-  margin-left: 10%;
-  margin-top:7px;
-  margin-bottom:7px;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0px none;
+
 }
 .title_toko {
     color: white;
-    margin-left: 250px;
+    margin-left: 150px;
     font-size: 1.2em;
     font-weight: bold;
     top: 5px;
     position: absolute;
+    text-shadow: 2px 1px 2px #000;
 }
 .slogan {
-    margin-left: 250px;
+    margin-left: 150px;
     color: white;
     position: absolute;
     top: 26px;
@@ -5440,20 +5443,15 @@ a.btn-add-cart:focus {
     font-size: .9em;
 }
 .store-desc {
-    height: 150px;
-    border-width: medium 2px 2px;
+    height: 105px;
+    border-width: medium 1px 1px;
     border-style: none solid solid;
-    border-color: -moz-use-text-color rgba(255, 22, 22, 0.86) rgba(255, 22, 22, 0.86);
-    -moz-border-top-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    border-image: none;
     position: relative;
-    margin-top: -92px;
-    padding-left: 250px;
+    margin-top: -50px;
+    padding-left: 150px;
     padding-top: 20px;
     padding-right: 30px;
+    border-color: lightgray;
 }
 .store-setting {
   padding:10px;
@@ -5537,8 +5535,14 @@ a.btn-add-cart:focus {
     margin-top: -2px;
 }
 .store-share {
-    position: absolute;
-    bottom: 0px;
+    margin-bottom: 60px;
+    border-width: medium 1px 1px;
+    border-style: none solid solid;
+    border-color: #D3D3D3;
+    border-image: none;
+    height: 45px;
+    padding-left: 10px;
+    background-color: #F7F7F7;
 }
 .store-share a{
     font-size: 3em;
@@ -5547,8 +5551,11 @@ a.btn-add-cart:focus {
     margin-right: 5px;
 }
 .store-share-link {
-    color: #8C8C8C;
-    font-size: .8em;
+    color: #747474;
+    font-size: 0.9em;
+    margin-top: 10px;
+    float: left;
+    margin-right: 5px;
 }
 .store-typelight {
     margin-left: 67px;
@@ -5573,6 +5580,8 @@ a.btn-add-cart:focus {
     float: right;
     text-decoration: none;
     margin-left: 10px;
+    text-shadow: 2px 1px 2px #000;
+    font-size: 85%;
 }
 .store-right i {
   margin-top:2px;
@@ -5582,4 +5591,37 @@ a.btn-add-cart:focus {
   color: orange;
   font-size: 0.8em;
   margin-top: 4px;
+}
+.toko-container {
+    width: 90%;
+    margin: 10px auto 0 auto;
+}
+.store-button {
+    height: 60%;
+    font-size: 13px !important;
+    color: #FFF !important;
+    padding: 2px 5px;
+    margin-top: 8px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+.store-right-desc {
+    float: right;
+    margin-right: 15px;
+    margin-top: 20px;
+    color: #606060;
+    font-size: 0.9em;
+    text-align: center;
+}
+.store-right-desc span {
+  color: rgb(242, 66, 66);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.store-right-desc i {
+  margin-top:3px;
+}
+.store-quote {
+    color: rgb(96, 96, 96);
+    font-size: 0.9em;
 }
