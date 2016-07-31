@@ -22,9 +22,6 @@
 			<div class="store-pic"><img src="<%= @toko.toko_image.url %>"></div>
       <div class="store-desc">
         <span class="store-quote"><i class="fa fa-quote-left"></i> <%= @toko.deskripsi %></span>
-        <% if user_signed_in? && current_user.id == @toko.user_id %>
-					<a href="<%= edit_toko_path %>" class="label label-danger store-setting"><i class="fa fa-cog"></i> Setting</a>
-        <% end %>
         <div class=store-right-desc>
           <span><i class="fa fa-tachometer" aria-hidden="true"></i> Sedang</span><br>
           Kecepatan Toko
@@ -57,6 +54,9 @@
  Jadikan Favorit</a>
         <a style="float:right;" href="#" class="btn btn-danger store-button">Lihat Detail Statistik <i style="margin-top:2px;" class="fa fa-chevron-down" aria-hidden="true"></i>
 </a>
+        <% if user_signed_in? && current_user.id == @toko.user_id %>
+					<a style="float:right;" href="<%= edit_toko_path %>" class="btn btn-info store-button"><i style="margin-top:2px;" class="fa fa-cog"></i> Setting</a>
+        <% end %>
 
         </div>
       <div class="store-sort">
