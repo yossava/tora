@@ -5942,7 +5942,7 @@ margin-top: 5px;
    width: 60%;
    margin: 5px auto;
 }
-.pesan {
+.message {
   display:none;
   width: 100%;
   border: 1px solid #d3d3d3;
@@ -5950,14 +5950,14 @@ margin-top: 5px;
   margin-bottom: 20px;
   padding:20px;
 }
-.pesan input {
+.message input {
   border: 1px solid #d3d3d3;
   padding: 5px;
   border-radius:2px;
   margin-bottom: 10px;
   width: 100%;
 }
-.pesan textarea {
+.message textarea {
   width: 100%;
   border: 1px solid #d3d3d3;
   padding: 5px;
