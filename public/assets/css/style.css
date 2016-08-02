@@ -5643,11 +5643,7 @@ a.btn-add-cart:focus {
     color: #606060;
     border-width: 1px 1px medium;
     border-style: solid solid none;
-    border-color: #D3D3D3 #D3D3D3 -moz-use-text-color;
-    -moz-border-top-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
+    border-color: #D3D3D3;
     border-image: none;
 }
 .store-left-sidebar .left-head {
