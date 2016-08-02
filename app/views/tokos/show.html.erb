@@ -48,28 +48,120 @@
           <a target="_blank" href="https://twitter.com/home?status=<%= url_for(:only_path => false) %>"><i style="color:#00ACED;" class="fa fa-twitter-square"></i></a>
           <a target="_blank" href="https://plus.google.com/share?url=<%= url_for(:only_path => false) %>"><i style="color:#DD4B39;" class="fa fa-google-plus-square"></i></a>
           <a target="_blank" href="#"><i style="color:#060;" class="fa fa-envelope-square"></i></a>
-          <a style="float:right;" href="#" class="btn btn-success store-button"><i style="margin-top:1px;" class="fa fa-envelope" aria-hidden="true"></i>
+          <a style="float:right;" href="#" class="btn btn-success store-button msg"><i style="margin-top:1px;" class="fa fa-envelope" aria-hidden="true"></i>
  Kirim Pesan</a>
           <a style="float:right;" href="#" class="btn btn-success store-button"><i style="margin-top:1px;" class="fa fa-heart" aria-hidden="true"></i>
  Jadikan Favorit</a>
-        <a style="float:right;" href="#" class="btn btn-danger store-button">Lihat Detail Statistik <i style="margin-top:2px;" class="fa fa-chevron-down" aria-hidden="true"></i>
+        <a style="float:right;" href="#" class="btn btn-danger store-button stat">Lihat Detail Statistik <i style="margin-top:2px;" class="fa fa-chevron-down" aria-hidden="true"></i>
 </a>
         <% if user_signed_in? && current_user.id == @toko.user_id %>
 					<a style="float:right;" href="<%= edit_toko_path %>" class="btn btn-info store-button"><i style="margin-top:2px;" class="fa fa-cog"></i> Setting</a>
         <% end %>
 
         </div>
+      <div class="statistik">
+        <div class="store-rate">
+          <div style="" class="stat-head">
+            Nilai Kualitas Produk
+          </div>
+          <div style="" class="stat-body-left">
+            <span style="">Kualitas Produk</span><br>
+            <span class="nilai" style="">3.8</span><br>
+            <span style="color: orange;"><i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            </span><br>
+            <span style="font-size: 11px;">26 Total</span>
+          </div>
+          <div style="" class="stat-body-right">
+  <span>5 <i class="fa fa-star" aria-hidden="true"></i></span><span class="bar" style="width: 60%; margin-left: 12px; border-radius: 10px; box-shadow: 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 2px rgba(0, 0, 0, 0.2); display: inline-block; border: 1px solid; animation: 2s ease 0s normal none 1 running baranimate; background: rgb(51, 172, 23) linear-gradient(to bottom, rgb(50, 234, 50), rgb(148, 194, 152) 70%, rgb(51, 172, 23)) repeat scroll 0% 0%; height: 8px;"></span><br>
+            <span>4 <i class="fa fa-star" aria-hidden="true"></i></span><span class="bar" style="margin-left: 12px; border-radius: 10px; box-shadow: 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 2px rgba(0, 0, 0, 0.2); display: inline-block; border: 1px solid; animation: 2s ease 0s normal none 1 running baranimate; background: rgb(153, 204, 0) linear-gradient(to bottom, rgb(224, 240, 165), rgb(153, 206, 95) 70%, rgb(153, 204, 0)) repeat scroll 0% 0%; height: 8px; width: 55%;"></span><br>
+            <span>3 <i class="fa fa-star" aria-hidden="true"></i></span><span class="bar" style="margin-left: 12px; border-radius: 10px; box-shadow: 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 2px rgba(0, 0, 0, 0.2); display: inline-block; border: 1px solid; animation: 2s ease 0s normal none 1 running baranimate; background: rgb(242, 182, 60) linear-gradient(to bottom, rgb(248, 218, 156), rgb(245, 196, 98) 70%, rgb(242, 182, 60)) repeat scroll 0% 0%; height: 8px; width: 50%;"></span><br>
+            <span>2 <i class="fa fa-star" aria-hidden="true"></i></span><span class="bar" style="margin-left: 12px; border-radius: 10px; box-shadow: 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 2px rgba(0, 0, 0, 0.2); display: inline-block; border: 1px solid; animation: 2s ease 0s normal none 1 running baranimate; background: rgb(255, 111, 49) linear-gradient(to bottom, rgb(255, 156, 14), rgb(255, 111, 49) 70%, rgb(255, 127, 2)) repeat scroll 0% 0%; height: 8px; width: 45%;"></span><br>
+            <span>1 <i class="fa fa-star" aria-hidden="true"></i></span><span class="bar" style="height: 8px; width: 40%; margin-left: 12px; border-radius: 10px; box-shadow: 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 2px rgba(0, 0, 0, 0.2); display: inline-block; border: 1px solid; animation: 2s ease 0s normal none 1 running baranimate; background: rgb(219, 58, 39) linear-gradient(to bottom, rgb(255, 22, 53), rgb(216, 12, 17) 70%, rgb(255, 0, 0)) repeat scroll 0% 0%;"></span>
+          </div>
+        </div>
+        <div class="store-rate">
+          <div class="stat-head">
+            Statistik Kepuasan Toko
+          </div>
+          <div class="stat-body">
+            <div class="stat-row">
+              <div style="background-color: rgb(247, 247, 247);font-weight:bold;" class="stat-col1">
+                Kepuasan
+              </div>
+              <div style="background-color: rgb(247, 247, 247);font-weight:bold;" class="stat-col2">
+                Total
+              </div>
+              <div class="stat-col1">
+                <i style="color: green;" class="fa fa-smile-o" aria-hidden="true"></i> Positif
+              </div>
+              <div class="stat-col2">
+                12
+              </div>
+              <div class="stat-col1">
+                <i style="color: blue;" class="fa fa-meh-o" aria-hidden="true"></i> Netral
+              </div>
+              <div class="stat-col2">
+                5
+              </div>
+              <div class="stat-col1">
+                <i style="color: red;" class="fa fa-frown-o" aria-hidden="true"></i> Negatif
+              </div>
+              <div class="stat-col2">
+                2
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="store-rate">
+          <div class="stat-head">
+            Kecepatan Transaksi
+          </div>
+          <div class="stat-body-third" style="">
+            <i style="" class="fa fa-tachometer" aria-hidden="true"></i><span style="" class="kecepatan">Sedang</span>
+            <hr>
+          <i style="color: rgb(0, 182, 0);" class="fa fa-pie-chart" aria-hidden="true"></i><span style="" class="kecepatan">91.7% Sukses</span>
+            <hr>
+          <p class="jumlah-transaksi">Dari 26 transaksi</p>
+          </div>
+
+
+
+        </div>
+
+      </div>
+      <div class="pesan">
+        <form>
+          <input name="nama" placeholder="Nama" type="text"><br>
+          <input name="email" placeholder="Email" type="text"><br>
+          <textarea name="pesan" placeholder="Pesan Anda"></textarea><br>
+          <input value="Kirim" style="font-weight: bold;" class="btn btn-danger" type="submit">
+        </form>
+      </div>
+      <div class="store-menu">
+        <ul class="store-menu-item">
+          <li class="produk store-menu-selected"><a href="#">Produk</a></li>
+          <li class="diskusi"><a href="#">Diskusi Produk</a></li>
+          <li class="ulasan"><a href="#">Ulasan</a></li>
+          <li class="infotoko"><a href="#">Informasi Toko</a></li>
+        </ul>
+      </div>
       <div class="store-sort">
         <%= form_tag toko_path, remote: true do %>
         <input type="hidden" name="id" value="<%= @toko.id %>">
         <input class="store-cari" type="text" name="search" placeholder="Masukan kata kunci">
           <select class="store-select-sort" name="sort">
+            <option value="">Urutan</option>
             <option value="created_at desc">Terbaru</option>
             <option value="harga_beli asc">Termurah</option>
             <option value="harga_beli desc">Termahal</option>
             <option value="diskon desc">Diskon</option>
           </select>
           <select class="store-select-page" name="perpage">
+            <option value="15">Per Halaman</option>
             <option value="5">5</option>
             <option value="15">15</option>
             <option value="30">30</option>
@@ -80,35 +172,61 @@
           <span style="margin-left:10px;margin-top:5px;display:inline;" class="loading"></span>
         <% end %>
       </div>
-
-						<div class="kt-list-produk">
-              <% @mytoko.each do |produk| %>
-							<div class="product-carousel">
-								<div class="thumbfoto-produk">
-									<a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
-                  <% if produk.harga_diskon %>
-									<span class="lagidiskon"><i style="margin-top:4px;margin-right: 0px;" class="fa fa-tags"></i> <%= produk.diskon %>%</span>
-                  <% end %>
-                  <% if produk.jumlah_grosir1min %>
-                          <span class="grosiran"><i style="margin-top:4px;" class="fa fa-lightbulb-o"></i> grosir</span>
-                          <% end %>
-								</div>
-								<a href="<%= produk_path(produk) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
-								<div class="hargaasli">Rp <%= produk.harga_beli %></div>
-							</div>
-              <% end %>
-						</div>
-
-
-					<div class="pagingarea">
-						<div class="store-halaman">
-            <%= will_paginate @mytoko %>
-            </div>
-						<p class="store-typelight"><%= page_entries_info @mytoko %></p>
-					</div>
+      <div class="store-left-sidebar">
+        <div class="side-section">
+          <div class="left-head">
+            <i style="margin-top:2px;" class="fa fa-file-text" aria-hidden="true"></i> Catatan
+          </div>
+          <div class="left-content cara-order">
+            Cara Order
+          </div>
+        </div>
+        <div class="side-section">
+          <div class="left-head">
+            <i style="margin-top:2px;" class="fa fa-th-list" aria-hidden="true"></i> Etalase
+          </div>
+          <% @c = [] %>
+          <% @toko.produks.each do |p| %>
+          <% @c << p.category.id %>
+          <% end %>
+          <% @c.uniq.each do |c| %>
+          <div class="left-content">
+            <%= form_tag toko_path, remote: true do %>
+            <input type="hidden" name="category" value="<%= c %>">
+            <button class="category-btn"><%= Category.find(c).kategori %></button>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="store-right-content">
+      <div class="kt-list-produk">
+        <% @mytoko.each do |produk| %>
+        <div class="product-carousel">
+          <div class="thumbfoto-produk">
+            <a href="<%= produk_path(produk) %>"><img src="<%= produk.foto_produk1.url %>" class="responsiveimg"/></a>
+            <% if produk.harga_diskon %>
+            <span class="lagidiskon"><i style="margin-top:4px;margin-right: 0px;" class="fa fa-tags"></i> <%= produk.diskon %>%</span>
+            <% end %>
+            <% if produk.jumlah_grosir1min %>
+            <span class="grosiran"><i style="margin-top:4px;" class="fa fa-lightbulb-o"></i> grosir</span>
+            <% end %>
+          </div>
+          <a href="<%= produk_path(produk) %>"><h4 class="titleproduk"><%= produk.nama_produk %></h4></a>
+          <div class="hargaasli">Rp <%= produk.harga_beli %></div>
+        </div>
+        <% end %>
+      </div>
+      <div class="pagingarea">
+        <div class="store-halaman">
+          <%= will_paginate @mytoko %>
+        </div>
+        <p class="store-typelight"><%= page_entries_info @mytoko %></p>
+      </div>
+      </div>
 
 		</div>
-    <footer style="" id="footer">
+    <footer style="clear:both;" id="footer">
      <div class="container">
             <!-- introduce-box -->
             <div id="introduce-box" class="row">
@@ -228,5 +346,64 @@
 <script>
 $(function(){
    $('.pagination a').attr('data-remote', 'true')
+});
+</script>
+<script>
+  $('.cara-order').bind("click", function(){
+    $(".kt-list-produk").html('<%= j render "tokos/catatan" %>');
+    $(".pagingarea").attr('style', 'display:none;');
+});
+</script>
+<script>
+  $('.category-btn').bind("click", function(){
+    $(".loading").html('<%= image_tag "loading-bar.gif" %>');
+});
+</script>
+<script>
+  $('.produk').bind("click", function(event){
+    event.preventDefault();
+    $("li").removeClass( "store-menu-selected" );
+    $(".produk").addClass( "store-menu-selected" );
+    $(".kt-list-produk").html('<%= j render "tokos/showajax" %>');
+    $(".pagingarea").attr('style', 'display:block;');
+});
+</script>
+<script>
+  $('.diskusi').bind("click", function(event){
+    event.preventDefault();
+    $("li").removeClass( "store-menu-selected" );
+    $(".diskusi").addClass( "store-menu-selected" );
+    $(".kt-list-produk").html('<%= j render "tokos/diskusi" %>');
+    $(".pagingarea").attr('style', 'display:none;');
+});
+</script>
+<script>
+  $('.infotoko').bind("click", function(event){
+    event.preventDefault();
+    $("li").removeClass( "store-menu-selected" );
+    $(".infotoko").addClass( "store-menu-selected" );
+    $(".kt-list-produk").html('<%= j render "tokos/infotoko" %>');
+    $(".pagingarea").attr('style', 'display:none;');
+});
+</script>
+<script>
+  $('.ulasan').bind("click", function(event){
+    event.preventDefault();
+    $("li").removeClass( "store-menu-selected" );
+    $(".ulasan").addClass( "store-menu-selected" );
+    $(".kt-list-produk").html('<%= j render "tokos/ulasan" %>');
+    $(".pagingarea").attr('style', 'display:none;');
+});
+</script>
+<script>
+  $('.stat').bind("click", function(event){
+    event.preventDefault();
+    $(".statistik").slideToggle("slow");
+});
+</script>
+<script>
+  $('.msg').bind("click", function(event){
+    event.preventDefault();
+    $(".pesan").slideToggle("medium");
 });
 </script>

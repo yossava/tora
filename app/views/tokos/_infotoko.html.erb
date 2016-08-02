@@ -1,0 +1,114 @@
+<div class="info-toko">
+  <div class="first-row">
+    <div class="user-toko">
+      <div class="user-toko-nama">
+        <%= @toko.user.namalengkap %>
+      </div>
+      <div class="user-toko-pemilik">
+        Pemilik Toko
+      </div>
+      <div class="user-toko-foto">
+        <%= image_tag @toko.user.profil_image.url %>
+      </div>
+    </div>
+    <div class="transaksi-toko">
+      <div class="col-trx-toko">
+        <div class="toko-jumlah">
+          36
+        </div>
+        <div class="toko-ket">
+          <i class="fa fa-check-square" aria-hidden="true"></i> Transaksi Berhasil
+        </div>
+      </div>
+      <div class="col-trx-toko">
+        <div class="toko-jumlah">
+          54
+        </div>
+        <div class="toko-ket">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Produk Terjual
+        </div>
+      </div>
+      <div class="col-trx-toko">
+        <div class="toko-jumlah">
+          2
+        </div>
+        <div class="toko-ket">
+          <i class="fa fa-server" aria-hidden="true"></i> Total Kategori
+        </div>
+      </div>
+      <div class="col-trx-toko">
+        <div class="toko-jumlah">
+          15
+        </div>
+        <div class="toko-ket">
+          <i class="fa fa-tag" aria-hidden="true"></i> Total Produk
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toko-judul-section">
+    Dukungan Pengiriman
+  </div>
+  <hr>
+  <div class="toko-ekspedisi">
+    <div class="row-ekspedisi">
+      <div class="logo-ekspedisi">
+        <%= image_tag "jne.png" %>
+      </div>
+      <div class="jenis-ekspedisi">
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> Reguler
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> YES
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> OKE
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row-ekspedisi">
+      <div class="logo-ekspedisi">
+        <%= image_tag "tiki.png" %>
+      </div>
+      <div class="jenis-ekspedisi">
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> Reguler
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> YES
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> OKE
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row-ekspedisi">
+      <div class="logo-ekspedisi">
+        <%= image_tag "pos.png" %>
+      </div>
+      <div class="jenis-ekspedisi">
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> Reguler
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> YES
+        </div>
+        <div class="check-ekspedisi">
+          <i class="fa fa-check" aria-hidden="true"></i> OKE
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="lokasi-toko">
+    <i style="margin-top:2px;margin-right:2px;" class="fa fa-map-marker" aria-hidden="true"></i> Lokasi: Yogyakarta
+  </div>
+  <hr>
+  <div class="belanja-aman">
+    <p>Tips Belanja Online Aman: Gunakan fasilitas escrow / rekening bersama gratis dari Torako. Modus penipuan umumnya terjadi dengan cara mengiming-imingi transaksi di luar situs, dengan cara transfer dana langsung ke nomor rekening bukan milik Torako.</p>
+  </div>
+</div>

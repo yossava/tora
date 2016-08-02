@@ -32,6 +32,10 @@ class TokosController < ApplicationController
       @mytoko = Produk.search(params[:search]).where(:toko_id => @tokoid).order(params[:sort]).paginate(:page => params[:page], :per_page => @page)
 
     end
+    if params[:category]
+      @tokoid = @toko.id
+      @mytoko = Produk.where(:toko_id => @tokoid, :category_id => params[:category]).paginate(:page => params[:page], :per_page => 15)
+    end
     respond_to do |format|
         format.html {render layout: "toko"}
         format.js

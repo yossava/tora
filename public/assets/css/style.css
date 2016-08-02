@@ -5458,7 +5458,6 @@ a.btn-add-cart:focus {
   float:right;
 }
 .kt-list-produk {
-    width: 90%;
     margin: auto;
     padding-top: 20px;
 }
@@ -5500,42 +5499,42 @@ a.btn-add-cart:focus {
     margin-top: 5px;
 }
 .store-sort {
-    border: 2px solid #FEB5B5;
     margin-top: 20px;
-    padding: 10px 64px;
-    background-color: #FFE7E7;
+    padding: 5px 11px 5px 5px;
+    background-color: #F7F7F7;
+    border: 1px solid #D3D3D3;
 }
 .store-cari {
-    height: 30px;
+    height: 40px;
     border: 1px solid lightgray;
     padding: 5px 10px;
-    width: 200px;
+    width: 250px;
     display: inline;
     background-color: white;
 }
 .store-select-sort {
-  height: 30px;
+  height: 40px;
   padding: 5px;
   border: solid 1px lightgray;
   width: 200px;
   display: inline;
 }
 .store-select-page {
-  height: 30px;
+  height: 40px;
   padding: 5px;
   border: solid 1px lightgray;
-  width: 100px;
-  display: inline;
+  width: 150px;
 }
 .store-search-btn {
-    height: 30px;
+    height: 40px;
     width: 80px;
     padding-top: 3px;
     border-radius: 2px;
-    margin-top: -2px;
+    margin-top: 0px;
+    float:right;
 }
 .store-share {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     border-width: medium 1px 1px;
     border-style: none solid solid;
     border-color: #D3D3D3;
@@ -5558,7 +5557,6 @@ a.btn-add-cart:focus {
     margin-right: 5px;
 }
 .store-typelight {
-    margin-left: 67px;
     margin-bottom: 20px;
 }
 .store-halaman .previous_page, .store-halaman a, .store-halaman .next_page {
@@ -5567,7 +5565,6 @@ a.btn-add-cart:focus {
     color: white;
 }
 .store-halaman {
-  padding-left: 67px;
 }
 .store-halaman .current {
     background-color: #FF9191;
@@ -5600,7 +5597,7 @@ a.btn-add-cart:focus {
     height: 60%;
     font-size: 13px !important;
     color: #FFF !important;
-    padding: 2px 5px;
+    padding: 3px 7px 2px 7px;
     margin-top: 8px;
     border-radius: 2px;
     font-weight: bold;
@@ -5624,4 +5621,350 @@ a.btn-add-cart:focus {
 .store-quote {
     color: rgb(96, 96, 96);
     font-size: 0.9em;
+}
+.store-left-sidebar {
+    float: left;
+    margin-top: 20px;
+    width: 18%;
+    margin-right: 4px;
+    border-radius: 2px;
+    border-bottom:none;
+}
+.store-right-content {
+    float: right;
+    width: 81%;
+}
+#store-footer{
+  clear:both;
+}
+.store-left-sidebar .left-content {
+    height: 40px;
+    padding: 8px 10px;
+    color: #606060;
+    border-width: 1px 1px medium;
+    border-style: solid solid none;
+    border-color: #D3D3D3 #D3D3D3 -moz-use-text-color;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+}
+.store-left-sidebar .left-head {
+    background-color: #F7F7F7;
+    height: 40px;
+    padding: 8px 10px;
+    font-weight: bold;
+    color: #606060;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #D3D3D3;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+}
+.store-left-sidebar .left-content:hover {
+    background-color: #EB1C24;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+.side-section {
+  margin-bottom:20px;
+  border-bottom: 1px solid #D3D3D3;
+}
+.store-menu-item {
+    padding: 0px;
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 20px;
+}
+.store-menu-item li {
+    display: inline-block;
+    border-top: 1px solid #d3d3d3;
+    padding: 5px 5px;
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-radius: 2px;
+    background-color: #F7F7F7;
+    color: #606060;
+    margin-right: 5px;
+}
+.store-menu-selected {
+  border-top: 2px solid red !important;
+}
+.diskusi-produk {
+width: 100%;
+float: left;
+border-top: 1px solid rgb(211, 211, 211);
+margin-bottom: 20px;
+border-bottom: 3px solid #D3D3D3;
+border-left: 1px solid #D3D3D3;
+border-right: 1px solid #D3D3D3;
+}
+.detail-produk {
+float: left;
+width: 14%;
+text-align: center;
+border-right: 1px solid rgb(211, 211, 211);
+}
+.foto-produk {
+width: 100px;
+margin: 15px auto;
+overflow: hidden;
+border: 1px solid rgb(211, 211, 211);
+padding: 5px;
+}
+.nama-produk {
+font-weight: bold;
+color: red;
+margin-bottom: 10px;
+}
+.diskusi-produk .ulasan {
+float: left;
+padding: 15px;
+width: 86%;
+background-color: rgb(247, 247, 247);
+}
+.kiri {
+display: inline-block;
+width: 8%;
+}
+.foto-profil {
+height: 50px;
+width: 50px;
+border: 1px solid rgb(211, 211, 211);
+padding: 3px;
+}
+.kanan {
+height: 20px;
+display: inline-block;
+width: 90%;
+}
+.nama-user {
+width: 50%;
+height: 20px;
+color: rgb(235, 28, 36);
+font-weight: bold;
+}
+.pesan {
+height: 30px;
+width: 40%;
+color: rgb(96, 96, 96);
+}
+.diskusi-produk .seller {
+  background-color:white;
+}
+.ulasan .komentar {
+    margin-top: 20px;
+    color: rgb(96, 96, 96);
+ }
+.ulasan .bintang i {
+    color: orange;
+    margin-top:2px;
+}
+.statistik {
+    padding:15px;
+    border: 1px solid #d3d3d3;
+    margin-bottom: 20px;
+    display: none;
+}
+.info-toko {
+width: 100%;
+border: 1px solid #D3D3D3;
+padding: 15px;
+margin-bottom: 40px;
+color: rgb(96, 96, 96);
+}
+.user-toko {
+width: 20%;
+border: 1px solid #D3D3D3;
+padding: 10px;
+text-align: center;
+}
+.user-toko-nama {
+font-weight: bold;
+color: #EB1C24;
+}
+.user-toko-pemilik {
+font-size: 12px;
+margin-bottom: 10px;
+}
+.user-toko-foto {
+width: 100%;
+border: 1px solid #D3D3D3;
+padding: 5px;
+}
+.transaksi-toko {
+border: 1px solid #D3D3D3;
+background-color: #F7F7F7;
+padding: 20px;
+position: absolute;
+bottom: 0px;
+left: 21%;
+width: 79%;
+}
+.col-trx-toko {
+text-align: center;
+width: 20%;
+float: left;
+margin-left: 20px;
+}
+.toko-jumlah {
+color: rgb(235, 28, 36);
+font-weight: bold;
+font-size: 20px;
+}
+.toko-ket {
+    font-size: 12px;
+}
+.toko-judul-section {
+clear: both;
+margin-top: 20px;
+font-weight: bold;
+}
+.logo-ekspedisi {
+height: 50px;
+background-color: #F7F7F7;
+width: 20%;
+float: left;
+border: 1px solid #D3D3D3;
+padding-top: 10px;
+padding-left: 70px;
+}
+.jenis-ekspedisi {
+    width: 80%;
+    float: left;
+    height: 50px;
+    border: 1px solid #D3D3D3;
+    padding: 13px;
+}
+.check-ekspedisi {
+    float: left;
+    margin-left: 40px;
+}
+.lokasi-toko {
+    font-weight: bold;
+    margin-top:20px;
+}
+.info-toko .belanja-aman {
+    margin-top: 20px;
+    border: 2px dashed rgb(235, 28, 36);
+    padding: 20px;
+    background-color: rgb(255, 223, 223);
+}
+.info-toko .first-row {
+  position: relative;
+  height: auto;
+}
+.store-rate {
+height: 200px;
+border-width: 5px 1px 1px;
+border-style: solid;
+border-color: #EB1C24 #D3D3D3 #D3D3D3;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+border-image: none;
+display: inline-block;
+width: 31%;
+margin-right: 16px;
+margin-left: 8px;
+}
+.stat-head{
+text-align: center;
+font-weight: bold;
+margin-top: 10px;
+margin-bottom: 30px;
+}
+.stat-body-left{
+width: 50%;
+text-align: center;
+color: #606060;
+display: inline-block;
+}
+.nilai{
+font-size: 32px;
+font-weight: bold;
+color: #EB1C24;
+}
+.stat-body-right{
+display: inline-block;
+width: 48%;
+}
+.stat-body-right i{
+  color:orange;
+  margin-top: 3px;
+}
+.stat-body-right .bar{
+  margin-top: 5px;
+}
+.stat-body{
+  margin:auto;
+  width:90%;
+  color: #606060;
+  border: 1px solid #d3d3d3
+}
+.stat-col1{
+  display: inline-block;
+  width: 40%;
+  padding: 5px;
+  padding-left: 20px;
+
+}
+.stat-col2{
+  display: inline-block;
+  width: 60%;
+  padding: 5px;
+  text-align: left;
+  margin-left:-4px;
+  padding-left:100px;
+}
+.stat-col1 i {
+  margin-top: 3px;
+}
+.kecepatan {
+  font-size: 1.7em;
+  color: #606060;
+}
+.stat-body-third{
+  text-align: center;
+}
+.stat-body-third i {
+color: #EB1C24;
+font-size: 1.7em;
+margin-right: 10px;
+margin-top: 5px;
+}
+.jumlah-transaksi {
+    color: #606060;
+    font-size:12px;
+}
+.stat-body-third hr {
+   width: 60%;
+   margin: 5px auto;
+}
+.pesan {
+  display:none;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  height: 230px;
+  margin-bottom: 20px;
+  padding:20px;
+}
+.pesan input {
+  border: 1px solid #d3d3d3;
+  padding: 5px;
+  border-radius:2px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.pesan textarea {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  padding: 5px;
+  border-radius:2px;
+  margin-bottom: 10px;
 }
