@@ -27,6 +27,9 @@ class HomeController < ApplicationController
     Cart.find(params[:id]).update(:expired => true)
     redirect_to :back
   end
+  def masuk
+    render layout: "common"
+  end
 
   def display
       respond_to do |format|
@@ -70,7 +73,7 @@ class HomeController < ApplicationController
     @food = Produk.all.order("created_at desc").first(5)
     render layout: "main"
   end
-  
+
   def profil
   end
 

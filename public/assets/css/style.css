@@ -5964,3 +5964,60 @@ margin-top: 5px;
   border-radius:2px;
   margin-bottom: 10px;
 }
+.spacermedium {
+    clear: both;
+    margin-bottom: 40px;
+}
+.loginblock {
+    color: rgb(96, 96, 96);
+}
+.headingblok-logreg {
+    border-bottom: 3px solid red;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.notbordered {
+    margin-bottom: 10px;
+}
+.loginblock label{
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.loginblock input{
+    border: 1px solid rgb(211, 211, 211);
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 2px;
+    width: 100%;
+}
+.forgotpass {
+    float: right;
+}
+.loginoptionbtn {
+    float: left;
+    margin-right: 5px;
+    color: #FFF;
+    background-color: #EF4C48;
+    padding: 7px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+.loginoptionbtn i{
+  margin-top: 2px;
+}
+.loginoptionbtn:hover{
+  background-color: #FF4B4B;
+}
+.loginbtnred {
+    background-color: #D81E1E;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: none;
+    font-weight: bold;
+}
+.loginbtnred:hover {
+    background-color: #FF3636;
+}

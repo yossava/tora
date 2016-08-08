@@ -1386,12 +1386,7 @@ border-radius: 5px 0px 0px 5px;}
 .headingblok-logreg{
 	position:relative;
 }
-.headingblok-logreg h4{
-	color: rgb(0, 0, 0);
-	font-size: 20px;
-	border-bottom: 2px solid rgb(235, 33, 83);
-	padding: 0px 0px 10px;
-}
+
 .form-row{
 	position: relative;
 	padding: 10px 0px;
@@ -1451,19 +1446,9 @@ border-radius: 5px 0px 0px 5px;}
 .forgotpass a:hover{
 	text-decoration:underline;
 }
-.loginoptionbtn {
-	display: block;
-	background: transparent;
-	text-align: center;
-	border: 1px solid #ccc;
-	padding: 10px 0px;
-	font-weight: 300;
-	font-size: 14px;
-	color: #424242;
-}
+
 .headingblok-logreg.bordered{
 	position: relative;
-	border-top: 1px solid rgb(204, 204, 204);
 	margin: 30px 0px;
 }
 .headingblok-logreg.bordered h4{
@@ -1472,16 +1457,6 @@ border-radius: 5px 0px 0px 5px;}
 	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
 	top: -23px;
 	padding: 0px 20px 0px 0px;
-}
-.sosmedlogin{
-	width: 22%;
-	margin-right: 10px;
-	display: inline-block;
-	background:#F5F5F5 ;
-	transition:all 0.2s ease;
-}
-.sosmedlogin:hover{
-	background:#222 ;
 }
 .sosmedlogin:hover > a .loginoptionbtn {
 	color:#fff;
@@ -1493,9 +1468,9 @@ border-radius: 5px 0px 0px 5px;}
 	width: 65px;
 }
 .listotherlogin.reg{
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 20px;
-	margin-bottom: 2em;
+border-bottom: 1px solid #E72E2E;
+padding-bottom: 60px;
+margin-bottom: 20px;
 }
 .reg-info{
 	padding: 20px;
