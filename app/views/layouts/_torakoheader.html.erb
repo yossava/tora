@@ -13,6 +13,9 @@
                 <a href="/wishlist">Wishlist</a>
                 <a href="#">Services</a>
                 <a href="#">Support</a>
+                <% if user_signed_in? %>
+                <a href="/logout" data-method="delete">Logout</a>
+                <% end %>
             </div>
         </div>
     </div>
