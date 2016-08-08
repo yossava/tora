@@ -43,7 +43,7 @@
 						<div id="blok-loginpanel">
 							<div class="headingblok-logreg login">
 								<h4 class="notbordered">Log In</h4>
-								<p>Selamat datang di Torako. Silakan isi data login Anda</p>
+								<p>Selamat datang di Loveitmart. Silakan isi data login Anda</p>
 							</div>
 							<div class="ctnblok-logreg">
                 <% if flash[:alert] %>
@@ -55,12 +55,12 @@
                 <%= form_for(:user, :url => session_path(:user)) do |f| %>
 								<div class="form-row has-error">
 									<label for="email">Email</label>
-									<input required="true" type="text" name="user[email]" id="email" placeholder="Masukan Email / Username">
+									<input data-validation="email" required="true" type="text" name="user[email]" id="email" placeholder="Masukan Email">
 									<!--<p><i class="fa fa-exclamation-triangle"></i> &nbsp;Isikan Username</p>-->
 								</div>
 								<div class="form-row">
 									<label for="password">Password</label>
-									<input required="true" type="password" name="user[password]" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+									<input data-validation="length" data-validation-length="min6" required="true" type="password" name="user[password]" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
 								</div>
 								<div class="form-row">
 									<input type="submit" name="commit" value="Log In" class="gosignin" >
@@ -79,9 +79,21 @@
                   <span class="loginoptionbtn facebook"><i class="fa fa-facebook"></i> Facebook</span>
                   <% end %>
                   </div>
-									<div class="sosmedlogin"><a href="#"><span class="loginoptionbtn twitter"><i class="fa fa-twitter"></i> Twitter</span></a></div>
-									<div class="sosmedlogin"><a href="#"><span class="loginoptionbtn gplus"><i class="fa fa-google-plus"></i> Google Plus</span></a></div>
-									<div class="sosmedlogin"><a href="#"><span class="loginoptionbtn instagram"><i class="fa fa-instagram"></i> Instagram</span></a></div>
+									<div class="sosmedlogin">
+                    <%= link_to user_omniauth_authorize_path(:twitter) do %>
+                    <span class="loginoptionbtn twitter"><i class="fa fa-twitter"></i> Twitter</span>
+                  <% end %>
+                  </div>
+									<div class="sosmedlogin">
+                    <%= link_to user_omniauth_authorize_path(:google_oauth2) do %>
+                    <span class="loginoptionbtn gplus"><i class="fa fa-google-plus"></i> Google Plus</span>
+                    <% end %>
+                  </div>
+									<div class="sosmedlogin">
+                    <%= link_to user_omniauth_authorize_path(:instagram) do %>
+                    <span class="loginoptionbtn instagram"><i class="fa fa-instagram"></i> Instagram</span>
+                    <% end %>
+                  </div>
 								</div>
 							</div>
 						</div>
@@ -154,3 +166,6 @@
 				return false;
 			});
 		</script>
+<script>
+  $.validate();
+</script>
