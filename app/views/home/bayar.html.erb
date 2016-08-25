@@ -1,35 +1,4 @@
-<%= render 'layouts/header' %>
-		<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<%= render 'layouts/sidemenu' %>
-						</div>
-						<%= render 'layouts/bread' %>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ./Header -->
-
+<%= render 'layouts/torakoheader' %>
 		<div class="spacermedium"></div>
 
 		<div class="container">
@@ -118,7 +87,7 @@
 	<div class="col-md-12">
 		<div class="blok-to-checkout">
 			<div class="col-md-7 col-sm-6 col-xs-6">
-				<a href="/" id="lnjt_blnj"><i class="fa fa-angle-left"></i> &nbsp; Kembali</a>
+				<a href="/" id="lnjt_blnj"><i style="margin-top: 3px;" class="fa fa-angle-left"></i> &nbsp; Kembali</a>
 			</div>
 			<div class="col-md-3 col-sm-3 cp-borderedright col-xs-6">
         <% if @currentcart.present? %>
@@ -131,7 +100,7 @@
         <% if @currentcart.present? %>
         <a href="#/" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
         <% else %>
-        <a style="background-color:grey;" href="#" class="ckbtn-krnjng" >Bayar &nbsp; <i class="fa fa-angle-right"></i></a>
+        <a style="background-color:grey;" href="#" class="ckbtn-krnjng" >Bayar &nbsp; <i style="margin-top: 3px;" class="fa fa-angle-right"></i></a>
         <% end %>
 			</div>
 		</div>
@@ -142,8 +111,7 @@
 </div>
 </div>
 </div>
-<div class="spacerbig"></div>
-<%= render 'layouts/footer' %>
+<%= render 'layouts/torakofooter' %>
 <script>
   $('.pembayaran').bind("change", function(){
     var jenis = $('option:selected', this).attr('value');

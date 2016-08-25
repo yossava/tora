@@ -1,36 +1,4 @@
-<%= render 'layouts/header' %>
-		<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<%= render 'layouts/sidemenu' %>
-						</div>
-
-            <%= render 'layouts/bread' %>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ./Header -->
-
+<%= render 'layouts/torakoheader' %>
 		<div class="spacermedium"></div>
 
 		<div class="container">
@@ -50,9 +18,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="headingmac">
-								<h4>Pembayaran yang belum dikonfirmasi:</h4
+                <h4>Pembayaran yang belum dikonfirmasi:</h4>
                   <% if notice.to_s.include? "TELAH" %>
-                <br><div id="notice" style="color:white;background:green;padding:3px;text-align:center;"> <%= notice %></div>
+                <br><div id="notice" style="color:white;background:green;padding:3px;text-align:center;"><%= notice %></div>
                   <% end %>
                   <% if notice.to_s.include? "BELUM" %>
                 <br><div id="notice" style="color:white;background:#ED245B;padding:3px;text-align:center;"> <%= notice %></div>
@@ -69,15 +37,13 @@
                 <% @troli2live.each do |t| %>
 								<div class="list-konpem-outer">
 									<p class="invoice">Invoice : <strong><%= t.invoice %></strong></p>
-                  <p class="ttl-tagihan">Transaction ID : <strong><%= t.txid %><% if (t.created_at + 4.days - Time.now).to_i/86400 < 1 %> <span class="label label-danger">EXPIRED </span><% end %></strong></p>
 									<p class="dtime-transaksi">Tanggal Transaksi : <%= t.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</p>
 									<p>Pembelian dari Toko : <strong><%= Toko.find(t.toko_id).nama_toko %></strong></p>
 									<p class="ttl-tagihan">Total Tagihan : <strong><%= number_to_currency(t.subtotal, locale: :id) %></strong></p>
 									<div class="spacermedium"></div>
 									<div class="wrapdtkonf">
 										<div class="heading-wdkf">
-											<h4>Pembelian dari Toko : <strong>Toko1</strong></h4>
-											<span class="inv"><%= Toko.find(t.toko_id).nama_toko %></span>
+											<h4>Pembelian dari Toko : <strong style="text-transform:capitalize;"><%= Toko.find(t.toko_id).nama_toko %></strong></h4>
 										</div>
 										<div class="row">
 											<div class="col-md-6 lpwp">
@@ -120,12 +86,32 @@
 									</div>
 									<div class="spacermedium"></div>
                   <% if (t.created_at + 4.days - Time.now).to_i/86400 > 0 %>
-									<a href="/konfirmasi-transfer/<%= t.id %>?txid=<%= t.txid %>" class="btn-konfirmasipb">Sudah Bayar</a>
+									<button class="btn-konfirmasipb">Konfirmasi</button>
                   <% else %>
                   <a href="/expired/<%= t.id %>" class="btn-konfirmasipb">Hapus Dari Daftar</a>
                   <% end %>
-									<a href="#" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
-									<a href="#" class="hidedtkonf hide"><i class="fa fa-minus"></i>&nbsp; Sembunyikan Detail</a>
+									<a href="#/" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
+                  <div class="form-konfirmasi">
+                    <input type="hidden" value="<%= t.id %>" name="cart_id">
+                    <label>Bank Pengirim</label>
+                    <input type="text" placeholder="Bank Pengirim. cth Bank Mandiri" name="">
+                    <label>Bank Tujuan</label>
+                    <select  name="">
+                      <option>BCA 5556883 Torako</option>
+                      <option>BNI 5556883 Torako</option>
+                      <option>BRI 5556883 Torako</option>
+                      <option>Mandiri 5556883 Torako</option>
+                    </select>
+                    <label>Nama Pengirim</label>
+                    <input type="text" placeholder="Nama Pengirim. cth Johan" name="">
+                    <label>Nominal</label>
+                    <input type="text" placeholder="Nominal Transfer. cth 120000" name="">
+                    <label>Tanggal Transfer</label>
+                    <input type="text" id="datepicker" placeholder="Tanggal Transfer. cth 12/02/2016" name="">
+                    <label>Waktu Transfer</label>
+                    <input type="text" placeholder="Waktu Transfer. cth 12:30 WIB" name="">
+                    <button type="submit" class="btn btn-success">Konfirmasi</button>
+                  </div>
 								</div>
 								<% end %>
 							</div>
@@ -133,22 +119,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+    </div>
+    <%= render 'layouts/torakofooter' %>
 
-		<div class="spacerbig"></div>
-    <%= render 'layouts/footer' %>
-
-<script>
-  	$('.btn-konfirmasipb').click(function(){
-		var $this = $(this);
-		$this.toggleClass('See');
-		if($this.hasClass('Sees')){
-			$this.text('See');
-		} else {
-			$this.text('Mohon Tunggu..');
-		}
-	});
-</script>
 <script>
   $(document).on('ready page:load', function () {
       $("#notice").delay(3000).fadeOut("slow");

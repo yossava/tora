@@ -86,68 +86,79 @@
               <% end %>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 1</label>
+                  <label for="exampleInputEmail1">Image 1</label>
                   <%= f.file_field :img1, class: "form-control" %>
                   <% if @homeitem.img1.url %>
                   <%= image_tag @homeitem.img1 %>
                   <label>
                     <%= f.check_box :remove_img1 %>
-                    Hapus Payment 1
+                    Hapus Image 1
                   </label>
                   <% end %>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 2</label>
+                  <label for="exampleInputEmail1">Image 2</label>
                   <%= f.file_field :img2, class: "form-control" %>
                   <% if @homeitem.img2.url %>
                   <%= image_tag @homeitem.img2 %>
                   <label>
                     <%= f.check_box :remove_img2 %>
-                    Hapus Payment 2
+                    Hapus Image 2
                   </label>
                   <% end %>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 3</label>
+                  <label for="exampleInputEmail1">Image 3</label>
                   <%= f.file_field :img3, class: "form-control" %>
                   <% if @homeitem.img3.url %>
                   <%= image_tag @homeitem.img3 %>
                   <label>
                     <%= f.check_box :remove_img3 %>
-                    Hapus Payment 3
+                    Hapus Image 3
                   </label>
                   <% end %>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 4</label>
+                  <label for="exampleInputEmail1">Image 4</label>
                   <%= f.file_field :img4, class: "form-control" %>
                   <% if @homeitem.img4.url %>
                   <%= image_tag @homeitem.img4 %>
                   <label>
                     <%= f.check_box :remove_img4 %>
-                    Hapus Payment 4
+                    Hapus Image 4
                   </label>
                   <% end %>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 5</label>
+                  <label for="exampleInputEmail1">Image 5</label>
                   <%= f.file_field :img5, class: "form-control" %>
                   <% if @homeitem.img5.url %>
                   <%= image_tag @homeitem.img5 %>
                   <label>
                     <%= f.check_box :remove_img5 %>
-                    Hapus Payment 5
+                    Hapus Image 5
                   </label>
                   <% end %>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Payment 6</label>
+                  <label for="exampleInputEmail1">Image 6</label>
                   <%= f.file_field :img6, class: "form-control" %>
                   <% if @homeitem.img6.url %>
                   <%= image_tag @homeitem.img6 %>
                   <label>
                     <%= f.check_box :remove_img6 %>
-                    Hapus Payment 6
+                    Hapus Image 6
+                  </label>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Image 7</label>
+                  <%= f.file_field :img7, class: "form-control" %>
+                  <% if @homeitem.img7.url %>
+                  <%= image_tag @homeitem.img7 %>
+                  <label>
+                    <%= f.check_box :remove_img7 %>
+                    Hapus Image 7
                   </label>
                   <% end %>
                 </div>
@@ -210,20 +221,30 @@
               <% end %>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <div class="col-md-6">
+                  <label for="exampleInputEmail1">Menu 1</label>
                   <%= f.text_field :text1, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <label for="exampleInputEmail1">Menu 1 Link</label>
                   <%= f.text_field :text2, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <label for="exampleInputEmail1">Menu 2</label>
                   <%= f.text_field :text3, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 4</label>
+                  <label for="exampleInputEmail1">Menu 2 Link</label>
                   <%= f.text_field :text4, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 5</label>
+                  <label for="exampleInputEmail1">Menu 3</label>
                   <%= f.text_field :text5, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 6</label>
+                  <label for="exampleInputEmail1">Menu 3 Link</label>
                   <%= f.text_field :text6, class: "form-control"%>
-                  <label for="exampleInputEmail1">Keywords 7</label>
+                  </div>
+                  <div class="col-md-6">
+                  <label for="exampleInputEmail1">Menu 4</label>
                   <%= f.text_field :text7, class: "form-control"%>
+                  <label for="exampleInputEmail1">Menu 4 Link</label>
+                  <%= f.text_field :text8, class: "form-control"%>
+                  <label for="exampleInputEmail1">Menu 5</label>
+                  <%= f.text_field :text9, class: "form-control"%>
+                  <label for="exampleInputEmail1">Menu 5 Link</label>
+                  <%= f.text_field :text10, class: "form-control"%>
+                  </div>
 
                 </div>
 
@@ -251,11 +272,30 @@
                <% @homeitem.errors.full_messages.each do |message| %>
               <%= message %>
               <% end %>
-              <div class="box-body">
-                <div style="padding:0px;" class="box-body pad">
-                <textarea name="homeitem[description]" class="textarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%=raw @homeitem.description %></textarea>
-                </div>
-              </div>
+               <div class="box-body">
+               <div class="form-group">
+               <div class="col-md-6">
+               <label for="exampleInputEmail1">Feature 1</label>
+               <%= f.text_field :text1, class: "form-control"%>
+               <label for="exampleInputEmail1">Sub Feature 1</label>
+               <%= f.text_field :text2, class: "form-control"%>
+               <label for="exampleInputEmail1">Feature 2</label>
+               <%= f.text_field :text3, class: "form-control"%>
+               <label for="exampleInputEmail1">Sub Feature 2</label>
+               <%= f.text_field :text4, class: "form-control"%>
+               </div>
+               <div class="col-md-6">
+               <label for="exampleInputEmail1">Feature 3</label>
+               <%= f.text_field :text5, class: "form-control"%>
+               <label for="exampleInputEmail1">Sub Feature 3</label>
+               <%= f.text_field :text6, class: "form-control"%>
+               <label for="exampleInputEmail1">Feature 4</label>
+               <%= f.text_field :text7, class: "form-control"%>
+               <label for="exampleInputEmail1">Sub Feature 4</label>
+               <%= f.text_field :text8, class: "form-control"%>
+               </div>
+               </div>
+               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
@@ -681,6 +721,580 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Right</label>
                   <%= f.text_field :text2, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "19" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Telepon</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Slogan</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "20" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "21" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "22" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "23" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "24" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "25" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 1</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 2</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Keywords 3</label>
+                  <%= f.text_field :text3, class: "form-control"%>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "26" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Fashion Pria</label>
+                  <%= f.file_field :img1, class: "form-control"%>
+                  <% if @homeitem.img1.present? %>
+                  <%= image_tag @homeitem.img1.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Fashion Wanita</label>
+                  <%= f.file_field :img2, class: "form-control"%>
+                  <% if @homeitem.img2.present? %>
+                  <%= image_tag @homeitem.img2.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Toys</label>
+                  <%= f.file_field :img3, class: "form-control"%>
+                  <% if @homeitem.img3.present? %>
+                  <%= image_tag @homeitem.img3.url %>
+                  <% end %>
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Electronic</label>
+                  <%= f.file_field :img4, class: "form-control"%>
+                  <% if @homeitem.img4.present? %>
+                  <%= image_tag @homeitem.img4.url %>
+                  <% end %>
+              </div>
+             <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Book</label>
+                  <%= f.file_field :img5, class: "form-control"%>
+                  <% if @homeitem.img5.present? %>
+                  <%= image_tag @homeitem.img5.url %>
+                  <% end %>
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Food</label>
+                  <%= f.file_field :img6, class: "form-control"%>
+                  <% if @homeitem.img6.present? %>
+                  <%= image_tag @homeitem.img6.url %>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "27" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Left Link</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Left</label>
+                  <%= f.file_field :img1, class: "form-control"%>
+                  <% if @homeitem.img1.present? %>
+                  <%= image_tag @homeitem.img1.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Right Link</label>
+                  <%= f.text_field :text2, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Banner Right</label>
+                  <%= f.file_field :img2, class: "form-control"%>
+                  <% if @homeitem.img2.present? %>
+                  <%= image_tag @homeitem.img2.url %>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "28" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Header</label>
+                  <%= f.file_field :img1, class: "form-control"%>
+                  <% if @homeitem.img1.present? %>
+                  <%= image_tag @homeitem.img1.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Footer</label>
+                  <%= f.file_field :img2, class: "form-control"%>
+                  <% if @homeitem.img2.present? %>
+                  <%= image_tag @homeitem.img2.url %>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "30" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Featured Product ID</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Berlaku Sampai</label>
+                  <%= f.text_field :text2, class: "form-control", id: "datepicker", "data-date-format" => "yyyy/mm/dd" %>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "31" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 1</label>
+                  <%= f.file_field :img1, class: "form-control"%>
+                  <% if @homeitem.img1.present? %>
+                  <%= image_tag @homeitem.img1.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 2</label>
+                  <%= f.file_field :img2, class: "form-control"%>
+                  <% if @homeitem.img2.present? %>
+                  <%= image_tag @homeitem.img2.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 3</label>
+                  <%= f.file_field :img3, class: "form-control"%>
+                  <% if @homeitem.img3.present? %>
+                  <%= image_tag @homeitem.img3.url %>
+                  <% end %>
+              </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 4</label>
+                  <%= f.file_field :img4, class: "form-control"%>
+                  <% if @homeitem.img4.present? %>
+                  <%= image_tag @homeitem.img4.url %>
+                  <% end %>
+              </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 5</label>
+                  <%= f.file_field :img5, class: "form-control"%>
+                  <% if @homeitem.img5.present? %>
+                  <%= image_tag @homeitem.img5.url %>
+                  <% end %>
+              </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 6</label>
+                  <%= f.file_field :img6, class: "form-control"%>
+                  <% if @homeitem.img6.present? %>
+                  <%= image_tag @homeitem.img6.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 7</label>
+                  <%= f.file_field :img7, class: "form-control"%>
+                  <% if @homeitem.img7.present? %>
+                  <%= image_tag @homeitem.img7.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 8</label>
+                  <%= f.file_field :img8, class: "form-control"%>
+                  <% if @homeitem.img8.present? %>
+                  <%= image_tag @homeitem.img8.url %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Brand 9</label>
+                  <%= f.file_field :img9, class: "form-control"%>
+                  <% if @homeitem.img9.present? %>
+                  <%= image_tag @homeitem.img9.url %>
+                  <% end %>
+                </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if params[:id] == "32" %>
+      <div class="row">
+        <div class="col-xs-12">
+         <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Halaman: <%= @homeitem.title %></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <%= form_for(@homeitem) do |f| %>
+               <% @homeitem.errors.full_messages.each do |message| %>
+              <%= message %>
+              <% end %>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Facebook</label>
+                  <%= f.text_field :text1, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Twitter</label>
+                  <%= f.text_field :text2, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Google +</label>
+                  <%= f.text_field :text3, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Instagram</label>
+                  <%= f.text_field :text4, class: "form-control" %>
                 </div>
               </div>
               <!-- /.box-body -->

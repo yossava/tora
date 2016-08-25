@@ -95,15 +95,12 @@ class HomeController < ApplicationController
 
     def produk
       @produks = Produk.where(:block => false)
-      @couponcat = Category.find(14)
       @fashioncat = Category.find(7)
       @gadgetcat = Category.find(8)
       @beautycat = Category.find(9)
       @elektronikcat = Category.find(11)
       @sportcat = Category.find(12)
-      @homecat = Category.find(13)
       @babycat = Category.find(10)
-      @makanancat = Category.find(16)
       @fashionproduct = Produk.where(:category_id => @fashioncat, :block => false).order('created_at DESC').take(10)
       @gadgetproduct = Produk.where(:category_id => @gadgetcat, :block => false).order('created_at DESC').take(10)
       @beautyproduct = Produk.where(:category_id => @beautycat, :block => false).order('created_at DESC').take(10)

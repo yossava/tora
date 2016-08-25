@@ -31,8 +31,8 @@
                 <img alt="services" src="assets/data/s1.png" />
             </div>
             <div class="info">
-                <a href="#"><h3>Free Shipping</h3></a>
-                <span>On order over Rp 200</span>
+                <a href="#"><h3><%= Homeitem.find(6).text1 %></h3></a>
+                <span><%= Homeitem.find(6).text2 %></span>
             </div>
         </div>
         <div class="col-xs-6 col-sm-3 service-item">
@@ -40,8 +40,8 @@
                 <img alt="services" src="assets/data/s2.png" />
             </div>
             <div class="info">
-                <a href="#"><h3>30-day return</h3></a>
-                <span>Moneyback guarantee</span>
+                <a href="#"><h3><%= Homeitem.find(6).text3 %></h3></a>
+                <span><%= Homeitem.find(6).text4 %></span>
             </div>
         </div>
         <div class="col-xs-6 col-sm-3 service-item">
@@ -50,8 +50,8 @@
             </div>
 
             <div class="info" >
-                <a href="#"><h3>24/7 support</h3></a>
-                <span>Online consultations</span>
+                <a href="#"><h3><%= Homeitem.find(6).text5 %></h3></a>
+                <span><%= Homeitem.find(6).text6 %></span>
             </div>
         </div>
         <div class="col-xs-6 col-sm-3 service-item">
@@ -59,8 +59,8 @@
                 <img alt="services" src="assets/data/s4.png" />
             </div>
             <div class="info">
-                <a href="#"><h3>SAFE SHOPPING</h3></a>
-                <span>Safe Shopping Guarantee</span>
+                <a href="#"><h3><%= Homeitem.find(6).text7 %></h3></a>
+                <span><%= Homeitem.find(6).text8 %></span>
             </div>
         </div>
     </div>
@@ -95,19 +95,24 @@
                                                   <input type="hidden" name="origin" value="home">
                                                   <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
                                                   <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
-                                                  <% end %>
+                                                  <% end %><!-- end of form -->
                                                </div>
-                                             <% else %>
+                                             <% else %><!-- else if fav include -->
                                              <% @myfav = FavoriteProduk.where(:user_id => current_user.id, :produk_id => p.id).first %>
                                             <div class="quick-view produk-<%= p.id %>">
                                             <%= form_tag delfav_path, remote: true do %>
                                             <%= hidden_field_tag :id, @myfav.id %>
                                             <button title="Remove from wishlist" class="heart un" ><i class="fa fa-heart" aria-hidden="true"></i></button>
                                               <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
-                                            <% end %>
+                                            <% end %><!-- end of form delfav -->
                                             </div>
-                                            <% end %>
-                                            <% end %>
+                                            <% end %><!-- end of if fav include -->
+                                            <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
+                                            <% end %><!-- end of signed in -->
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
                                             </div>
@@ -181,6 +186,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                            <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -255,6 +265,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -308,72 +323,82 @@
                     <h2 class="latest-deal-title">latest deals</h2>
                     <div class="latest-deal-content">
                         <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":1}}'>
+                            <% Produk.where(id: Homeitem.find(30).text1.split(',')).each do |p| %>
                             <li>
-                                <div class="count-down-time" data-countdown="2015/06/27"></div>
+                                <div class="count-down-time" data-countdown="<%= Homeitem.find(30).text2 %>"></div>
                                 <div class="left-block">
-                                    <a href="#"><img class="img-responsive" alt="product" src="assets/data/ld1.jpg" /></a>
-                                    <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a title="Add to Cart" href="#">Add to Cart</a>
-                                    </div>
-                                </div>
+                                            <a href="<%= produk_path(p) %>">
+                                                <img class="img-responsive" alt="product" src="<%= p.foto_produk1 %>" />
+                                            </a>
+                                            <% if user_signed_in? %>
+                                                <% if !@fav.include? p.id %>
+                                                <div class="quick-view produk-<%= p.id %>">
+                                                  <%= form_for @favorite_produk, remote: true do |f| %>
+                                                  <%= f.hidden_field :user_id, value: current_user.id %>
+                                                  <%= f.hidden_field :produk_id, value: p.id %>
+                                                  <input type="hidden" name="origin" value="home">
+                                                  <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                                  <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                                  <% end %>
+                                               </div>
+                                             <% else %>
+                                             <% @myfav = FavoriteProduk.where(:user_id => current_user.id, :produk_id => p.id).first %>
+                                            <div class="quick-view produk-<%= p.id %>">
+                                            <%= form_tag delfav_path, remote: true do %>
+                                            <%= hidden_field_tag :id, @myfav.id %>
+                                            <button title="Remove from wishlist" class="heart un" ><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                              <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            <% end %>
+                                            </div>
+                                            <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
+                                            <% end %>
+                                            <div class="add-to-cart">
+                                                <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
+                                            </div>
+                                            <div class="group-price">
+                                              <% if (Time.now - p.created_at).to_i/86400 < 3 %>
+                                                <span class="product-new">NEW</span>
+                                              <% end %>
+                                              <% if p.harga_diskon.present? && p.harga_diskon > 0 %>
+                                                <span class="product-sale">Sale</span>
+                                              <% end %>
+                                            </div>
+                                        </div>
                                 <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">Rp 38,95</span>
-                                        <span class="price old-price">Rp 52,00</span>
-                                        <span class="colreduce-percentage">(-10%)</span>
-                                    </div>
-                                </div>
+                                            <h5 class="product-name"><a href="#"><%= p.nama_produk %></a></h5>
+                                            <div class="content_price">
+                                                 <% if p.harga_diskon.present? && p.harga_diskon > 0 %>
+                                                <span class="price product-price"><%= number_to_currency(p.harga_diskon, locale: :id) %></span>
+                                                <span class="price old-price"><%= number_to_currency(p.harga, locale: :id) %></span>
+                                              <% else %>
+                                              <span class="price product-price"><%= number_to_currency(p.harga_beli, locale: :id) %></span>
+                                              <span style="visibility:hidden;" class="price old-price"></span>
+                                              <% end %>
+                                            </div>
+                                            <div class="product-star">
+                                              <% if p.rating.present? %>
+                                              <% p.rating.to_i.times do %>
+                                                <i class="fa fa-star"></i>
+                                              <% end %>
+                                              <% (5 - p.rating.to_i).times do %>
+                                                <i class="fa fa-star-o"></i>
+                                              <% end %>
+                                              <% else %>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <i class="fa fa-star-o"></i>
+                                              <% end %>
+                                            </div>
+                                        </div>
                             </li>
-                            <li>
-                                <div class="count-down-time" data-countdown="2015/06/27 9:20:00"></div>
-                                <div class="left-block">
-                                    <a href="#"><img class="img-responsive" alt="product" src="assets/data/ld2.jpg" /></a>
-                                    <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Kunjungi Toko" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a title="Add to Cart" href="#">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">Rp 38,95</span>
-                                        <span class="price old-price">Rp 52,00</span>
-                                        <span class="colreduce-percentage">(-90%)</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count-down-time" data-countdown="2015/06/27 9:20:00"></div>
-                                <div class="left-block">
-                                    <a href="#"><img class="img-responsive" alt="product" src="assets/data/ld3.jpg" /></a>
-                                    <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a title="Add to Cart" href="#">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">Rp 38,95</span>
-                                        <span class="price old-price">Rp 52,00</span>
-                                        <span class="colreduce-percentage">(-20%)</span>
-                                    </div>
-                                </div>
-                            </li>
+                            <% end %>
                         </ul>
                     </div>
                 </div>
@@ -393,9 +418,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(20).text1 %>"> <%= Homeitem.find(20).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(20).text2 %>"> <%= Homeitem.find(20).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(20).text3 %>"> <%= Homeitem.find(20).text3 %> </a></div>
                   <ul class="nav navbar-nav">
 
                   </ul>
@@ -406,19 +431,11 @@
                     <a href="#elevator-2" class="btn-elevator down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads2.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads3.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f1.jpg" /></a>
+                        <a href="#"><img alt="Featurered 1" src="<%= Homeitem.find(26).img1.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -454,6 +471,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -515,9 +537,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(21).text1 %>"> <%= Homeitem.find(21).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(21).text2 %>"> <%= Homeitem.find(21).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(21).text3 %>"> <%= Homeitem.find(21).text3 %> </a></div>
                   <ul class="nav navbar-nav">
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -527,19 +549,11 @@
                     <a href="#elevator-3" class="btn-elevator down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads6.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads7.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f2.jpg" /></a>
+                        <a href="#"><img alt="Featurered 2" src="<%= Homeitem.find(26).img2.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -575,6 +589,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -636,9 +655,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(22).text1 %>"> <%= Homeitem.find(22).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(22).text2 %>"> <%= Homeitem.find(22).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(22).text3 %>"> <%= Homeitem.find(22).text3 %> </a></div>
                   <ul class="nav navbar-nav">
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -648,19 +667,11 @@
                     <a href="#elevator-4" class="btn-elevator down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads8.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads9.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f3.jpg" /></a>
+                        <a href="#"><img alt="Featurered 3" src="<%= Homeitem.find(26).img3.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -696,6 +707,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -757,9 +773,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(23).text1 %>"> <%= Homeitem.find(23).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(23).text2 %>"> <%= Homeitem.find(23).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(23).text3 %>"> <%= Homeitem.find(23).text3 %> </a></div>
                   <ul class="nav navbar-nav">
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -769,19 +785,11 @@
                     <a href="#elevator-5" class="btn-elevator down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads10.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads11.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f4.jpg" /></a>
+                        <a href="#"><img alt="Featurered 4" src="<%= Homeitem.find(26).img4.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -817,6 +825,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -878,9 +891,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(24).text1 %>"> <%= Homeitem.find(24).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(24).text2 %>"> <%= Homeitem.find(24).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(24).text3 %>"> <%= Homeitem.find(24).text3 %> </a></div>
                   <ul class="nav navbar-nav">
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -890,19 +903,11 @@
                     <a href="#elevator-6" class="btn-elevator down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads12.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads13.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f5.jpg" /></a>
+                        <a href="#"><img alt="Featurered 5" src="<%= Homeitem.find(26).img5.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -938,6 +943,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -999,9 +1009,9 @@
                   <span class="toggle-menu"></span>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse kategori">
-                    <div class="keywords" > keyword 1 </div>
-                    <div class="keywords" > keyword 2 </div>
-                    <div class="keywords" > keyword 3 </div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(25).text1 %>"> <%= Homeitem.find(25).text1 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(25).text2 %>"> <%= Homeitem.find(25).text2 %> </a></div>
+                    <div class="keywords"><a data-no-turbolinks="true" href="/cari?utf8=✓&search=<%= Homeitem.find(25).text3 %>"> <%= Homeitem.find(25).text3 %> </a></div>
                   <ul class="nav navbar-nav">
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -1011,19 +1021,11 @@
                     <a href="#" class="btn-elevator disabled down fa fa-angle-down"></a>
               </div>
             </nav>
-            <div class="category-banner">
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads14.jpg" /></a>
-                </div>
-                <div class="col-sm-6 banner">
-                    <a href="#"><img alt="ads2" class="img-responsive" src="assets/data/ads15.jpg" /></a>
-                </div>
-           </div>
            <div class="product-featured clearfix">
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="assets/data/f6.jpg" /></a>
+                        <a href="#"><img alt="Featurered 6" src="<%= Homeitem.find(26).img6.url %>" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -1059,6 +1061,11 @@
                                             <% end %>
                                             </div>
                                             <% end %>
+                                          <% else %><!-- else if user signed in -->
+                                            <div class="quick-view">
+                                            <button type="submit" title="Add to my wishlist" class="heart" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                          <a title="Kunjungi Toko" class="compare" href="<%= toko_path(p.toko) %>"></a>
+                                            </div>
                                             <% end %>
                                             <div class="add-to-cart">
                                                 <a title="Detail Produk" href="<%= produk_path(p) %>">Detail</a>
@@ -1116,12 +1123,12 @@
         <div class="row banner-bottom">
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a href="#"><img alt="ads" class="img-responsive" src="assets/data/ads17.jpg" /></a>
+                    <a href="<%= Homeitem.find(27).text1 %>"><img alt="iklan" class="img-responsive" src="<%= Homeitem.find(27).img1.url %>" /></a>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a href="#"><img alt="ads" class="img-responsive" src="assets/data/ads18.jpg" /></a>
+                    <a href="<%= Homeitem.find(27).text2 %>"><img alt="iklan" class="img-responsive" src="<%= Homeitem.find(27).img2.url %>" /></a>
                 </div>
             </div>
         </div>
@@ -1136,15 +1143,15 @@
         </h2>
         <div class="brand-showcase-box">
             <ul class="brand-showcase-logo owl-carousel" data-loop="true" data-nav = "true" data-dots="false" data-margin = "1" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":2},"600":{"items":5},"1000":{"items":8}}'>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
-                <li class="item merk"><img src="assets/data/gucci.png" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img1.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img2.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img3.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img4.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img5.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img6.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img7.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img8.url %>" alt="logo" class="item-img" /></li>
+                <li class="item merk"><img src="<%= Homeitem.find(31).img9.url %>" alt="logo" class="item-img" /></li>
             </ul>
         </div>
 
@@ -1357,114 +1364,4 @@
 </div>
 
 <!-- Footer -->
-<footer style="" id="footer">
-     <div class="container">
-            <!-- introduce-box -->
-            <div id="introduce-box" class="row">
-                <div class="col-md-3">
-                    <div id="address-box">
-                        <a href="#"><img src="assets/images/toralog.png" alt="" /></a>
-                        <div id="address-list">
-                            <div class="tit-name">Address:</div>
-                            <div class="tit-contain">Jl Monumen Nasional.</div>
-                            <div class="tit-name">Phone:</div>
-                            <div class="tit-contain">021 7788 777</div>
-                            <div class="tit-name">Email:</div>
-                            <div class="tit-contain">support@torako.com</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="introduce-title">My Account</div>
-                            <ul id = "introduce-Account" class="introduce-list">
-                                <li><a href="#">My Order</a></li>
-                                <li><a href="#">My Wishlist</a></li>
-                                <li><a href="#">My Credit Slip</a></li>
-                                <li><a href="#">My Addresses</a></li>
-                                <li><a href="#">My Personal In</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="introduce-title">Support</div>
-                            <ul id = "introduce-support"  class="introduce-list">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Affiliate Program</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div id="contact-box">
-                        <div class="introduce-title">Newsletter</div>
-                        <div class="input-group" id="mail-box">
-                          <input type="text" placeholder="Your Email Address"/>
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">OK</button>
-                          </span>
-                        </div><!-- /input-group -->
-                        <div class="introduce-title">Let's Socialize</div>
-                        <div class="social-link">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fa fa-vk"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div><!-- /#introduce-box -->
-
-            <!-- #trademark-box -->
-            <div id="trademark-box" class="row">
-                <div class="col-sm-12">
-                    <ul id="trademark-list">
-                        <li id="payment-methods">Accepted Payment Methods</li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-ups.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-qiwi.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-wu.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-cn.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-visa.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-mc.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-ems.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-dhl.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-fe.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="assets/data/trademark-wm.jpg"  alt="ups"/></a>
-                        </li>
-                    </ul>
-                </div>
-            </div> <!-- /#trademark-box -->
-
-            <!-- #trademark-text-box -->
-
-            <div id="footer-menu-box">
-
-                <div style="height:150px;" class="col-sm-12"></div>
-                <p class="text-center">Copyrights &#169; 2016 Torako. All Rights Reserved. Designed by on-line.co.id</p>
-            </div><!-- /#footer-menu-box -->
-        </div>
-</footer>
+<%= render 'layouts/torakofooter' %>

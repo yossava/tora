@@ -135,8 +135,8 @@
       </div>
       <div class="message">
         <form>
-          <input name="nama" placeholder="Nama" type="text"><br>
-          <input name="email" placeholder="Email" type="text"><br>
+          <input name="nama" placeholder="Nama" type="text" <% if user_signed_in? %> value="<%= current_user.namalengkap %>" disabled <% end %>><br>
+          <input name="email" placeholder="Email" type="text" <% if user_signed_in? %> value="<%= current_user.email %>" disabled <% end %>><br>
           <textarea name="pesan" placeholder="Pesan Anda"></textarea><br>
           <input value="Kirim" style="font-weight: bold;" class="btn btn-danger" type="submit">
         </form>

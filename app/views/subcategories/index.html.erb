@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Subkategori</th>
       <th>Deskripsi</th>
-      <th>Subcategori image</th>
       <th>Parent</th>
       <th colspan="3"></th>
     </tr>
@@ -16,10 +16,10 @@
   <tbody>
     <% @subcategories.each do |subcategory| %>
       <tr>
+        <td><%= subcategory.id %></td>
         <td><%= subcategory.subkategori %></td>
         <td><%= subcategory.deskripsi %></td>
-        <td><%= subcategory.subcategori_image %></td>
-        <td><%= subcategory.category_id %></td>
+        <td><% subcategory.category.each do |c| %><%= c.kategori %>,<% end %></td>
         <td><%= link_to 'Show', subcategory %></td>
         <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
         <td><%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>

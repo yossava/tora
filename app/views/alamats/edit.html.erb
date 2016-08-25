@@ -1,33 +1,4 @@
-<%= render 'layouts/header' %>
-<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<%= render 'layouts/sidemenu' %>
-						</div>
-						<%= render 'layouts/bread' %>
-					</div>
-				</div>
-			</div>
-		</div>
+<%= render 'layouts/torakoheader' %>
 		<!-- ./Header -->
 
 		<div class="spacermedium"></div>
@@ -59,19 +30,19 @@
                   <%= f.hidden_field :kecamatan_sebagai %>
                   <div style="display:none;" class="form-row">
                     <%= f.label :Alamat_Sebagai %><br>
-                    <%= f.text_field :sebagai, required: "true" %>
+                    <%= f.text_field :sebagai, required: "true", "data-validation" => "alphanumeric", "data-validation-allowing" => " " %>
                   </div>
                   <div style="display:none;" class="form-row">
                     <%= f.label :Nama_penerima %><br>
-                    <%= f.text_field :nama_penerima, required: "true" %>
+                    <%= f.text_field :nama_penerima, required: "true", "data-validation" => "alphanumeric", "data-validation-allowing" => " " %>
                   </div>
                   <div style="display:none;" class="form-row">
                     <%= f.label :Alamat %><br>
-                    <%= f.text_area :alamat, required: "true" %>
+                    <%= f.text_area :alamat, required: "true", "data-validation" => "length", "data-validation-length" => "max1000" %>
                   </div>
                   <div style="display:none;" class="form-row">
                     <%= f.label :Kode_Pos %><br>
-                    <%= f.text_field :kode_pos, required: "true" %>
+                    <%= f.text_field :kode_pos, required: "true", "data-validation" => "number" %>
                   </div>
                   <div class="form-row">
 										<label for="prov">Provinsi</label>
@@ -112,13 +83,12 @@
                   <% end %>
                   <div style="display:none;" class="form-row">
                     <%= f.label :Nomor_Telepon %><br>
-                    <%= f.text_field :nomor_telepon, required: "true" %>
+                    <%= f.text_field :nomor_telepon, required: "true", "data-validation" => "number" %>
                   </div>
 									<br>
 									<div style="display:none;" class="form-row reg">
 										<input type="submit" name="commit" value="Simpan" class="gosignin" >
                     <% end %>
-										<a href="#" id="batalbtn">Batal</a>
 									</div>
 								</div>
 							</div>
@@ -127,9 +97,8 @@
 				</div>
 			</div>
 		</div>
+    <%= render "layouts/torakofooter" %>
 
-		<div class="spacerbig"></div>
-    <%= render "layouts/footer" %>
 <script>
     $('.provinsi option[value=<%=params[:provinsi]%>]').attr('selected','selected');
     $('.kota option[value=<%=params[:kota]%>]').attr('selected','selected');

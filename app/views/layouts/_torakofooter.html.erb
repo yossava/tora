@@ -1,17 +1,18 @@
-<footer style="clear:both;" id="footer">
+<div class="spacerbig"></div>
+<footer id='footer' style='background-image: url("<%= Homeitem.find(28).img2.url %>");'>
      <div class="container">
             <!-- introduce-box -->
             <div id="introduce-box" class="row">
                 <div class="col-md-3">
                     <div id="address-box">
-                        <a href="#"><img src="/assets/images/toralog.png" alt="" /></a>
+                        <a href="/"><img src="<%= Homeitem.find(16).img3.url %>" alt="logo" /></a>
                         <div id="address-list">
                             <div class="tit-name">Address:</div>
-                            <div class="tit-contain">Jl Monumen Nasional.</div>
+                            <div class="tit-contain"><%= Homeitem.find(16).text6 %></div>
                             <div class="tit-name">Phone:</div>
-                            <div class="tit-contain">021 7788 777</div>
+                            <div class="tit-contain"><%= Homeitem.find(16).text4 %></div>
                             <div class="tit-name">Email:</div>
-                            <div class="tit-contain">support@torako.com</div>
+                            <div class="tit-contain"><%= Homeitem.find(16).text5 %></div>
                         </div>
                     </div>
                 </div>
@@ -20,21 +21,21 @@
                         <div class="col-sm-4">
                             <div class="introduce-title">My Account</div>
                             <ul id = "introduce-Account" class="introduce-list">
-                                <li><a href="#">My Order</a></li>
-                                <li><a href="#">My Wishlist</a></li>
-                                <li><a href="#">My Credit Slip</a></li>
-                                <li><a href="#">My Addresses</a></li>
-                                <li><a href="#">My Personal In</a></li>
+                                <li><a href="/bayar">My Order</a></li>
+                                <li><a href="/wishlist">My Wishlist</a></li>
+                                <li><a href="/profil">My Profile</a></li>
+                                <% if user_signed_in? && current_user.toko.present? %>
+                                <li><a href="<%= toko_path(current_user.toko) %>">My Store</a></li>
+                                <% end %>
+                                <li><a href="#">Inbox</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-4">
                             <div class="introduce-title">Support</div>
                             <ul id = "introduce-support"  class="introduce-list">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Affiliate Program</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="<%= static_path(Static.find(6)) %>">About Us</a></li>
+                                <li><a href="<%= static_path(Static.find(5)) %>">Terms & Conditions</a></li>
+                                <li><a href="<%= static_path(Static.find(15)) %>">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -42,19 +43,22 @@
                 <div class="col-md-3">
                     <div id="contact-box">
                         <div class="introduce-title">Newsletter</div>
+                        <%= form_for @newsletter, remote: true do |f| %>
                         <div class="input-group" id="mail-box">
-                          <input type="text" placeholder="Your Email Address"/>
+                          <div class="newslettersubmitted">Thank you !</div>
+                          <input data-validation="email" data-validation-error-msg-container="#email-error-dialog" class="newsinput" type="text" name="newsletter[email]" placeholder="Your Email Address"/>
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">OK</button>
+                            <button class="btn btn-default newsbutton" type="submit">OK</button>
                           </span>
                         </div><!-- /input-group -->
+                        <div style="color: yellow;font-weight: 100;" id="email-error-dialog"></div>
+                        <% end %>
                         <div class="introduce-title">Let's Socialize</div>
                         <div class="social-link">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fa fa-vk"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="<%= Homeitem.find(32).text1 %>"><i class="fa fa-facebook"></i></a>
+                            <a href="<%= Homeitem.find(32).text2 %>"><i class="fa fa-twitter"></i></a>
+                            <a href="<%= Homeitem.find(32).text3 %>"><i class="fa fa-google-plus"></i></a>
+                            <a href="<%= Homeitem.find(32).text4 %>"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
 
@@ -65,37 +69,29 @@
             <div id="trademark-box" class="row">
                 <div class="col-sm-12">
                     <ul id="trademark-list">
-                        <li id="payment-methods">Accepted Payment Methods</li>
+                        <li id="payment-methods">Payment and Shipping</li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-ups.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img1.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-qiwi.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img2.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-wu.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img3.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-cn.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img4.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-visa.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img5.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-mc.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img6.url %>"  alt="ups"/></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/data/trademark-ems.jpg"  alt="ups"/></a>
+                            <a href="#"><img src="<%= Homeitem.find(1).img7.url %>"  alt="ups"/></a>
                         </li>
-                        <li>
-                            <a href="#"><img src="/assets/data/trademark-dhl.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="/assets/data/trademark-fe.jpg"  alt="ups"/></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="/assets/data/trademark-wm.jpg"  alt="ups"/></a>
-                        </li>
+
                     </ul>
                 </div>
             </div> <!-- /#trademark-box -->
@@ -109,3 +105,10 @@
             </div><!-- /#footer-menu-box -->
         </div>
 </footer>
+<script>
+  $('.newsbutton').click(function(){
+  $(this).fadeOut();
+  $('.newsinput').fadeOut();
+  $('.newslettersubmitted').fadeIn();
+                         });
+</script>

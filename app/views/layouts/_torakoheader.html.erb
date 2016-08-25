@@ -1,20 +1,65 @@
-<div id="header" class="header">
+<div id="header" class="header" style='background-image: url("<%= Homeitem.find(28).img1.url %>");'>
     <div class="top-header">
         <div style="">
             <div class="nav-top-links">
-                <a class="first-item" href="#"><img alt="phone" src="/assets/images/phone.png" />00-62-658-658</a>
-                Marketplace Produk Korea & Jepang No.1 !
+                <a class="first-item" href="#"><img alt="phone" src="/assets/images/phone.png" /><%= Homeitem.find(19).text1 %></a>
+                <%= Homeitem.find(19).text2 %>
 
             </div>
 
-            <div style="" class="support-link">
-                <% if user_signed_in? %><a href="#">Welcome, <%= current_user.namalengkap %></a><% else %><a href="/masuk">Login</a><% end %>
-                <a href="/profil">Account</a>
-                <a href="/wishlist">Wishlist</a>
-                <a href="#">Services</a>
-                <a href="#">Support</a>
+            <div class="support-link">
                 <% if user_signed_in? %>
+                <% if @troli2live.present? %><% @t2 = @troli2live.count %><% else %><% @t2 = 0 %><% end %>
+                <% if @troli3live.present? %><% @t3 = @troli3live.count  %><% else %><% @t3 = 0 %><% end %>
+                <% if @troli4.present? %><% @t4 = @troli4.count  %><% else %><% @t4 = 0 %><% end %>
+                <% if @troli7live.present? %><% @t7 = @troli7live.count  %><% else %><% @t7 = 0 %><% end %>
+                <% if @stroli3live.present? %><% @s3 = @stroli3live.count  %><% else %><% @s3 = 0 %><% end %>
+                <div class="not"><%= @t2 + @t3 + @t4 + @t7 + @s3 %></div>
+                <% else %>
+                <% end %>
+                <% if user_signed_in? %>
+                <a href="#">Welcome, <%= current_user.namalengkap %></a>
+                <% else %>
+                <a href="#">Welcome Guest</a>
+                <a href="/masuk">Login</a>
+                <a href="/daftar">Register</a>
+                <% end %>
+                <% if user_signed_in? %>
+                <div class="dropdown account">
+                <a class="acclink dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+                <div class="account-content accountprofil dropdown-menu">
+                  <ul>
+                    <li><a href="/profil"><i style="margin-top:10px;" class="fa fa-user" aria-hidden="true"></i> Profil</a></li>
+                    <li><a href="/edit"><i style="margin-top:10px;" class="fa fa-cog" aria-hidden="true"></i> Pengaturan</a></li>
+                    <li><a href="/wishlist"><i style="margin-top:10px;" class="fa fa-heart" aria-hidden="true"></i> Wishlist</a></li>
+                    <li><a href="/wishlist"><i style="margin-top:10px;" class="fa fa-envelope" aria-hidden="true"></i> Inbox</a></li>
+                    <li><a href="/pesanan-baru"><i style="margin-top:10px;" class="fa fa-home" aria-hidden="true"></i> Toko</a></li>
+                  </ul>
+                </div>
+                </div>
                 <a href="/logout" data-method="delete">Logout</a>
+                <div style="float:right;" class="dropdown notif">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i style="font-size: 20px; margin-top: 6px; float:right;" class="fa fa-bell" aria-hidden="true"></i></a>
+              <div style="width: 250px;" class="dropdown-content dropdown-menu notif-content">
+                <ul>
+                <% if @troli2live.present? && @troli2live.count > 0 %>
+                <li><a href="/konfirmasi-pembayaran"><i style="margin-top:10px;" class="fa fa-bell-o" aria-hidden="true"></i> <%= @troli2live.count %> pesanan perlu dikonfirmasi</a></li>
+                <% end %>
+                <% if @troli3live.present? && @troli3live.count > 0 %>
+                <li><a href="/status-pemesanan"><i style="margin-top:10px;" class="fa fa-bell-o" aria-hidden="true"></i> <%= @troli3live.count %> pesanan sedang diproses</a></li>
+                <% end %>
+                <% if @troli7live.present? && @troli7live.count > 0 %>
+                <li><a href="/status-pemesanan"><i style="margin-top:10px;" class="fa fa-bell-o" aria-hidden="true"></i> <%= @troli7live.count %> pesanan telah diproses</a></li>
+                <% end %>
+                <% if @stroli3live.present? && @stroli3live.count > 0 %>
+                <li><a href="/pesanan-baru"><i style="margin-top:10px;" class="fa fa-bell-o" aria-hidden="true"></i> <%= @stroli3live.count %> penjualan baru</a></li>
+                <% end %>
+                 <% if @troli4.present? && @stroli4.count > 0 %>
+                <li><a href="/status-pemesanan"><i style="margin-top:10px;" class="fa fa-bell-o" aria-hidden="true"></i> <%= @troli4.count %> pesanan telah dikirim</a></li>
+                </ul>
+                <% end %>
+              </div>
+              </div>
                 <% end %>
             </div>
         </div>
@@ -24,7 +69,7 @@
     <div style="" class="container main-header">
         <div class="row">
             <div class="col-xs-12 col-sm-3 logo">
-                <a href="/"><img alt="Torako Logo" src="<%= Homeitem.find(16).img2.url %>" /></a>
+                <a data-no-turbolink="true" href="/"><img alt="Torako Logo" src="<%= Homeitem.find(16).img2.url %>" /></a>
             </div>
             <div class="col-xs-7 col-sm-7 header-search-box">
                   <%= form_tag(cari_path, :method => "get", class: "form-inline") do %>
@@ -89,147 +134,21 @@
                         </h4>
                     <div class="vertical-menu-content is-home">
                         <ul class="vertical-menu-list">
-                            <li><a href="#"><i class="fa fa-desktop" aria-hidden="true"></i>Electronics</a></li>
+                            <li><a href="<%= category_path(Category.find(11)) %>"><i class="fa fa-desktop" aria-hidden="true"></i>Electronics</a></li>
                             <li>
-                                <a class="parent" href="#"><i class="fa fa-briefcase" aria-hidden="true"></i>Fashion Pria</a>
-                                <div class="vertical-dropdown-menu">
-                                    <div class="vertical-groups col-sm-12">
-                                        <div class="mega-group col-sm-4">
-                                            <h4 class="mega-group-header"><span>Tennis</span></h4>
-                                            <ul class="group-link-default">
-                                                <li><a href="#">Tennis</a></li>
-                                                <li><a href="#">Coats &amp; Jackets</a></li>
-                                                <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                <li><a href="#">Tops &amp; Tees</a></li>
-                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                <li><a href="#">Intimates</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mega-group col-sm-4">
-                                            <h4 class="mega-group-header"><span>Swimming</span></h4>
-                                            <ul class="group-link-default">
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Coats &amp; Jackets</a></li>
-                                                <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                <li><a href="#">Tops &amp; Tees</a></li>
-                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                <li><a href="#">Intimates</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mega-group col-sm-4">
-                                            <h4 class="mega-group-header"><span>Shoes</span></h4>
-                                            <ul class="group-link-default">
-                                                <li><a href="#">Dresses</a></li>
-                                                <li><a href="#">Coats &amp; Jackets</a></li>
-                                                <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                <li><a href="#">Tops &amp; Tees</a></li>
-                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                <li><a href="#">Intimates</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mega-custom-html col-sm-12">
-                                            <a href="#"><img src="assets/data/banner-megamenu.jpg" alt="Banner"></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="<%= category_path(Category.find(7)) %>"><i class="fa fa-briefcase" aria-hidden="true"></i>Fashion Pria</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-diamond" aria-hidden="true"></i>Fashion Wanita</a></li>
-                            <li><a href="#"><i class="fa fa-cubes" aria-hidden="true"></i>Toys & Figure</a></li>
+                            <li><a href="<%= category_path(Category.find(18)) %>"><i class="fa fa-diamond" aria-hidden="true"></i>Fashion Wanita</a></li>
+                            <li><a href="<%= category_path(Category.find(8)) %>"><i class="fa fa-cubes" aria-hidden="true"></i>Toys & Figure</a></li>
                             <li>
-                                <a class="parent" href="#">
+                                <a href="<%= category_path(Category.find(12)) %>">
                                 <i class="fa fa-book" aria-hidden="true"></i>Book & Comic</a>
-                                <div class="vertical-dropdown-menu">
-                                        <div class="vertical-groups col-sm-12">
-                                            <div class="mega-group col-sm-12">
-                                                <h4 class="mega-group-header"><span>Special products</span></h4>
-                                                <div class="row mega-products">
-                                                    <div class="col-sm-3 mega-product">
-                                                        <div class="product-avatar">
-                                                            <a href="#"><img src="assets/data/p10.jpg" alt="product1"></a>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <a href="#">Fashion hand bag</a>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <div class="new-price">Rp 38</div>
-                                                            <div class="old-price">Rp 45</div>
-                                                        </div>
-                                                        <div class="product-star">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 mega-product">
-                                                        <div class="product-avatar">
-                                                            <a href="#"><img src="assets/data/p11.jpg" alt="product1"></a>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <a href="#">Fashion hand bag</a>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <div class="new-price">Rp 38</div>
-                                                            <div class="old-price">Rp 45</div>
-                                                        </div>
-                                                        <div class="product-star">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 mega-product">
-                                                        <div class="product-avatar">
-                                                            <a href="#"><img src="assets/data/p12.jpg" alt="product1"></a>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <a href="#">Fashion hand bag</a>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <div class="new-price">Rp 38</div>
-                                                            <div class="old-price">Rp 45</div>
-                                                        </div>
-                                                        <div class="product-star">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 mega-product">
-                                                        <div class="product-avatar">
-                                                            <a href="#"><img src="assets/data/p13.jpg" alt="product1"></a>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <a href="#">Fashion hand bag</a>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <div class="new-price">Rp 38</div>
-                                                            <div class="old-price">Rp 45</div>
-                                                        </div>
-                                                        <div class="product-star">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                             </li>
-                            <li><a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>Food & Snacks</a></li>
-                            <li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>Film,Music,Poster</a></li>
-                            <li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>Others</a></li>
+                            <li><a href="<%= category_path(Category.find(17)) %>"><i class="fa fa-cutlery" aria-hidden="true"></i>Food & Snacks</a></li>
+                            <li><a href="<%= category_path(Category.find(9)) %>"><i class="fa fa-headphones" aria-hidden="true"></i>Film,Music,Poster</a></li>
+                            <li><a href="<%= category_path(Category.find(10)) %>"><i class="fa fa-tags" aria-hidden="true"></i>Others</a></li>
 
                         </ul>
-                        <div class="all-category invisible"><span class="open-cate">All Categories</span></div>
                     </div>
                 </div>
                 </div>
@@ -244,11 +163,11 @@
                             </div>
                             <div style="float:right;" id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class="nohover"><a href="#">Home</a></li>
-                                    <li class="nohover"><a href="category.html">Daily Deals</a></li>
-                                    <li class="nohover"><a href="category.html">Promo Spesial</a></li>
-                                    <li class="nohover"><a href="category.html">Kontak</a></li>
-                                    <li class="nohover"><a href="category.html">Blog</a></li>
+                                    <li class="nohover"><a href="<%= Homeitem.find(4).text2 %>"><%= Homeitem.find(4).text1 %></a></li>
+                                    <li class="nohover"><a href="<%= Homeitem.find(4).text4 %>"><%= Homeitem.find(4).text3 %></a></li>
+                                    <li class="nohover"><a href="<%= Homeitem.find(4).text6 %>"><%= Homeitem.find(4).text5 %></a></li>
+                                    <li class="nohover"><a href="<%= Homeitem.find(4).text8 %>"><%= Homeitem.find(4).text7 %></a></li>
+                                    <li class="nohover"><a href="<%= Homeitem.find(4).text10 %>"><%= Homeitem.find(4).text9 %></a></li>
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div>

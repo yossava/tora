@@ -1,105 +1,5 @@
 <% if @toko.user_id == current_user.id %>
-<%= render 'layouts/header' %>
-<div id="topkeyword">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="mobilemenu-opener ma5-toggle-menu"><i class="fa fa-bars"></i></div>
-						<%= render 'layouts/menumobile' %>
-						<span id="labeltopkeyword">Top Keyword</span>
-						<%= render 'layouts/topkey' %>
-						<%= render 'layouts/trolimobile' %>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="nav-breadcumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="compresedmenu">
-							<div class="headingcompresed">
-								<i class="fa fa-bars"></i> &nbsp; <span>Kategori</span> &nbsp; <i class="fa fa-angle-down"></i>
-							</div>
-							<div id="sidemenu" class="ctn-compresed">
-								<ul>
-									<li>
-										<span class="iconsidemenu ifashion"></span> Fashion
-										<div class="submenu">
-											<div class="rowsubmenu col-md-6">
-												<a href="#"><h4 class="haedingsub">Pakaian Terbaru</h4></a>
-												<ul>
-													<li><a href="#">Pria</a></li>
-													<li><a href="#">Wanita</a></li>
-													<li><a href="#">Anak</a></li>
-												</ul>
-											</div>
-											<div class="rowsubmenu  col-md-6">
-												<a href="#"><h4 class="haedingsub">Pakaian Terpopuler</h4></a>
-												<ul>
-													<li><a href="#">Pria</a></li>
-													<li><a href="#">Wanita</a></li>
-													<li><a href="#">Anak</a></li>
-												</ul>
-											</div>
-											<div class="rowsubmenu col-md-6">
-												<a href="#"><h4 class="haedingsub">Pakaian Terbaru</h4></a>
-												<ul>
-													<li><a href="#">Pria</a></li>
-													<li><a href="#">Wanita</a></li>
-													<li><a href="#">Anak</a></li>
-												</ul>
-											</div>
-											<div class="rowsubmenu  col-md-6">
-												<a href="#"><h4 class="haedingsub">Pakaian Terpopuler</h4></a>
-												<ul>
-													<li><a href="#">Pria</a></li>
-													<li><a href="#">Wanita</a></li>
-													<li><a href="#">Anak</a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<span class="iconsidemenu igadget"></span> Gadget / Komputer
-									</li>
-									<li>
-										<span class="iconsidemenu ibeauty"></span> Beauty / Health
-									</li>
-									<li>
-										<span class="iconsidemenu ielektro"></span> Elektronik
-									</li>
-									<li>
-										<span class="iconsidemenu isport"></span> Sport / Hobi / Otomotif
-									</li>
-									<li>
-										<span class="iconsidemenu ihome"></span> Home / Garden
-									</li>
-									<li>
-										<span class="iconsidemenu iservice"></span> Service
-									</li>
-									<li>
-										<span class="iconsidemenu imakanan"></span> Makanan & Minuman
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="breadcumb">
-							<span><a href="#">Home</a></span>
-							<span>></span>
-							<span><a href="#">Akun Saya</a></span>
-							<span>></span>
-							<span><a href="#">Pengaturan Toko</a></span>
-							<span>></span>
-							<span><a href="#">Informasi Toko</a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ./Header -->
-
+<%= render 'layouts/torakoheader' %>
 		<div class="spacermedium"></div>
 
 		<div class="container">
@@ -307,7 +207,6 @@
 									<div class="form-row reg">
 										<input type="submit" name="" value="Simpan" class="gosignin" >
                     <% end %>
-										<a href="#" id="batalbtn">Batal</a>
 									</div>
 								</div>
 							</div>
@@ -322,8 +221,7 @@
 			</div>
 		</div>
 
-		<div class="spacerbig"></div>
-		<%= render 'layouts/footer' %>
+		<%= render 'layouts/torakofooter' %>
 <script>
   $( document ).on('ready page:load', function () {
       $("#notice").delay(3000).fadeOut("slow");

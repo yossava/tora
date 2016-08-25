@@ -670,18 +670,21 @@ img.alignright{
 }
 .top-header .support-link{
   float: right;
+  position: relative;
 }
 .top-header img{
     display: inline-block;
     vertical-align: middle;
     margin-top: -3px;
     margin-right: 5px;
+    width: 13px;
 }
 .top-header a{
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid #565656;
     padding-right: 10px;
     margin-left: 10px;
-    color: white;
+    color: #FFF;
+    padding-right: 4px;
 }
 .top-header a.first-item{
     margin-left: 0;
@@ -696,14 +699,14 @@ img.alignright{
 }
 .top-header .dropdown{
   width: auto;
-  display: inline-block;
+  display: inline;
 }
 
 .top-header .dropdown-menu{
     border-radius: 0;
     border: none;
     top: 100%;
-    left: 0;
+    right: 0;
     border-top: 2px solid #ff0000;
     transition:all 0.4s ease-out 0s;
     -webkit-transition:all 0.4s ease-out 0s;
@@ -2748,6 +2751,9 @@ span.notify-right{
 
 .social-link .fa-google-plus{
     background: #da4735;
+}
+.social-link .fa-instagram{
+    background: #e95950;
 }
 
 /** #footer-menu-box **/
@@ -5216,7 +5222,6 @@ span.notify-right{
 }
 #header {
 	background-color: #d20000;
-	background-image: url("../images/headerbackground.jpg");
 	background-size: contain;
 }
 #navbar, #nav-top-menu {
@@ -5254,6 +5259,7 @@ span.notify-right{
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding-bottom: 0px;
+  clear:both;
 }
 #footer a, #footer li{
 	color: white;
@@ -6020,4 +6026,49 @@ margin-top: 5px;
 }
 .loginbtnred:hover {
     background-color: #FF3636;
+}
+.support-link a{
+  border:none;
+}
+#mail-box {
+  color:red;
+  font-weight:bold;
+}
+.newslettersubmitted {
+    color: yellow;
+    padding: 5px 60px;
+    border: 1px solid;
+    display:none;
+}
+#trademark-list li img {
+    width: 70px;
+    border: 3px solid #ddd;
+    border-radius: 3px;
+}
+.account:hover .account-content {
+  -webkit-transform: translate(0,0);
+  -moz-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  transform: translate(0,0);
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+}
+.notif:hover .notif-content {
+  -webkit-transform: translate(0,0);
+  -moz-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  transform: translate(0,0);
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+}
+.box-vertical-megamenus:hover .vertical-menu-content {
+  z-index: 999;
+  display: block !important;
+  transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }

@@ -17,7 +17,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="<%= stylesheet_path "gayana/css/sadaya.css" %>" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/torako.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css" />
   <% if params[:controller] == "produks" && params[:action] == "show" %>
   <title><%= @produk.nama_produk %></title>
   <meta name="description" content="<%= @produk.deskripsi %>">
@@ -57,6 +58,16 @@
 <%= javascript_include_tag "admin/notiny.js" %>
 <script>
   $.validate();
+</script>
+ <script>
+  $('.btn-konfirmasipb').click(function(e){
+    $('.form-konfirmasi').slideToggle();
+    e.preventDefault();
+  });
+  $('.showdtkonf').click(function(e){
+    $('.wrapdtkonf').slideToggle();
+    e.preventDefault();
+  });
 </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <ul class="tablink-akun">
                 <% if current_page?('/pesanan-baru') %>
-								<li class="activeli"><a href="/pesanan-baru">Pesanan Baru</a><span class="countlabel"><% if @stroli3live %><%= @stroli3live.count %><% else %>0<% end %></span></li>
+								<li class="activeli"><a href="/pesanan-baru">Pesanan Baru</a><span class="countlabel"><% if @stroli3live %><%= @stroli3live.count + @stroli3live.count %><% else %>0<% end %></span></li>
                 <% else %>
                 <li><a href="/pesanan-baru">Pesanan Baru</a><span class="countlabel"><% if @stroli3live %><%= @stroli3live.count %><% else %>0<% end %></span></li>
                 <% end %>
