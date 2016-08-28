@@ -85,33 +85,50 @@
 										</div>
 									</div>
 									<div class="spacermedium"></div>
-                  <% if (t.created_at + 4.days - Time.now).to_i/86400 > 0 %>
-									<button class="btn-konfirmasipb">Konfirmasi</button>
+                  <% if t.konfirmasis.present? && t.konfirmasis.count > 0 %>
+                  <a href="#" class="btn-konfirmasipb">Telah dikonfirmasi</a>
                   <% else %>
-                  <a href="/expired/<%= t.id %>" class="btn-konfirmasipb">Hapus Dari Daftar</a>
+                  <button class="btn-konfirmasipb btn<%= t.id %>">Konfirmasi</button>
                   <% end %>
 									<a href="#/" class="showdtkonf"><i class="fa fa-plus"></i>&nbsp; Tampilkan Detail</a>
-                  <div class="form-konfirmasi">
-                    <input type="hidden" value="<%= t.id %>" name="cart_id">
+                  <%= form_for Konfirmasi.new, remote: true do %>
+                  <% if t.konfirmasis.present? && t.konfirmasis.count > 0 %>
+                  <div class="form-konfirmasi konf<%= t.id %> row">
+                    Menunggu update status oleh Admin
+                  </div>
+                  <% else %>
+                  <div class="form-konfirmasi konf<%= t.id %> row">
+                    <input type="hidden" value="<%= t.id %>" name="konfirmasi[cart_id]">
+                    <div class="col-md-6">
                     <label>Bank Pengirim</label>
-                    <input type="text" placeholder="Bank Pengirim. cth Bank Mandiri" name="">
+                    <input type="text" placeholder="Bank Pengirim. cth Bank Mandiri" name="konfirmasi[bank_pengirim]" data-validation="alphanumeric" data-validation-allowing=" ">
+                    <label>Nama Pengirim</label>
+                    <input type="text" placeholder="Nama Pengirim. cth Johan" name="konfirmasi[nama_pengirim]" data-validation="alphanumeric" data-validation-allowing=" ">
+                    <label>Nominal</label>
+                    <input type="text" placeholder="Nominal Transfer. cth 120000" name="konfirmasi[nominal]" data-validation="number">
+                    <label>Tanggal Transfer</label>
+                    <input type="text" id="datepicker" placeholder="Tanggal Transfer. cth 12/02/2016" name="konfirmasi[tanggal]" required="required">
+                    </div>
+                    <div class="col-md-6">
+                    <label>Rekening Pengirim</label>
+                    <input type="text" placeholder="Bank Pengirim. cth 2350374470" name="konfirmasi[rekening_pengirim]"  data-validation="number">
                     <label>Bank Tujuan</label>
-                    <select  name="">
+                    <select required="required" name="konfirmasi[bank_penerima]">
+                      <option value="">Pilih Bank</option>
                       <option>BCA 5556883 Torako</option>
                       <option>BNI 5556883 Torako</option>
                       <option>BRI 5556883 Torako</option>
                       <option>Mandiri 5556883 Torako</option>
                     </select>
-                    <label>Nama Pengirim</label>
-                    <input type="text" placeholder="Nama Pengirim. cth Johan" name="">
-                    <label>Nominal</label>
-                    <input type="text" placeholder="Nominal Transfer. cth 120000" name="">
-                    <label>Tanggal Transfer</label>
-                    <input type="text" id="datepicker" placeholder="Tanggal Transfer. cth 12/02/2016" name="">
                     <label>Waktu Transfer</label>
-                    <input type="text" placeholder="Waktu Transfer. cth 12:30 WIB" name="">
-                    <button type="submit" class="btn btn-success">Konfirmasi</button>
+                    <input type="text" placeholder="Waktu Transfer. cth 12:30 WIB" name="konfirmasi[waktu]" required="required">
+                    </div>
+                    <div class="col-md-12">
+                    <button type="submit" class="btn btn-success konfirmasi-button">Konfirmasi</button>
+                    </div>
                   </div>
+                  <% end %>
+                  <% end %>
 								</div>
 								<% end %>
 							</div>
@@ -125,5 +142,15 @@
 <script>
   $(document).on('ready page:load', function () {
       $("#notice").delay(3000).fadeOut("slow");
+  });
+</script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+<script>
+  $(".konfirmasi-button").click(function(){
+    $(this).html("Please wait..");
   });
 </script>

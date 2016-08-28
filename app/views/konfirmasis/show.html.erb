@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bank pengirim:</strong>
+  <%= @konfirmasi.bank_pengirim %>
+</p>
+
+<p>
+  <strong>Bank penerima:</strong>
+  <%= @konfirmasi.bank_penerima %>
+</p>
+
+<p>
+  <strong>Rekening pengirim:</strong>
+  <%= @konfirmasi.rekening_pengirim %>
+</p>
+
+<p>
+  <strong>Nama pengirim:</strong>
+  <%= @konfirmasi.nama_pengirim %>
+</p>
+
+<p>
+  <strong>Nominal:</strong>
+  <%= @konfirmasi.nominal %>
+</p>
+
+<p>
+  <strong>Tanggal:</strong>
+  <%= @konfirmasi.tanggal %>
+</p>
+
+<p>
+  <strong>Waktu:</strong>
+  <%= @konfirmasi.waktu %>
+</p>
+
+<%= link_to 'Edit', edit_konfirmasi_path(@konfirmasi) %> |
+<%= link_to 'Back', konfirmasis_path %>

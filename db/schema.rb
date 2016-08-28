@@ -146,6 +146,19 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.text     "text12"
   end
 
+  create_table "konfirmasis", force: :cascade do |t|
+    t.string   "bank_pengirim"
+    t.string   "bank_penerima"
+    t.string   "rekening_pengirim"
+    t.string   "nama_pengirim"
+    t.integer  "nominal"
+    t.string   "tanggal"
+    t.string   "waktu"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "cart_id"
+  end
+
   create_table "newsletters", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false

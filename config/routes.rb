@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :konfirmasis
   resources :subsubcategories
   resources :financelogs
   resources :newsletters

@@ -104,7 +104,7 @@
 									</div>
 									<div class="form-row">
 										<label for="tglend">Tutup Sampai</label>
-                    <%= f.text_field :tutup_sampai, id: "tglend", class: "datepicker" %>
+                    <%= f.text_field :tutup_sampai, id: "tglend", class: "datepicker", id: "datepicker" %>
 									</div>
 									<hr style="border-color:#ddd;"></hr>
 									<div class="form-row">
@@ -301,3 +301,8 @@ $(document).on('ready page:load', function () {
 });
 </script>
 <% end %>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>

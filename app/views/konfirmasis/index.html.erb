@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Konfirmasis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bank pengirim</th>
+      <th>Bank penerima</th>
+      <th>Rekening pengirim</th>
+      <th>Nama pengirim</th>
+      <th>Nominal</th>
+      <th>Tanggal</th>
+      <th>Waktu</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @konfirmasis.each do |konfirmasi| %>
+      <tr>
+        <td><%= konfirmasi.bank_pengirim %></td>
+        <td><%= konfirmasi.bank_penerima %></td>
+        <td><%= konfirmasi.rekening_pengirim %></td>
+        <td><%= konfirmasi.nama_pengirim %></td>
+        <td><%= konfirmasi.nominal %></td>
+        <td><%= konfirmasi.tanggal %></td>
+        <td><%= konfirmasi.waktu %></td>
+        <td><%= link_to 'Show', konfirmasi %></td>
+        <td><%= link_to 'Edit', edit_konfirmasi_path(konfirmasi) %></td>
+        <td><%= link_to 'Destroy', konfirmasi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Konfirmasi', new_konfirmasi_path %>
