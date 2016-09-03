@@ -48,8 +48,20 @@ class AdminsController < ApplicationController
       @rekening = User.find(params[:user])
     end
   end
+  def konfirmasi
+    @financelog = Financelog.new
+    @konfirmasi = Konfirmasi.order(id: :asc)
+    if params[:id]
+      @konf = Konfirmasi.find(params[:id])
+      @cart = Cart.find(@konf.cart_id)
+      @toko = Toko.find(@cart.toko_id)
+      @produk = Produk.find(@cart.produk_id)
+      @pembeli = User.find(@cart.user_id)
+      @penjual = User.find(@cart.seller_id)
+    end
+  end
   def financelogs
-    @financelog = Financelog.order(id: :asc).paginate(:page => params[:page], :per_page => 15)
+    @financelog = Financelog.order(id: :desc).paginate(:page => params[:page], :per_page => 15)
   end
   def newsletter
     @newsletter = Newsletter.order(id: :asc).paginate(:page => params[:page], :per_page => 15)

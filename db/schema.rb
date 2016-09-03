@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160606013032425444) do
     t.integer  "produk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "keterangan"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

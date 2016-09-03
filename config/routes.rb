@@ -98,6 +98,8 @@ Rails.application.routes.draw do
   get 'admin/topproduct/:top/:id' => "admins#topproduct"
   get 'admin/topproduct' => "admins#topproduct"
   get 'admin/finance' => "admins#finance"
+  get 'admin/konfirmasi' => "admins#konfirmasi"
+  get 'admin/konfirmasi/:id' => "admins#konfirmasi"
   get 'admin/finance/:id' => "admins#finance"
   get 'admin/beadmin/:id' => "admins#becomeadmin"
   get 'admin/general/:id' => "admins#becomegeneral"

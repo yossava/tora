@@ -27,10 +27,18 @@ class FinancelogsController < ApplicationController
     @financelog = Financelog.new(financelog_params)
 
     respond_to do |format|
-      if @financelog.save
+      if @financelog.save && @financelog.keterangan.nil?
         User.find(params[:id]).update(:saldo => 0)
         format.html { redirect_to :back, notice: 'Financelog was successfully created.' }
         format.json { render :show, status: :created, location: @financelog }
+      elsif @financelog.save && @financelog.keterangan.present? && @financelog.toko_id.nil?
+        Konfirmasi.find(params[:id]).delete
+        format.html { redirect_to "/admin/konfirmasi", notice: 'Konfirmasi diterima' }
+      elsif @financelog.save && @financelog.keterangan.present? && @financelog.toko_id.present?
+        @konf = Konfirmasi.find(params[:id])
+        Cart.find(@konf.cart_id).update(:state => 3)
+        @konf.delete
+        format.html { redirect_to "/admin/konfirmasi", notice: 'Konfirmasi diterima' }
       else
         format.html { render :new }
         format.json { render json: @financelog.errors, status: :unprocessable_entity }
@@ -70,6 +78,6 @@ class FinancelogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def financelog_params
-      params.require(:financelog).permit(:user_id, :toko_id, :jumlah, :produk_id)
+      params.require(:financelog).permit(:user_id, :toko_id, :jumlah, :produk_id, :keterangan)
     end
 end

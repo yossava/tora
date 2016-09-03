@@ -1,0 +1,175 @@
+<div class="wrapper">
+
+  <%= render 'admins/topbar' %>
+  <!-- Left side column. contains the logo and sidebar -->
+  <%= render 'admins/sidebar' %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        User Lists
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Finance</a></li>
+        <li class="active">Payment Confirmation</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Confirmation Request</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Bank Pengirim</th>
+                  <th>Bank Penerima</th>
+                  <th>Rek Pengirim</th>
+                  <th>Nama Pengirim</th>
+                  <th>Nominal</th>
+                  <th>Tanggal</th>
+                  <th>Waktu</th>
+                  <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @konfirmasi.each do |u| %>
+                <tr>
+                  <td><%= u.id %></td>
+                  <td><%= u.bank_pengirim %></td>
+                  <td><%= u.bank_penerima %></td>
+                  <td><%= u.rekening_pengirim %></td>
+                  <td><%= u.nama_pengirim %></td>
+                  <td><%= number_to_currency(u.nominal, locale: :id) %></td>
+                  <td><%= u.tanggal %></td>
+                  <td><%= u.waktu %></td>
+                  <td><a href="/admin/konfirmasi/<%= u.id %>" class="btn btn-success">Details</a></td>
+
+                </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.box -->
+          <% if params[:id] %>
+          <div class="box">
+          <div class="box-body">
+              <table class="table table-bordered table-hover">
+                <tbody>
+                  <tr>
+                    <td>Pengirim</td>
+                    <td><%= @konf.bank_pengirim + " " + @konf.rekening_pengirim + " a.n " +@konf.nama_pengirim %></td>
+                  </tr>
+                  <tr>
+                    <td>Penerima</td>
+                    <td><%= @konf.bank_penerima %></td>
+                  </tr>
+                  <tr>
+                    <td>Waktu Transaksi</td>
+                    <td><%= @cart.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</td>
+                  </tr>
+                  <tr>
+                    <td>Waktu Form Konfirmasi</td>
+                    <td><%= @konf.created_at.in_time_zone("Jakarta").strftime("%d-%m-%Y %H:%M") %> WIB</td>
+                  </tr>
+                  <tr>
+                    <td>Waktu Transfer</td>
+                    <td><%= @konf.tanggal %>  <%= @konf.waktu %></td>
+                  </tr>
+                  <tr>
+                    <td>Nama Pembeli</td>
+                    <td><%= @pembeli.namalengkap + " (" + @pembeli.email + ")" %></td>
+                  </tr>
+                  <tr>
+                    <td>Nama Penjual</td>
+                    <td><%= @penjual.namalengkap + " (" + @penjual.email + ")" %></td>
+                  </tr>
+                  <tr>
+                    <td>Nama Toko</td>
+                    <td><%= @toko.nama_toko %> <%= link_to "Link Toko", toko_path(@toko), :target => "_blank", class: "label label-warning" %></td>
+                  </tr>
+                  <tr>
+                    <td>Nama Produk</td>
+                    <td><%= @produk.nama_produk %> <%= link_to "Link Produk", produk_path(@produk), target: "_blank", class: "label label-warning" %></td>
+                  </tr>
+                  <tr>
+                    <td>Harga Produk</td>
+                    <td><%= number_to_currency(@produk.harga_beli, locale: :id) %><% if @produk.diskon.present? %><%= " (Diskon " + @produk.diskon.to_s + "%)" %><% end %></td>
+                  </tr>
+                  <tr>
+                    <td>Jumlah Produk</td>
+                    <td><%= @cart.jumlah %> Item(s)</td>
+                  </tr>
+                  <tr>
+                    <td>Ongkos Kirim</td>
+                    <td><%= number_to_currency(@cart.ongkir, locale: :id) %></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td><%= number_to_currency(@cart.subtotal, locale: :id) %></td>
+                  </tr>
+                  <tr>
+                    <td>Nominal Transfer</td>
+                    <td><%= number_to_currency(@konf.nominal, locale: :id) %></td>
+                  </tr>
+                   <tr>
+                     <td>
+                  <div style="float:left;margin-right:20px;">
+                  <%= form_for(@financelog) do |f| %>
+                  <input type="hidden" name="id" value="<%= @konf.id %>">
+                  <input type="hidden" value="<%= @cart.toko_id %>" name="financelog[toko_id]">
+                  <input type="hidden" name="financelog[keterangan]" value='<span class="label label-warning">Pengirim</span> <%= @konf.bank_pengirim + " " + @konf.rekening_pengirim + " a.n " +@konf.nama_pengirim %> <span class="label label-warning">Penerima</span> <%= @konf.bank_penerima %> <span class="label label-warning">Waktu Transfer</span> <%= @konf.tanggal %>  <%= @konf.waktu %> <span class="label label-warning">Pembeli</span> <%= @pembeli.namalengkap + " (" + @pembeli.email + ")" %> <span class="label label-warning">Penjual</span> <%= @penjual.namalengkap + " (" + @penjual.email + ")" %> <span class="label label-warning">Nominal</span> <%= number_to_currency(@konf.nominal, locale: :id) %> <span class="label label-warning">Status</span> Diterima'>
+                  <input type="submit" value="Terima Konfirmasi" class="btn btn-success btn-sm" data-confirm="Pesanan akan diproses ke seller !">
+                  <% end %>
+                  </div>
+                  <div style="float:left">
+                  <%= form_for(@financelog) do |f| %>
+                  <input type="hidden" name="id" value="<%= @konf.id %>">
+                  <input type="hidden" name="financelog[keterangan]" value='<span class="label label-warning">Pengirim</span> <%= @konf.bank_pengirim + " " + @konf.rekening_pengirim + " a.n " +@konf.nama_pengirim %> <span class="label label-warning">Penerima</span> <%= @konf.bank_penerima %> <span class="label label-warning">Waktu Transfer</span> <%= @konf.tanggal %>  <%= @konf.waktu %> <span class="label label-warning">Pembeli</span> <%= @pembeli.namalengkap + " (" + @pembeli.email + ")" %> <span class="label label-warning">Penjual</span> <%= @penjual.namalengkap + " (" + @penjual.email + ")" %> <span class="label label-warning">Nominal</span> <%= number_to_currency(@konf.nominal, locale: :id) %> <span class="label label-warning">Status</span> Ditolak'>
+                  <input type="submit" value="Tolak Konfirmasi" class="btn btn-danger btn-sm" data-confirm="Konfirmasi Akan Ditolak">
+                  <% end %>
+                  </div>
+                     </td>
+                     <td></td>
+                  </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+          <% end %>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+  </footer>
+
+
+</div>
+
+<% if notice.to_s.include? "Konfirmasi" %>
+<script>
+$(function () {
+    $.notiny({ text: "<%= notice %>", position: 'right-top' });
+  });
+</script>
+<% end %>
+
